@@ -1,0 +1,43 @@
+class Pokemon {
+    constructor(id, name, gender, type1, type2, total, hp, attack, defense,
+            spAtk, spDef, speed, generation, legendary) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender; // Female / Male
+        this.type1 = type1;
+        this.type2 = type2 || null; // Type 2 is optional
+        this.total = total;
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.spAtk = spAtk;
+        this.spDef = spDef;
+        this.speed = speed;
+        this.generation = generation;
+        this.legendary = legendary;
+    }
+
+    // Método para mostrar los detalles básicos del Pokémon
+    getDetails() {
+        return `${this.name} (${this.gender}) - Types: ${this.type1}${this.type2 ? '/' + this.type2 : ''} - Legendary: ${this.legendary ? 'Yes' : 'No'}`;
+    }
+
+    // Método para mostrar estadísticas completas
+    getStats() {
+        return {
+            ID: this.id,
+            Name: this.name,
+            Type1: this.type1,
+            Type2: this.type2,
+            Total: this.total,
+            HP: this.hp,
+            Attack: this.attack,
+            Defense: this.defense,
+            SpAtk: this.spAtk,
+            SpDef: this.spDef,
+            Speed: this.speed,
+            Generation: this.generation,
+            Legendary: this.legendary
+        };
+    }
+}

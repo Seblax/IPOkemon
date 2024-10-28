@@ -1,0 +1,16 @@
+:root{
+    --background-color: darkslategrey;
+}
+
+body{
+    background-color: var(--background-color);
+}
+
+.game-container{
+    position: relative;
+    width: 352px;
+    height: 198px;
+    outline: 1px solid white;
+
+    margin: 0 auto;
+}
