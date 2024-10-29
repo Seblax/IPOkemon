@@ -35,9 +35,11 @@ function SetBackgroundSprites() {
     const enemy = new Image();
     const allay = new Image();
 
-    background.src = path + "0_background.png";
-    enemy.src = path + "0_enemy.png";
-    allay.src = path + "0_allay.png";
+    const index = Math.floor(Math.random() * 34);
+
+    background.src = path + index + "_background.png";
+    enemy.src = path + index + "_enemy.png";
+    allay.src = path + index + "_allay.png";
 
     // Crear promesas para cada imagen
     const loadBackground = new Promise((resolve) => { background.onload = resolve; });

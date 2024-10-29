@@ -18,18 +18,5 @@ window.onload = function () {
       console.log("Hay un shiny");
     }
 
-
-    const canvas = document.querySelector(".game-menu-canvas");
-
-    if (!canvas) {
-        console.error("No se encontró ningún elemento con la clase 'game-canvas'.");
-        return;
-    }
-
-    const ctx = canvas.getContext("2d");
-
-    const parent = canvas.parentElement;
-    canvas.width = parent.clientWidth;
-    canvas.height = parent.clientHeight;
   })();
 };
