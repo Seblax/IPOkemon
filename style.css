@@ -1,16 +1,57 @@
 :root{
     --background-color: darkslategrey;
+    --background-image-size: 15rem;
+    
+    --screen-border-color: rgb(23, 41, 61);
+    --screen-width: calc(256px);
+    --screen-height: calc(152px);
 }
 
 body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    
+    
+    /* Fijar el fondo de la imagen repetida */
     background-color: var(--background-color);
+    background-image: url('/Web/pokeball_background.png');
+    background-repeat: repeat; /* Para repetir la imagen en ambas direcciones */
+    background-size: var(--background-image-size); /* Ajusta si quieres escalar la imagen, por ejemplo, "100px 100px" */
+    
+    /* Agregar transparencia al fondo con un color semi-transparente */
+    background-blend-mode: multiply; /* Mezcla el color y la imagen */
 }
 
 .game-container{
     position: relative;
-    width: 352px;
-    height: 198px;
-    outline: 1px solid white;
+    
+    width: var(--screen-width);
+    height: var(--screen-height);
 
-    margin: 0 auto;
+    outline: 5px solid var(--screen-border-color);
+
+    transform: scale(2);
+}
+
+.background-canvas, .game-canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.background-canvas{
+    z-index: 0;
+}
+
+.game-canvas{
+    z-index: 1;
+}
+
+canvas{
+    image-rendering: pixelated;
+    width: var(--screen-width);
+    height: var(--screen-height);
 }

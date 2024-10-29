@@ -1,13 +1,25 @@
-export function DrawPokemonSprite(pokemon, x, y, back) {
+export function DrawPokemonSprite(pokemon, back) {
     const canvas = document.querySelector(".game-canvas");
-
 
     if (!canvas) {
         console.error("No se encontró ningún elemento con la clase 'game-canvas'.");
         return;
     }
+    
+    let x,y;
+    let scale;
+
+    x = 256-112;
+    y = 152-144;
+
+    if(back){
+        x = 256 - 250
+        y = 152 - 70;
+    }
+    
 
     const ctx = canvas.getContext("2d");
+
     const parent = canvas.parentElement;
     canvas.width = parent.clientWidth;
     canvas.height = parent.clientHeight;
