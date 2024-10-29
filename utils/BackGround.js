@@ -1,29 +1,13 @@
-var ctx;
+import { Screen } from "./Canvas.js";
+
+var screen;
 var x,y;
 
 export function DrawBackground() {
-    const canvas = document.querySelector(".background-canvas");
+    screen = new Screen(".background-canvas");
 
-
-    if (!canvas) {
-        console.error("No se encontró ningún elemento con la clase 'background-canvas'.");
-        return;
-    }
-
-    ctx = canvas.getContext("2d");
-
-    const parent = canvas.parentElement;
-    
-    canvas.width = parent.clientWidth;
-    canvas.height = parent.clientHeight;
-
-    x = canvas.width;
-    y = canvas.height;
-
-    if (!ctx) {
-        console.error("No se pudo obtener el contexto 2D del canvas.");
-        return;
-    }
+    x = screen.canvas.width;
+    y = screen.canvas.height;
 
     SetBackgroundSprites();
 }
@@ -48,9 +32,9 @@ function SetBackgroundSprites() {
 
     // Esperar a que todas las imágenes se carguen
     Promise.all([loadBackground, loadEnemy, loadAllay]).then(() => {
-        ctx.drawImage(background, 0, 0);
-        ctx.drawImage(enemy, x - 126, 64);
-        ctx.drawImage(allay, -64, y - 32);
+        screen.drawImage(background, 0, 0);
+        screen.drawImage(enemy, x - 126, 64);
+        screen.drawImage(allay, -64, y - 32);
     }).catch((error) => {
         console.error("Error al cargar una o más imágenes:", error);
     });
