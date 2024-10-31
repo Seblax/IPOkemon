@@ -4,27 +4,33 @@
         <title>IPOkémon</title>
         <link rel="stylesheet" type="text/css" href="style.css">   
         <link rel="icon" href="../assets/web/pokemon.ico" type="image/x-icon">
+
+        <script src="https://kit.fontawesome.com/b4d05074ee.js" crossorigin="anonymous"></script>
      
     </head>
-    <body>
+    <body> <!--Body es un flexbox colum-->
+        
+        <!--Contenedores-->
         <div class="game-container">
             <canvas class="background-canvas"></canvas>
             <canvas class="game-canvas"></canvas>
-            <canvas class="game-menu-canvas">
-                <div>
-                    Attack 1
-                </div>
-                <div>
-                    Attack 2
-                </div>
-                <div>
-                    Attack 3
-                </div>
-                <div>
-                    Attack 4
-                </div>
-            </canvas>
         </div>
+        
+        <!--Contenedores-->
+        <div class="game-menu-container">
+            <canvas class="game-menu-canvas"></canvas>
+        </div>
+        
+        <!--Contenedores-->
+    
+        <div class="button-container">
+            <button>Botón 1</button>
+            <button>Botón 2</button>
+            <button id="playButton">
+                <i class="fa-solid fa-headphones"></i>
+            </button>
+        </div>
+      
         <!-- Elemento de audio oculto -->
         <audio id="ost" src="/assets/music/fight/0_fight.mp3" preload="auto"></audio>
         

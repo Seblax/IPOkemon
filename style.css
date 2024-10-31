@@ -11,6 +11,11 @@
     --screen-menu-height: 76px;
 }
 
+.playButton{
+    position: absolute;
+
+    margin: 1rem;
+}
 body{
     display: flex;
     justify-content: center;
@@ -25,6 +30,10 @@ body{
     /* Agregar transparencia al fondo con un color semi-transparente */
     background-blend-mode: multiply; /* Mezcla el color y la imagen */
     margin: 10rem;
+
+    flex-direction: column;
+
+    transform: scale(2);
 }
 
 .game-container{    
@@ -32,15 +41,15 @@ body{
     height: var(--screen-height);
 
     outline: 5px solid var(--screen-border-color);
-
-    transform: scale(2);
 }
 
-.game-canvas{
-    position: absolute;
-    top: 0;
-    left: 0;
+.game-menu-container{    
+    width: var(--screen-menu-width);
+    height: var(--screen-menu-height);
+
+    outline: 5px solid var(--screen-border-color);
 }
+
 
 .background-canvas{
     z-index: -5;
@@ -58,7 +67,32 @@ body{
 }
 
 canvas{
+    position: absolute; /* Para superponer los canvases */
+
     image-rendering: pixelated;
     width: var(--screen-width);
     height: var(--screen-height);
+}
+
+
+/**
+Botones
+*/
+.button-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+    padding: 0.5rem;
+}
+
+button {
+    color: #a4a4a4;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
