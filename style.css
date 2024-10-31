@@ -6,6 +6,9 @@
     --screen-border-color: rgb(61, 23, 23);
     --screen-width: 256px;
     --screen-height: 152px;
+
+    --screen-menu-width: var(--screen-width);
+    --screen-menu-height: 76px;
 }
 
 body{
@@ -45,6 +48,13 @@ body{
 
 .game-canvas{
     z-index: 0;
+}
+
+.game-menu-canvas{
+    width: var(--screen-menu-width);
+    height: var(--screen-menu-height);
+    
+    outline: 5px solid var(--screen-border-color);
 }
 
 canvas{

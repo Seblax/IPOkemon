@@ -13,4 +13,10 @@ export class Screen{
     drawImage(image,x,y){
         this.ctx.drawImage(image, x, y);
     }
+
+    drawCanvas(image,x,y){
+        image.onload = () => {
+            this.ctx.drawImage(image, x, y, this.canvas.width, this.canvas.height);
+        };
+    }
 }

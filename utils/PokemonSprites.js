@@ -1,11 +1,11 @@
 import { Screen } from "./Screen.js";
+import { Sprite } from "./Sprite.js";
 
 
 export function DrawPokemonSprite(pokemon, back) {
     const screen = new Screen(".game-canvas");
 
     let x,y;
-    let scale;
 
     x = 256-112;
     y = 152-164;
@@ -15,17 +15,8 @@ export function DrawPokemonSprite(pokemon, back) {
         y = 152 - 70;
     }
 
-    const image = new Image();
-    image.src = GetPokemonSprite(pokemon,back);
-
-    image.onload = () => {
-        screen.drawImage(image, x, y);
-        console.log(pokemon.getStats());
-    };
-
-    image.onerror = () => {
-        console.error("Error al cargar la imagen del sprite: " + image.src);
-    };
+    var path = GetPokemonSprite(pokemon,back);
+    var pokemonSprite = new Sprite(path, screen, x, y);
 }
 
 function GetPokemonSprite(pokemon, back) {

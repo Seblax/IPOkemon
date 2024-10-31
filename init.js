@@ -1,6 +1,7 @@
 import { DrawPokemonSprite } from "./utils/PokemonSprites.js";
 import { DrawBackground } from "./utils/BackGround.js";
 import { Screen } from "./utils/Screen.js";
+import { Sprite } from "./utils/Sprite.js";
 
 DrawBackground();
 
@@ -15,14 +16,9 @@ window.onload = function () {
     DrawPokemonSprite(pokemon_1, Boolean(false));
     DrawPokemonSprite(pokemon_2, Boolean(true));
 
-    let screen = new Screen(".game-menu-canvas");
-
-    const image = new Image();
-    image.src = "assets/sprites/backgrounds/0_background.png";
-
-    image.onload = () => {
-      screen.drawImage(image, 0, 0);
-    };
+    let menuCanvas = new Screen(".game-menu-canvas");
+    let menuSprite = new Sprite("../assets/sprites/menu_pokemon.png", menuCanvas, 0, 0)
+    menuCanvas.drawCanvas(menuSprite.image,0,0)
 
     if(pokemon_1.shiny || pokemon_2.shiny){
       console.log("Hay un shiny");
