@@ -1,4 +1,4 @@
-import { Screen } from "./Canvas.js";
+import { Screen } from "./Screen.js";
 
 var screen;
 var x,y;
@@ -12,8 +12,12 @@ export function DrawBackground() {
     SetBackgroundSprites();
 }
 
+function SetBackgroundPalette(){
+    document.documentElement.style.setProperty('--background-color', 'lightcoral');
+}
+
 function SetBackgroundSprites() {
-    const path = "/Backgrounds/";
+    const path = "assets/sprites/backgrounds/";
 
     const background = new Image();
     const enemy = new Image();

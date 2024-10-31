@@ -1,4 +1,5 @@
 class Pokemon {
+    //Crítico 6,5
     constructor(id, name, type1, type2, total, hp, attack, defense,
             spAtk, spDef, speed, generation, legendary) {
                 
@@ -15,7 +16,8 @@ class Pokemon {
         this.speed = speed;
         this.generation = generation;
         this.legendary = legendary;
-        this.shiny = Math.random < 0.002;
+
+        this.shiny = Math.random() < 0.002;
     }
 
     // Método para mostrar los detalles básicos del Pokémon

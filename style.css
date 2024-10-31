@@ -1,8 +1,8 @@
 :root{
-    --background-color: darkslategrey;
+    --background-color: rgb(79, 47, 55);
     --background-image-size: 15rem;
     
-    --screen-border-color: rgb(23, 41, 61);
+    --screen-border-color: rgb(61, 23, 23);
     --screen-width: calc(256px);
     --screen-height: calc(152px);
 }
@@ -11,9 +11,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    
     
     /* Fijar el fondo de la imagen repetida */
     background-color: var(--background-color);
@@ -25,29 +22,28 @@ body{
     background-blend-mode: multiply; /* Mezcla el color y la imagen */
 }
 
-.game-container{
-    position: relative;
-    
+.game-container{    
     width: var(--screen-width);
     height: var(--screen-height);
+    margin: 25rem;
 
     outline: 5px solid var(--screen-border-color);
 
     transform: scale(2);
 }
 
-.background-canvas, .game-canvas{
+.background-canvas{
     position: absolute;
     top: 0;
     left: 0;
 }
 
 .background-canvas{
-    z-index: 0;
+    z-index: -5;
 }
 
 .game-canvas{
-    z-index: 1;
+    z-index: 0;
 }
 
 canvas{
