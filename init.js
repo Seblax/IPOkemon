@@ -24,5 +24,9 @@ window.onload = function () {
       console.log("Hay un shiny");
     }
 
+    var musica = document.getElementById("ost");
+    musica.play().catch(function(error) {
+      console.log("No se pudo reproducir la música: ", error);
+    });
   })();
 };
