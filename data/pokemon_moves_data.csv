@@ -327,3 +327,5 @@ Venoshock;Poison;Special;65;100;10;-;5;
 Volt Switch;Electric;Special;70;100;20;-;5;
 Water Pledge;Water;Special;80;100;10;-;5;
 Wild Charge;Electric;Physical;90;100;15;-;5;
+Protect;Normal;Status;0;100;10;-;2;
+Swords Dance;Normal;Status;0;100;20;-;1;
