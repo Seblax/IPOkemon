@@ -11,7 +11,6 @@ window.onload = function () {
 
     const pokemon_1 = team.team[0];
     const pokemon_2 = team.team[1];
-
     
     DrawPokemonSprite(pokemon_1, Boolean(false));
     DrawPokemonSprite(pokemon_2, Boolean(true));

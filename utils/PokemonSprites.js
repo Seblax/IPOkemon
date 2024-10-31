@@ -29,11 +29,14 @@ export function DrawPokemonSprite(pokemon, back) {
 }
 
 function GetPokemonSprite(pokemon, back) {
-    var path = "assets/sprites/pokemons/";
+    var normal = "assets/sprites/pokemons/";
+    var mega = "assets/sprites/pokemons/megas/";
+
+    var path = pokemon.mega ? mega : normal;
+
     var pokemonSprite = pokemon.id + ".png";
     
     if(back){
-         
         path += pokemon.shiny ? "back_shiny/": "back/";
     }else{
         path += pokemon.shiny ? "frontal_shiny/": "frontal/";

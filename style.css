@@ -1,10 +1,11 @@
 :root{
     --background-color: rgb(79, 47, 55);
+    --background-image: url("/assets/web/pokeball_background.png");
     --background-image-size: 15rem;
     
     --screen-border-color: rgb(61, 23, 23);
-    --screen-width: calc(256px);
-    --screen-height: calc(152px);
+    --screen-width: 256px;
+    --screen-height: 152px;
 }
 
 body{
@@ -14,25 +15,25 @@ body{
     
     /* Fijar el fondo de la imagen repetida */
     background-color: var(--background-color);
-    background-image: url('/Web/pokeball_background.png');
+    background-image: var(--background-image);
     background-repeat: repeat; /* Para repetir la imagen en ambas direcciones */
     background-size: var(--background-image-size); /* Ajusta si quieres escalar la imagen, por ejemplo, "100px 100px" */
     
     /* Agregar transparencia al fondo con un color semi-transparente */
     background-blend-mode: multiply; /* Mezcla el color y la imagen */
+    margin: 10rem;
 }
 
 .game-container{    
     width: var(--screen-width);
     height: var(--screen-height);
-    margin: 25rem;
 
     outline: 5px solid var(--screen-border-color);
 
     transform: scale(2);
 }
 
-.background-canvas{
+.game-canvas{
     position: absolute;
     top: 0;
     left: 0;

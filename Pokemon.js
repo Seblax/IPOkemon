@@ -4,7 +4,7 @@ class Pokemon {
             spAtk, spDef, speed, generation, legendary) {
                 
         this.id = id;
-        this.name = name;
+        this.name = name.split(" ")[0];
         this.type1 = type1;
         this.type2 = type2 || null; // Type 2 is optional
         this.total = total;
@@ -16,6 +16,7 @@ class Pokemon {
         this.speed = speed;
         this.generation = generation;
         this.legendary = legendary;
+        this.mega = isMega(name);
 
         this.shiny = Math.random() < 0.002;
     }
@@ -41,7 +42,14 @@ class Pokemon {
             Speed: this.speed,
             Generation: this.generation,
             Legendary: this.legendary,
-            Shiny: this.shiny
+            Shiny: this.shiny,
+            Mega: this.mega
         };
     }
+
+}
+
+function isMega(name){
+    const regex = /(?<!^)Mega(?!$)/i; // Busca "Mega" no al principio o al final
+    return regex.test(name);
 }
