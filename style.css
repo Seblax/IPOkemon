@@ -1,14 +1,16 @@
 :root{
-    --background-color: rgb(79, 47, 55);
+    --background-color: hsl(345, 100%, 26%);
     --background-image: url("/assets/web/pokeball_background.png");
     --background-image-size: 15rem;
     
-    --screen-border-color: rgb(61, 23, 23);
+    --screen-border-color: hsl(314, 90%, 12%);
     --screen-width: 256px;
     --screen-height: 152px;
 
     --screen-menu-width: var(--screen-width);
     --screen-menu-height: 76px;
+
+    --screen-scale: 2;
 }
 
 .playButton{
@@ -17,9 +19,6 @@
     margin: 1rem;
 }
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     
     /* Fijar el fondo de la imagen repetida */
     background-color: var(--background-color);
@@ -29,13 +28,31 @@ body{
     
     /* Agregar transparencia al fondo con un color semi-transparente */
     background-blend-mode: multiply; /* Mezcla el color y la imagen */
-    margin: 10rem;
 
-    flex-direction: column;
-
-    transform: scale(2);
+    /*Flex box para centrar la consola en el centro*/
+    display: flex;              
+    justify-content: center;
 }
 
+.console{
+    /*Flex box para colocar las pantallas*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: calc(7rem * var(--screen-scale));
+    flex-direction: column;
+
+    /*Aumenta de tamaño la consola*/
+    transform: scale(var(--screen-scale));
+}
+
+
+
+/*
+Contenedores de los canvas, deben de tener a altura y la anchura
+de los canvas que los contiene
+*/
 .game-container{    
     width: var(--screen-width);
     height: var(--screen-height);
@@ -46,17 +63,8 @@ body{
 .game-menu-container{    
     width: var(--screen-menu-width);
     height: var(--screen-menu-height);
-
+    
     outline: 5px solid var(--screen-border-color);
-}
-
-
-.background-canvas{
-    z-index: -5;
-}
-
-.game-canvas{
-    z-index: 0;
 }
 
 .game-menu-canvas{
@@ -69,11 +77,20 @@ body{
 canvas{
     position: absolute; /* Para superponer los canvases */
 
-    image-rendering: pixelated;
+    image-rendering: pixelated; /* Para que los sprites se vean bien*/
     width: var(--screen-width);
     height: var(--screen-height);
 }
 
+/*Orden en el index de los canvas para ver que canvas se superpone
+encima del otro*/
+.background-canvas{
+    z-index: -5;
+}
+
+.game-canvas{
+    z-index: 0;
+}
 
 /**
 Botones

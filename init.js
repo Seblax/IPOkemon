@@ -33,6 +33,7 @@ window.onload = function () {
 
 function musica(){
   var musica = document.getElementById("ost");
+  musica.src = "../assets/music/fight/" + Math.floor(Math.random() * 8) + "_fight.ogg";
   musica.play().catch(function(error) {
     console.log("No se pudo reproducir la música: ", error);
   });
