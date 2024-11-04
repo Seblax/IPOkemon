@@ -1,3 +1,4 @@
+import { Config } from "./Config.js";
 import { Screen } from "./Screen.js";
 import { Sprite } from "./Sprite.js";
 
@@ -5,14 +6,12 @@ import { Sprite } from "./Sprite.js";
 export function DrawPokemonSprite(pokemon) {
     const screen = new Screen(".game-canvas");
 
-    let x,y;
-
-    x = 256-112;
-    y = 152-164;
+    var x = Config.screen.width -112;
+    var y = Config.screen.height -164;
 
     if(!pokemon.enemy){
-        x = 256 - 250
-        y = 152 - 70;
+        x = Config.screen.width - 250
+        y = Config.screen.height - 70;
     }
 
     var path = GetPokemonSprite(pokemon);

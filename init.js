@@ -9,7 +9,8 @@ window.onload = function () {
   (async () => {
     const teamAllay = new PokemonTeam();
     const teamEnemy = new PokemonTeam();
-    await teamAllay.generateTeam(); // Asegúrate de que el archivo CSV esté en el mismo directorio
+    
+    await teamAllay.generateTeam();
     await teamEnemy.generateTeam();
 
     teamEnemy.setEnemy();
