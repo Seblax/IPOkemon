@@ -1,18 +1,25 @@
-import { DrawPokemonSprite } from "./utils/PokemonSprites.js";
-import { DrawBackground } from "./utils/BackGround.js";
-import { Screen } from "./utils/Screen.js";
-import { Sprite } from "./utils/Sprite.js";
+import { DrawPokemonSprite } from "./scripts/utils/PokemonSprites.js";
+import { DrawBackground } from "./scripts/utils/BackGround.js";
+import { Screen } from "./scripts/utils/Screen.js";
+import { PokemonUI } from "./scripts/PokemonUI.js";
+import { PokemonTeam } from "./scripts/PokemonTeam.js";
+import { Sprite } from "./scripts/utils/Sprite.js";
 
 window.onload = function () {
   (async () => {
-    const team = new PokemonTeam();
-    await team.generateTeam(); // Asegúrate de que el archivo CSV esté en el mismo directorio
-
-    const pokemon_1 = team.team[0];
-    const pokemon_2 = team.team[1];
+    const teamAllay = new PokemonTeam();
+    const teamEnemy = new PokemonTeam();
     
-    DrawPokemonSprite(pokemon_1, Boolean(false));
-    DrawPokemonSprite(pokemon_2, Boolean(true));
+    await teamAllay.generateTeam();
+    await teamEnemy.generateTeam();
+
+    teamEnemy.setEnemy();
+
+    const pokemon_1 = teamAllay.team[0];
+    const pokemon_2 = teamEnemy.team[1];
+    
+    DrawPokemonSprite(pokemon_1);
+    DrawPokemonSprite(pokemon_2);
 
     DrawBackground();
     
@@ -28,8 +35,8 @@ window.onload = function () {
       musica();
     };
 
-    var enemyUI = new Sprite("../assets/sprites/ui/enemy_ui.png", new Screen(".ui-canvas"), 0, 0);
-    var allayUI = new Sprite("../assets/sprites/ui/allay_ui.png", new Screen(".ui-canvas"), 256-120, 152-48);
+    new PokemonUI(pokemon_1);
+    new PokemonUI(pokemon_2);
   })();
 };
 
