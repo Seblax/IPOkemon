@@ -1,0 +1,86 @@
+:root{
+    /* Rojo */
+    --background-color: hsl(345, 100%, 26%);
+    --screen-border-color: hsl(314, 90%, 12%);
+
+    --background-image: url("/assets/web/pokeball_background.png");
+    --background-image-size: 15rem;
+}
+
+
+.palette-1 {
+    /* Verde */
+    --background-color: hsl(145, 75%, 20%);
+    --screen-border-color: hsl(145, 90%, 12%);
+}
+
+
+.palette-2 {
+    /* Azul */
+    --background-color: hsl(239, 100%, 26%);
+    --screen-border-color: hsl(239, 90%, 12%);
+}
+
+
+.palette-3 {
+    /* Amarillo */
+    --background-color: hsl(45, 100%, 26%);
+    --screen-border-color: hsl(45, 90%, 12%);
+}
+
+
+.palette-4 {
+    /* Gris */
+    --background-color: hsl(0, 0%, 35%);
+    --screen-border-color: hsl(0, 0%, 15%);
+}
+
+
+.palette-5 {
+    /* Morado */
+    --background-color: hsl(295, 85%, 20%);
+    --screen-border-color:hsl(295, 65%, 10%);
+}
+
+
+.palette-6 {
+    
+    --background-color: hsl(152, 62%, 29%);
+    --screen-border-color: hsl(152, 20%, 12%);
+}
+
+body{
+    background-color: var(--background-color);
+    background-image: var(--background-image);
+    background-repeat: repeat; /* Para repetir la imagen en ambas direcciones */
+    background-size: var(--background-image-size); /* Ajusta si quieres escalar la imagen, por ejemplo, "100px 100px" */
+    
+    /* Agregar transparencia al fondo con un color semi-transparente */
+    background-blend-mode: multiply; /* Mezcla el color y la imagen */
+}
+
+.game-container{    
+    outline: 5px solid var(--screen-border-color);
+}
+
+.game-menu-container{    
+    outline: 5px solid var(--screen-border-color);
+}
+
+.game-menu-canvas{
+    outline: 5px solid var(--screen-border-color);
+}
+
+button {
+    color: #a4a4a4;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+

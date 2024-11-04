@@ -1,9 +1,4 @@
 :root{
-    --background-color: hsl(345, 100%, 26%);
-    --background-image: url("/assets/web/pokeball_background.png");
-    --background-image-size: 15rem;
-    
-    --screen-border-color: hsl(314, 90%, 12%);
     --screen-width: 256px;
     --screen-height: 152px;
 
@@ -13,23 +8,7 @@
     --screen-scale: 2;
 }
 
-.playButton{
-    position: absolute;
-
-    margin: 1rem;
-}
 body{
-    
-    /* Fijar el fondo de la imagen repetida */
-    background-color: var(--background-color);
-    background-image: var(--background-image);
-    background-repeat: repeat; /* Para repetir la imagen en ambas direcciones */
-    background-size: var(--background-image-size); /* Ajusta si quieres escalar la imagen, por ejemplo, "100px 100px" */
-    
-    /* Agregar transparencia al fondo con un color semi-transparente */
-    background-blend-mode: multiply; /* Mezcla el color y la imagen */
-
-    /*Flex box para centrar la consola en el centro*/
     display: flex;              
     justify-content: center;
 }
@@ -56,22 +35,16 @@ de los canvas que los contiene
 .game-container{    
     width: var(--screen-width);
     height: var(--screen-height);
-
-    outline: 5px solid var(--screen-border-color);
 }
 
 .game-menu-container{    
     width: var(--screen-menu-width);
     height: var(--screen-menu-height);
-    
-    outline: 5px solid var(--screen-border-color);
 }
 
 .game-menu-canvas{
     width: var(--screen-menu-width);
     height: var(--screen-menu-height);
-    
-    outline: 5px solid var(--screen-border-color);
 }
 
 canvas{
@@ -99,17 +72,4 @@ Botones
     display: flex;
     gap: 10px; /* Espacio entre los botones */
     padding: 0.5rem;
-}
-
-button {
-    color: #a4a4a4;
-    background-color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
