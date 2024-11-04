@@ -17,7 +17,7 @@ export class Pokemon {
         this.generation = generation;
         this.legendary = legendary;
         this.mega = isMega(name);
-        this.enemy;
+        this.enemy = false;
 
         this.shiny = Math.random() < 0.002;
     }
