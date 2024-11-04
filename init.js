@@ -27,7 +27,6 @@ window.onload = function () {
     document.getElementById("playButton").onclick = function() {
       musica();
     };
-
   })();
 };
 

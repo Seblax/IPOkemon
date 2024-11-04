@@ -19,7 +19,9 @@ function SetBackgroundPalette(){
 
 function SetBackgroundSprites() {
     const path = "assets/sprites/backgrounds/";
-    const index = Math.floor(Math.random() * 34);
+    const index = Math.floor(Math.random() * 35);
+
+    Palette(index);
 
     // Crear instancias de Sprite
     const backgroundSprite = new Sprite(path + index + "_background.png", screen, 0, 0);
@@ -35,6 +37,18 @@ function SetBackgroundSprites() {
         .catch((error) => {
             console.error("Error al cargar una o más imágenes:", error);
         });
+}
+
+function Palette(){    
+    const palettes = [];
+
+    for (let i = 0; i < 6; i++) {
+        palettes.push("palette-" + i);
+    }
+    
+    // Remover otras clases de paleta si es necesario y agregar una nueva
+    document.body.classList.remove(...palettes);
+    document.body.classList.add(palettes[Math.floor(Math.random() * 7)]);
 }
 
 // function SetBackgroundSprites() {
