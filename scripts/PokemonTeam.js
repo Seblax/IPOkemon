@@ -1,4 +1,6 @@
-class PokemonTeam {
+import { Pokemon } from "./Pokemon.js";
+
+export class PokemonTeam {
     
     constructor() {
         this.team = [];
@@ -44,6 +46,12 @@ class PokemonTeam {
             }
         }
         return this.team;
+    }
+
+    setEnemy(){
+        this.team.forEach((pokemon, index) => {
+            pokemon.enemy = true;
+        });
     }
 
     // Método para mostrar el equipo
