@@ -27,6 +27,9 @@ window.onload = function () {
     document.getElementById("playButton").onclick = function() {
       musica();
     };
+
+    var enemyUI = new Sprite("../assets/sprites/ui/enemy_ui.png", new Screen(".ui-canvas"), 0, 0);
+    var allayUI = new Sprite("../assets/sprites/ui/allay_ui.png", new Screen(".ui-canvas"), 256-120, 152-48);
   })();
 };
 
