@@ -37,6 +37,8 @@ window.onload = function () {
 
     new PokemonUI(pokemon_1);
     new PokemonUI(pokemon_2);
+
+    
   })();
 };
 
