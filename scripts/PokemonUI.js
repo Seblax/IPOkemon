@@ -10,62 +10,66 @@ export class PokemonUI {
         this.enemy = pokemon.enemy;
         this.screen = new Screen(".ui-canvas");
 
-        this.typePrimary = pokemon.type1;
-        this.typeSecondary = pokemon.type2;
+        this.type1 = pokemon.type1;
+        this.type2 = pokemon.type2;
 
-        this.DrawUI();
+        this.DrawPokemonUI();
     }
 
 
-    DrawUI() {
-        var path = "../assets/sprites/ui";
-        var x = Config.screen.width - 120;
-        var y = Config.screen.height - 48 - 7;
+    async DrawPokemonUI() {
+        const basePath = "../assets/sprites/ui";
+        const isEnemy = this.enemy;
+        const isMega = this.mega;
+        const isShiny = this.shiny;
 
+        // Determina la ruta y posición según sea enemigo o aliado
+        const path = `${basePath}/${isEnemy ? "enemy" : "allay"}/`;
+        const x = isEnemy ? 0 : Config.screen.width - 120;
+        const y = isEnemy ? 0 : Config.screen.height - 55;
 
-        if (this.enemy) {
-            path += "/enemy/";
-            x = 0;
-            y = 0;
-        } else {
-            path += "/allay/";
+        // Configura las barras de HP y Mega
+        const hpBarPath = path + (isShiny ? "shiny_bar.png" : "hp_bar.png");
+        const megaBarPath = path + (isMega ? "mega_bar.png" : "hp_bar.png");
+
+        const hpBar = new Sprite(hpBarPath, this.screen, x, y);
+        const megaBar = new Sprite(megaBarPath, this.screen, x, y);
+
+        try {
+            await Promise.all([hpBar.onload(), megaBar.onload()]);
+            megaBar.draw();
+            hpBar.draw();
+        } catch (error) {
+            console.error("Error al cargar una o más imágenes:", error);
         }
 
-        var hpBar = new Sprite(path + "hp_bar.png", this.screen, x, y);
-        var megaBar = new Sprite(path + "hp_bar.png", this.screen, x, y);
-
-        if (this.mega) {
-            megaBar = new Sprite(path + "mega_bar.png", this.screen, x, y);
-        }
-
-        if (this.shiny) {
-            hpBar = new Sprite(path + "shiny_bar.png", this.screen, x, y);
-        }
-        
+        // Dibuja los tipos del Pokémon
         this.DrawPokemonTypes(x, y);
-
-        Promise.all([megaBar.onload(), hpBar.onload()])
-            .then((sprites) => {
-                sprites.forEach(sprite => sprite.draw());
-            })
-            .catch((error) => {
-                console.error("Error al cargar una o más imágenes:", error);
-            });
-
     }
+
 
     DrawPokemonTypes(x, y) {
-        var type1= "../assets/sprites/types/"+this.typePrimary.toLowerCase() +".png";
-        var type2= "../assets/sprites/types/"+this.typeSecondary.toLowerCase() +".png";
+        //Recursos;
+        var basePath = "../assets/sprites/types/";
+        var type1 = this.type1.toLowerCase() + ".png";
+        var type2 = this.type2.toLowerCase() + ".png";
+        var None = "none.png";
 
-        if (this.enemy) {
-            new Sprite(type1, this.screen, x + 1, y + 33);
-            if(this.typeSecondary != "None")
-                new Sprite(type2, this.screen,x + 50, y + 33);
-        } else {
-            new Sprite(type1, this.screen, x + 71, y + 33);
-            if(this.typeSecondary != "None")
-                new Sprite(type2, this.screen, x + 22, y + 33);
-        }
+        var isEnemy = this.enemy;               //Comprueba si el pokemon es enemigo
+        var haveSecondType = type2 != None;   //Comprueba si tiene segundo tipo
+
+        var posSpriteType1 = isEnemy ? [x + 50, y + 33] : [x + 22, y + 33];
+        var posSpriteType2 = isEnemy ? [x + 1, y + 33] : [x + 71, y + 33];
+
+        //Carga los sprites
+        haveSecondType ? new Sprite(basePath + type2,
+            this.screen,
+            posSpriteType1[0],
+            posSpriteType1[1]) : null;
+
+        new Sprite(basePath + type1,
+            this.screen,
+            posSpriteType2[0],
+            posSpriteType2[1]);
     }
 }
