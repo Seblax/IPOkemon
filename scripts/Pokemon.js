@@ -1,16 +1,4 @@
-import { Move } from "./Move.js";
-
 export class Pokemon {
-  nullMove = new Move(
-    "Error",
-    "Error",
-    "Error",
-    "Error",
-    "Error",
-    "Error",
-    "Error"
-  );
-
   //Crítico 6,5
   constructor(
     id,
@@ -43,14 +31,7 @@ export class Pokemon {
     this.mega = isMega(name);
     this.enemy = false;
     this.shiny = Math.random() < 0.002;
-    this.moveSet = [this.nullMove, this.nullMove, this.nullMove, this.nullMove];
-  }
-
-  // Método para mostrar los detalles básicos del Pokémon
-  getDetails() {
-    return `${this.name} - Types: ${this.type1}${
-      this.type2 ? "/" + this.type2 : ""
-    } - Legendary: ${this.legendary ? "Yes" : "No"}`;
+    this.moveSet = [];
   }
 
   // Método para mostrar estadísticas completas
@@ -71,8 +52,24 @@ export class Pokemon {
       Legendary: this.legendary,
       Shiny: this.shiny,
       Mega: this.mega,
-      //MoveSet: this.moveSet.map((x) => x.getStats()),
+      MoveSet: this.moveSet
     };
+  }
+
+  static copy(pokemon){
+    return new Pokemon( pokemon.id,
+        pokemon.name,
+        pokemon.type1,
+        pokemon.type2,
+        pokemon.total,
+        pokemon.hp,
+        pokemon.attack,
+        pokemon.defense,
+        pokemon.spAtk,
+        pokemon.spDef,
+        pokemon.speed,
+        pokemon.generation,
+        pokemon.legendary);
   }
 }
 
