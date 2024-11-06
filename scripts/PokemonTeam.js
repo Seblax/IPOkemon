@@ -15,7 +15,7 @@ export class PokemonTeam {
   // Método para generar un equipo de 6 Pokémon
   async generateTeam() {
     const allPokemon = await Data.PokemonData;
-
+    
     while (this.team.length < 6) {
       const randomPokemon = this.getRandomPokemon(allPokemon);
       if (!this.team.includes(randomPokemon)) {

@@ -43,7 +43,6 @@ de los canvas que los contiene
 }
 
 .game-menu-canvas{
-    width: var(--screen-menu-width);
     height: var(--screen-menu-height);
 }
 
