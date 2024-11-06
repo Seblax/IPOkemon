@@ -29,13 +29,25 @@ function Play() {
     console.log("No se pudo reproducir la música: ", error);
   });
 
-  button.classList.remove("musicButtonOff");
-  button.classList.add("musicButtonOn");
+  ChangeButton(_playing);
 }
 
 function Pause() {
   sound.pause();
+  ChangeButton(_playing);
+}
 
-  button.classList.remove("musicButtonOn");
-  button.classList.add("musicButtonOff");
+function ChangeButton(){
+  var off = "musicButtonOff";
+  var on = "musicButtonOn";
+  var l = button.classList;
+
+  if(_playing){
+    l.remove(off);
+    l.add(on)
+
+  }else{
+    l.remove(on);
+    l.add(off)    
+  }
 }
