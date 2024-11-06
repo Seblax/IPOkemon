@@ -2,7 +2,7 @@ import { Data } from "./Data.js";
 
 const sound = document.getElementById("ost"); 
 const button = document.getElementById("musicButton");
-var _playing = false;
+var _playing = true;
 
 export function SetBattleMusic() {
   Data.Music =
