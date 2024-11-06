@@ -59,7 +59,7 @@ body{
     background-blend-mode: multiply; /* Mezcla el color y la imagen */
 }
 
-.game-container{    
+.game-container{        
     outline: 5px solid var(--screen-border-color);
 }
 

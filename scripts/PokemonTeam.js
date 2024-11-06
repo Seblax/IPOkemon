@@ -36,6 +36,7 @@ export class PokemonTeam {
                 this.team.push(randomPokemon);
             }
         }
+        this.team.push(allPokemon[allPokemon.length-1])
         return this.team;
     }
 
