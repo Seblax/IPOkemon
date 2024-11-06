@@ -1,4 +1,4 @@
-import { getMovesSet } from "./Move.js";
+import { getMovesSet } from "./Moves/Move.js";
 import { Pokemon } from "./Pokemon.js";
 import { Data } from "./utils/Data.js";
 

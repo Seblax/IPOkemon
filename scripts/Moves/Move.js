@@ -1,4 +1,4 @@
-import { Data } from "./utils/Data.js";
+import { Data } from "../utils/Data.js";
 
 export class Move {
   constructor(name, type, category, power, acc, pp, prob) {

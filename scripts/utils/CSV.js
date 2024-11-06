@@ -1,4 +1,4 @@
-import { Move } from "../Move.js";
+import { Move } from "../Moves/Move.js";
 import { Pokemon } from "../Pokemon.js";
 
 export async function Parser(path) {

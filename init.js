@@ -6,9 +6,12 @@ import { PokemonTeam } from "./scripts/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
 import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
 import { Data } from "./scripts/utils/Data.js";
+import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
 
 window.onload = function () {
   (async () => {
+    SetBattleMusic();
+
     Data.PokemonData = await loadPokemonFromCSV();
     Data.MovesData = await loadMovesFromCSV();
 
@@ -42,26 +45,9 @@ window.onload = function () {
       console.log("Hay un shiny");
     }
 
-    document.getElementById("playButton").onclick = function () {
-      musica();
-    };
-
     new PokemonUI(pokemon_1);
     new PokemonUI(pokemon_2);
+
+    Music();
   })();
 };
-
-function musica() {
-  var musica = document.getElementById("ost");
-  musica.src =
-    "../assets/music/fight/" + Math.floor(Math.random() * 8) + "_fight.ogg";
-  musica.play().catch(function (error) {
-    console.log("No se pudo reproducir la música: ", error);
-  });
-
-  // Configuramos la música para que se reinicie al terminar
-  musica.addEventListener("ended", function () {
-    musica.currentTime = 0; // Reinicia la música al inicio
-    musica.play(); // Reproduce nuevamente
-  });
-}
