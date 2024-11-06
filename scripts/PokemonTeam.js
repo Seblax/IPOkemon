@@ -1,4 +1,5 @@
 import { getMovesSet } from "./Move.js";
+import { Pokemon } from "./Pokemon.js";
 import { Data } from "./utils/Data.js";
 
 export class PokemonTeam {
@@ -14,23 +15,26 @@ export class PokemonTeam {
 
   // Método para generar un equipo de 6 Pokémon
   async generateTeam() {
+    await generateTeam(false);
+  }
+
+  async generateTeam(isEnemy) {
     const allPokemon = await Data.PokemonData;
     
     while (this.team.length < 6) {
       const randomPokemon = this.getRandomPokemon(allPokemon);
       if (!this.team.includes(randomPokemon)) {
-        randomPokemon.moveSet = [];
-        getMovesSet(randomPokemon);
-        this.team.push(randomPokemon);
+        const newPokemon = Pokemon.copy(Pokemon.copy(randomPokemon));
+        
+        newPokemon.enemy = isEnemy;
+        newPokemon.moveSet = [];
+        
+        getMovesSet(newPokemon);
+        
+        this.team.push(newPokemon);
       }
     }
-    return this.team;
-  }
-
-  setEnemy() {
-    this.team.forEach((pokemon, index) => {
-      pokemon.enemy = true;
-    });
+    return  Promise.all(this.team);
   }
 
   // Método para mostrar el equipo

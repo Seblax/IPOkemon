@@ -4,22 +4,25 @@ import { Screen } from "./scripts/utils/Screen.js";
 import { PokemonUI } from "./scripts/PokemonUI.js";
 import { PokemonTeam } from "./scripts/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
-import { Move } from "./scripts/Move.js";
-import { Parser } from "./scripts/utils/CSV.js";
+import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
 import { Data } from "./scripts/utils/Data.js";
 
 window.onload = function () {
   (async () => {
+    Data.PokemonData = await loadPokemonFromCSV();
+    Data.MovesData = await loadMovesFromCSV();
+
     const teamAllay = new PokemonTeam();
     const teamEnemy = new PokemonTeam();
 
     await teamAllay.generateTeam();
-    await teamEnemy.generateTeam();
-
-    teamEnemy.setEnemy();
+    await teamEnemy.generateTeam(true);
 
     const pokemon_1 = teamAllay.team[0];
     const pokemon_2 = teamEnemy.team[1];
+
+    console.log(pokemon_1);
+    console.log(pokemon_2);
 
     DrawPokemonSprite(pokemon_1);
     DrawPokemonSprite(pokemon_2);
