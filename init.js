@@ -1,7 +1,7 @@
 import { DrawPokemonSprite } from "./scripts/DrawSprites/PokemonSprites.js";
 import { DrawBackground } from "./scripts/utils/BackGround.js";
 import { Screen } from "./scripts/utils/Screen.js";
-import { PokemonUI } from "./scripts/PokemonUI.js";
+import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
 import { PokemonTeam } from "./scripts/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
 import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
@@ -24,6 +24,9 @@ window.onload = function () {
 
     const pokemon_1 = teamAllay.team[0];
     const pokemon_2 = teamEnemy.team[1];
+
+    pokemon_1.hp = Math.round(pokemon_1.totalHp * 0.1);
+    pokemon_2.hp = Math.round(pokemon_2.totalHp * 0.50);
 
     console.log(pokemon_1);
     console.log(pokemon_2);
