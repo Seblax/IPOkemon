@@ -33,7 +33,7 @@ export async function loadPokemonFromCSV() {
       values[10],
       values[11],
       values[12],
-      isMega(values[0]),
+      isMega(values[1]),
       false, 
       Random() < 0.002,
       [],

@@ -39,7 +39,7 @@ export class Pokemon {
     this.mega = mega;
     this.enemy = enemy;
     this.shiny = shiny;
-    this.moveSet = mega;
+    this.moveSet = moveSet;
     this.lvl = lvl;
   }
 

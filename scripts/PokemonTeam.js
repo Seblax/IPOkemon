@@ -31,6 +31,7 @@ export class PokemonTeam {
         
         getMovesSet(newPokemon);
         newPokemon.setRandomStats();
+        
         this.team.push(newPokemon);
       }
     }
