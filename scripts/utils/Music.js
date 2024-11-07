@@ -1,4 +1,4 @@
-import { Data, RandomRange } from "./Data.js";
+import { Data, RandomZeroTo } from "./Data.js";
 
 const sound = document.getElementById("ost");
 const button = document.getElementById("musicButton");
@@ -6,7 +6,7 @@ var _playing = true;
 
 export function SetBattleMusic() {
   Data.Music =
-    "../assets/music/fight/" + RandomRange(9) + "_fight.ogg";
+    "../assets/music/fight/" + RandomZeroTo(9) + "_fight.ogg";
 }
 
 export function Music() {

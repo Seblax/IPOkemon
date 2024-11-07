@@ -1,5 +1,6 @@
 import { Move } from "../Moves/Move.js";
 import { Pokemon } from "../Pokemon.js";
+import { Random, RandomRange } from "./Data.js";
 
 export async function Parser(path) {
   const response = await fetch(path);
@@ -31,9 +32,19 @@ export async function loadPokemonFromCSV() {
       values[9],
       values[10],
       values[11],
-      values[12]
+      values[12],
+      isMega(values[0]),
+      false, 
+      Random() < 0.002,
+      [],
+      RandomRange(80,90) + 10
     );
   }); // Filtra las filas nulas
+}
+
+function isMega(name) {
+  const regex = /(?<!^)Mega(?!$)/i; // Busca "Mega" no al principio o al final
+  return regex.test(name);
 }
 
 export async function loadMovesFromCSV() {

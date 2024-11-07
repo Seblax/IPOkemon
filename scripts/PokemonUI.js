@@ -3,28 +3,28 @@ import { Screen } from "./utils/Screen.js";
 import { Config } from "./utils/Config.js";
 import { Text } from "./utils/Text.js";
 
+const textScreen = new Screen(".ui-text-canvas").resolution(20);
+
 export class PokemonUI {
     constructor(pokemon) {
-        this.hp = pokemon.hp;
-        this.totalHp = pokemon.totalHp;
-        this.shiny = pokemon.shiny;
-        this.mega = pokemon.mega;
-        this.enemy = pokemon.enemy;
+        this.pokemon = pokemon;
         this.screen = new Screen(".ui-canvas");
 
         this.type1 = pokemon.type1;
         this.type2 = pokemon.type2;
 
         this.DrawPokemonUI();
+        this.DrawPokemonName();
         this.DrawPokemonHP();
+        this.DrawPokemonLv();
     }
 
 
     async DrawPokemonUI() {
         const basePath = "../assets/sprites/ui";
-        const isEnemy = this.enemy;
-        const isMega = this.mega;
-        const isShiny = this.shiny;
+        const isEnemy = this.pokemon.enemy;
+        const isMega = this.pokemon.mega;
+        const isShiny = this.pokemon.shiny;
 
         // Determina la ruta y posición según sea enemigo o aliado
         const path = `${basePath}/${isEnemy ? "enemy" : "allay"}/`;
@@ -51,14 +51,43 @@ export class PokemonUI {
     }
 
     DrawPokemonHP(){
-        var totalHp = this.totalHp;
-        var currentHp = this.hp;
-        var textScreen = new Screen(".ui-text-canvas");
-        textScreen.clear();
-        textScreen.resolution(20);
+        if(this.pokemon.enemy){
+            return;
+        }
+        var totalHp = this.pokemon.totalHp;
+        var currentHp = this.pokemon.hp;
 
-        new Text(totalHp, textScreen,226, 115, 10, "Pokefont","start").setColor("white").setOutline(true).drawText();
-        new Text(currentHp, textScreen,216, 115, 10, "Pokefont","end").setColor("white").setOutline(true).drawText();
+        new Text(totalHp, textScreen,226, 114, 10, "Pokefont","start").setColor("white").setOutline(true).drawText();
+        new Text(currentHp + "/", textScreen,225, 114, 10, "Pokefont","end").setColor("white").setOutline(true).drawText();
+    }
+
+    
+    DrawPokemonName(){
+        var name = this.pokemon.name;
+
+        var x =150;
+        var y =100;
+
+        if(this.pokemon.enemy){
+            x = 10;
+            y = 8;
+        }
+
+        new Text(name, textScreen,x, y, 10, "Pokefont","start").setColor("white").setOutline(true).drawText();
+    }
+
+    DrawPokemonLv(){
+        var lvl = this.pokemon.lvl;
+
+        var x =226;
+        var y =101;
+
+        if(this.pokemon.enemy){
+            x = 94;
+            y = 9;
+        }
+
+        new Text(lvl, textScreen,x, y, 10, "Pokefont","start").setColor("white").setOutline(true).drawText();
     }
 
     DrawPokemonTypes(x, y) {
@@ -68,7 +97,7 @@ export class PokemonUI {
         var type2 = this.type2.toLowerCase() + ".png";
         var None = "none.png";
 
-        var isEnemy = this.enemy;               //Comprueba si el pokemon es enemigo
+        var isEnemy = this.pokemon.enemy;               //Comprueba si el pokemon es enemigo
         var haveSecondType = type2 != None;   //Comprueba si tiene segundo tipo
 
         var posSpriteType1 = isEnemy ? [x + 50, y + 33] : [x + 22, y + 33];

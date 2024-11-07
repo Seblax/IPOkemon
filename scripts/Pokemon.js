@@ -1,4 +1,4 @@
-import { RandomRange } from "./utils/Data.js";
+import { Random, RandomRange, RandomZeroTo } from "./utils/Data.js";
 
 export class Pokemon {
   //Crítico 6,5
@@ -15,7 +15,12 @@ export class Pokemon {
     spDef,
     speed,
     generation,
-    legendary
+    legendary,
+    mega,
+    enemy,
+    shiny,
+    moveSet,
+    lvl
   ) {
     this.id = id;
     this.name = name.split(" ")[0];
@@ -31,10 +36,16 @@ export class Pokemon {
     this.speed = speed;
     this.generation = generation;
     this.legendary = legendary;
-    this.mega = isMega(name);
-    this.enemy = false;
-    this.shiny = RandomRange() < 0.002;
-    this.moveSet = [];
+    this.mega = mega;
+    this.enemy = enemy;
+    this.shiny = shiny;
+    this.moveSet = mega;
+    this.lvl = lvl;
+  }
+
+  setRandomStats(){
+    this.shiny = Random() < 0.002;
+    this.lvl = RandomRange(80,90) + 10;
   }
 
   // Método para mostrar estadísticas completas
@@ -55,12 +66,13 @@ export class Pokemon {
       Legendary: this.legendary,
       Shiny: this.shiny,
       Mega: this.mega,
-      MoveSet: this.moveSet
+      MoveSet: this.moveSet,
+      Lvl: this.lvl
     };
   }
 
   static copy(pokemon){
-    return new Pokemon( pokemon.id,
+    return new Pokemon(pokemon.id,
         pokemon.name,
         pokemon.type1,
         pokemon.type2,
@@ -72,11 +84,11 @@ export class Pokemon {
         pokemon.spDef,
         pokemon.speed,
         pokemon.generation,
-        pokemon.legendary);
+        pokemon.legendary,
+        pokemon.mega,
+        pokemon.enemy,
+        pokemon.shiny,
+        pokemon.moveSet,
+        pokemon.lvl);
   }
-}
-
-function isMega(name) {
-  const regex = /(?<!^)Mega(?!$)/i; // Busca "Mega" no al principio o al final
-  return regex.test(name);
 }
