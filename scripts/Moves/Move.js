@@ -1,7 +1,7 @@
 import { Data } from "../utils/Data.js";
 
 export class Move {
-  constructor(name, type, category, power, acc, pp, prob) {
+  constructor(name, type, category, power, acc, pp, prio) {
     this.name = name;
     this.type = type;
     this.category = category;
@@ -9,7 +9,7 @@ export class Move {
     this.acc = parseFloat(acc) / 100;
     this.pp = parseInt(pp);
     this.totalPP = parseInt(pp);
-    this.prob = prob == "-" ? 0 : parseFloat(prob) / 100;
+    this.prio = parseInt(prio);
   }
 
   // Método para mostrar estadísticas completas
@@ -22,7 +22,7 @@ export class Move {
       Accuracy: this.acc,
       PowerPoints: this.pp,
       TotalPowerPoints: this.totalPP,
-      Crit: this.prob,
+      Prio: this.prio,
     };
   }
 

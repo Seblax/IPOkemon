@@ -1,331 +1,487 @@
-Name;Type;Category;Power;Acc;PP;Prob.(%);Gen;
-Acid;Poison;Special;40;100;30;10;1;
-Aurora Beam;Ice;Special;65;100;20;10;1;
-Barrage;Normal;Physical;15;85;20;-;1;
-Bind;Normal;Physical;15;85;20;-;1;
-Bite;Dark;Physical;60;100;25;30;1;
-Blizzard;Ice;Special;110;70;5;10;1;
-Body Slam;Normal;Physical;85;100;15;30;1;
-Bone Club;Ground;Physical;65;85;20;10;1;
-Bonemerang;Ground;Physical;50;90;10;-;1;
-Bubble;Water;Special;40;100;30;10;1;
-Bubble Beam;Water;Special;65;100;20;10;1;
-Clamp;Water;Physical;35;85;10;-;1;
-Comet Punch;Normal;Physical;18;85;15;-;1;
-Confusion;Psychic;Special;50;100;25;10;1;
-Constrict;Normal;Physical;10;100;35;10;1;
-Crabhammer;Water;Physical;100;90;10;-;1;
-Cut;Normal;Physical;50;95;30;-;1;
-Dig;Ground;Physical;80;100;10;-;1;
-Dizzy Punch;Normal;Physical;70;100;10;20;1;
-Double Kick;Fighting;Physical;30;100;30;-;1;
-Double Slap;Normal;Physical;15;85;10;-;1;
-Double-Edge;Normal;Physical;120;100;15;-;1;
-Dream Eater;Psychic;Special;100;100;15;-;1;
-Drill Peck;Flying;Physical;80;100;20;-;1;
-Earthquake;Ground;Physical;100;100;10;-;1;
-Egg Bomb;Normal;Physical;100;75;10;-;1;
-Ember;Fire;Special;40;100;25;10;1;
-Explosion;Normal;Physical;250;100;5;-;1;
-Fire Blast;Fire;Special;110;85;5;10;1;
-Fire Punch;Fire;Physical;75;100;15;10;1;
-Fire Spin;Fire;Special;35;85;15;-;1;
-Flamethrower;Fire;Special;90;100;15;10;1;
-Fly;Flying;Physical;90;95;15;-;1;
-Fury Attack;Normal;Physical;15;85;20;-;1;
-Fury Swipes;Normal;Physical;18;80;15;-;1;
-Gust;Flying;Special;40;100;35;-;1;
-Headbutt;Normal;Physical;70;100;15;30;1;
-High Jump Kick;Fighting;Physical;130;90;10;-;1;
-Horn Attack;Normal;Physical;65;100;25;-;1;
-Hydro Pump;Water;Special;110;80;5;-;1;
-Hyper Beam;Normal;Special;150;90;5;-;1;
-Hyper Fang;Normal;Physical;80;90;15;10;1;
-Ice Beam;Ice;Special;90;100;10;10;1;
-Ice Punch;Ice;Physical;75;100;15;10;1;
-Jump Kick;Fighting;Physical;100;95;10;-;1;
-Karate Chop;Fighting;Physical;50;100;25;-;1;
-Leech Life;Bug;Physical;80;100;10;-;1;
-Lick;Ghost;Physical;30;100;30;30;1;
-Mega Drain;Grass;Special;40;100;15;-;1;
-Mega Kick;Normal;Physical;120;75;5;-;1;
-Mega Punch;Normal;Physical;80;85;20;-;1;
-Pay Day;Normal;Physical;40;100;20;-;1;
-Peck;Flying;Physical;35;100;35;-;1;
-Petal Dance;Grass;Special;120;100;10;-;1;
-Pin Missile;Bug;Physical;25;95;20;-;1;
-Poison Sting;Poison;Physical;15;100;35;30;1;
-Pound;Normal;Physical;40;100;35;-;1;
-Psybeam;Psychic;Special;65;100;20;10;1;
-Psychic;Psychic;Status;90;100;10;10;1;
-Quick Attack;Normal;Physical;40;100;30;-;1;
-Rage;Normal;Physical;20;100;20;-;1;
-Razor Leaf;Grass;Physical;55;95;25;-;1;
-Razor Wind;Normal;Special;80;100;10;-;1;
-Rock Slide;Rock;Physical;75;90;10;30;1;
-Rock Throw;Rock;Physical;50;90;15;-;1;
-Rolling Kick;Fighting;Physical;60;85;15;30;1;
-Scratch;Normal;Physical;40;100;35;-;1;
-Self-Destruct;Normal;Physical;200;100;5;-;1;
-Skull Bash;Normal;Physical;130;100;10;100;1;
-Sky Attack;Flying;Physical;140;90;5;30;1;
-Slam;Normal;Physical;80;75;20;-;1;
-Slash;Normal;Physical;70;100;20;-;1;
-Sludge;Poison;Special;65;100;20;30;1;
-Smog;Poison;Special;30;70;20;40;1;
-Solar Beam;Grass;Special;120;100;10;-;1;
-Spike Cannon;Normal;Physical;20;100;15;-;1;
-Stomp;Normal;Physical;65;100;20;30;1;
-Strength;Normal;Physical;80;100;15;-;1;
-Struggle;Normal;Physical;50;100;-;-;1;
-Submission;Fighting;Physical;80;80;20;-;1;
-Surf;Water;Special;90;100;15;-;1;
-Swift;Normal;Special;60;100;20;-;1;
-Tackle;Normal;Physical;40;100;35;-;1;
-Take Down;Normal;Physical;90;85;20;-;1;
-Thrash;Normal;Physical;120;100;10;-;1;
-Thunder;Electric;Special;110;70;10;30;1;
-Thunder Punch;Electric;Physical;75;100;15;10;1;
-Thunder Shock;Electric;Special;40;100;30;10;1;
-Thunderbolt;Electric;Special;90;100;15;10;1;
-Tri Attack;Normal;Special;80;100;10;20;1;
-Twineedle;Bug;Physical;25;100;20;20;1;
-Vice Grip;Normal;Physical;55;100;30;-;1;
-Vine Whip;Grass;Physical;45;100;25;-;1;
-Water Gun;Water;Special;40;100;25;-;1;
-Waterfall;Water;Physical;80;100;15;20;1;
-Wing Attack;Flying;Physical;60;100;35;-;1;
-Wrap;Normal;Physical;15;90;20;-;1;
-Aeroblast;Flying;Special;100;95;5;-;2;
-Ancient Power;Rock;Special;60;100;5;10;2;
-Bone Rush;Ground;Physical;25;90;10;-;2;
-Cross Chop;Fighting;Physical;100;80;5;-;2;
-Crunch;Dark;Physical;80;100;15;20;2;
-Dragon Breath;Dragon;Special;60;100;20;30;2;
-Dynamic Punch;Fighting;Physical;100;50;5;100;2;
-Extreme Speed;Normal;Physical;80;100;5;-;2;
-False Swipe;Normal;Physical;40;100;40;-;2;
-Feint Attack;Dark;Physical;60;100;20;-;2;
-Flame Wheel;Fire;Physical;60;100;25;10;2;
-Fury Cutter;Bug;Physical;40;95;20;-;2;
-Future Sight;Psychic;Special;120;100;10;-;2;
-Giga Drain;Grass;Status;75;100;10;-;2;
-Hidden Power;Normal;Special;60;100;15;-;2;
-Icy Wind;Ice;Special;55;95;15;100;2;
-Iron Tail;Steel;Physical;100;75;15;10;2;
-Mach Punch;Fighting;Physical;40;100;30;-;2;
-Megahorn;Bug;Physical;120;85;10;-;2;
-Metal Claw;Steel;Physical;50;95;35;10;2;
-Mud-Slap;Ground;Special;20;100;10;100;2;
-Octazooka;Water;Special;65;85;10;50;2;
-Outrage;Dragon;Physical;120;100;10;-;2;
-Powder Snow;Ice;Special;40;100;25;10;2;
-Pursuit;Dark;Physical;40;100;20;-;2;
-Rapid Spin;Normal;Physical;20;100;40;-;2;
-Rock Smash;Fighting;Physical;40;100;15;50;2;
-Rollout;Rock;Physical;30;90;20;-;2;
-Sacred Fire;Fire;Physical;100;95;5;50;2;
-Shadow Ball;Ghost;Special;80;100;15;20;2;
-Sludge Bomb;Poison;Special;90;100;10;30;2;
-Snore;Normal;Special;50;100;15;30;2;
-Spark;Electric;Physical;65;100;20;30;2;
-Steel Wing;Steel;Physical;70;90;25;10;2;
-Thief;Dark;Status;60;100;25;-;2;
-Triple Kick;Fighting;Physical;10;90;10;-;2;
-Twister;Dragon;Special;40;100;20;20;2;
-Vital Throw;Fighting;Physical;70;100;10;-;2;
-Whirlpool;Water;Special;35;85;15;-;2;
-Zap Cannon;Electric;Special;120;50;5;100;2;
-Aerial Ace;Flying;Physical;60;100;20;-;3;
-Air Cutter;Flying;Special;60;95;25;-;3;
-Arm Thrust;Fighting;Physical;15;100;20;-;3;
-Astonish;Ghost;Physical;30;100;15;30;3;
-Blast Burn;Fire;Special;150;90;5;-;3;
-Blaze Kick;Fire;Physical;85;90;10;10;3;
-Bounce;Flying;Physical;85;85;5;30;3;
-Brick Break;Fighting;Physical;75;100;15;-;3;
-Bullet Seed;Grass;Physical;25;100;30;-;3;
-Covet;Normal;Physical;60;100;25;-;3;
-Crush Claw;Normal;Physical;75;95;10;50;3;
-Dive;Water;Physical;80;100;10;-;3;
-Doom Desire;Steel;Special;140;100;5;-;3;
-Dragon Claw;Dragon;Physical;80;100;15;-;3;
-Eruption;Fire;Status;150;100;5;-;3;
-Extrasensory;Psychic;Special;80;100;20;10;3;
-Facade;Normal;Physical;70;100;20;-;3;
-Fake Out;Normal;Physical;40;100;10;100;3;
-Focus Punch;Fighting;Physical;150;100;20;-;3;
-Frenzy Plant;Grass;Special;150;90;5;-;3;
-Heat Wave;Fire;Special;95;90;10;10;3;
-Hydro Cannon;Water;Special;150;90;5;-;3;
-Hyper Voice;Normal;Special;90;100;10;-;3;
-Ice Ball;Ice;Physical;30;90;20;-;3;
-Icicle Spear;Ice;Physical;25;100;30;-;3;
-Knock Off;Dark;Physical;65;100;20;-;3;
-Leaf Blade;Grass;Physical;90;100;15;-;3;
-Luster Purge;Psychic;Special;70;100;5;50;3;
-Magical Leaf;Grass;Special;60;100;20;-;3;
-Meteor Mash;Steel;Physical;90;90;10;20;3;
-Mist Ball;Psychic;Status;70;100;5;50;3;
-Mud Shot;Ground;Special;55;95;15;100;3;
-Muddy Water;Water;Special;90;85;10;30;3;
-Needle Arm;Grass;Physical;60;100;15;30;3;
-Overheat;Fire;Special;130;90;5;-;3;
-Poison Fang;Poison;Physical;50;100;15;50;3;
-Poison Tail;Poison;Physical;50;100;25;10;3;
-Psycho Boost;Psychic;Special;140;90;5;-;3;
-Revenge;Fighting;Physical;60;100;10;-;3;
-Rock Blast;Rock;Physical;25;90;10;-;3;
-Rock Tomb;Rock;Physical;60;95;15;100;3;
-Sand Tomb;Ground;Physical;35;85;15;-;3;
-Secret Power;Normal;Physical;70;100;20;30;3;
-Shadow Punch;Ghost;Physical;60;100;20;-;3;
-Shock Wave;Electric;Special;60;100;20;-;3;
-Signal Beam;Bug;Special;75;100;15;10;3;
-Silver Wind;Bug;Special;60;100;5;10;3;
-Sky Uppercut;Fighting;Physical;85;90;15;-;3;
-Smelling Salts;Normal;Physical;70;100;10;-;3;
-Sunsteel Strike;Steel;Physical;100;100;5;;3;
-Superpower;Fighting;Physical;120;100;5;-;3;
-Uproar;Normal;Special;90;100;10;-;3;
-Volt Tackle;Electric;Physical;120;100;15;10;3;
-Water Pulse;Water;Special;60;100;20;20;3;
-Water Spout;Water;Special;150;100;5;-;3;
-Weather Ball;Normal;Special;50;100;10;-;3;
-Air Slash;Flying;Special;75;95;20;30;4;
-Aqua Jet;Water;Physical;40;100;20;-;4;
-Aqua Tail;Water;Physical;90;90;10;-;4;
-Assurance;Dark;Physical;60;100;10;-;4;
-Attack Order;Bug;Physical;90;100;15;-;4;
-Aura Sphere;Fighting;Special;80;100;20;-;4;
-Avalanche;Ice;Physical;60;100;10;-;4;
-Brave Bird;Flying;Physical;120;100;15;-;4;
-Brine;Water;Special;65;100;10;-;4;
-Bug Bite;Bug;Physical;60;100;20;-;4;
-Bug Buzz;Bug;Special;90;100;10;10;4;
-Bullet Punch;Steel;Physical;40;100;30;-;4;
-Charge Beam;Electric;Special;50;90;10;70;4;
-Chatter;Flying;Special;65;100;20;100;4;
-Close Combat;Fighting;Physical;120;100;5;-;4;
-Cross Poison;Poison;Physical;70;100;20;10;4;
-Dark Pulse;Dark;Special;80;100;15;20;4;
-Discharge;Electric;Special;80;100;15;30;4;
-Double Hit;Normal;Physical;35;90;10;-;4;
-Draco Meteor;Dragon;Special;130;90;5;-;4;
-Dragon Pulse;Dragon;Special;85;100;10;-;4;
-Dragon Rush;Dragon;Physical;100;75;10;20;4;
-Drain Punch;Fighting;Physical;75;100;10;-;4;
-Earth Power;Ground;Special;90;100;10;10;4;
-Energy Ball;Grass;Special;90;100;10;10;4;
-Feint;Normal;Physical;30;100;10;-;4;
-Fire Fang;Fire;Physical;65;95;15;10;4;
-Flare Blitz;Fire;Physical;120;100;15;10;4;
-Flash Cannon;Steel;Special;80;100;10;10;4;
-Focus Blast;Fighting;Special;120;70;5;10;4;
-Force Palm;Fighting;Physical;60;100;10;30;4;
-Giga Impact;Normal;Physical;150;90;5;-;4;
-Gunk Shot;Poison;Physical;120;80;5;30;4;
-Hammer Arm;Fighting;Physical;100;90;10;-;4;
-Head Smash;Rock;Physical;150;80;5;-;4;
-Ice Fang;Ice;Physical;65;95;15;10;4;
-Ice Shard;Ice;Physical;40;100;30;-;4;
-Iron Head;Steel;Physical;80;100;15;30;4;
-Judgment;Normal;Special;100;100;10;-;4;
-Last Resort;Normal;Physical;140;100;5;-;4;
-Lava Plume;Fire;Special;80;100;15;30;4;
-Leaf Storm;Grass;Special;130;90;5;-;4;
-Magma Storm;Fire;Special;100;75;5;-;4;
-Magnet Bomb;Steel;Physical;60;100;20;-;4;
-Mirror Shot;Steel;Special;65;85;10;30;4;
-Mud Bomb;Ground;Special;65;85;10;30;4;
-Night Slash;Dark;Physical;70;100;15;-;4;
-Ominous Wind;Ghost;Special;60;100;5;10;4;
-Payback;Dark;Physical;50;100;10;-;4;
-Pluck;Flying;Physical;60;100;20;-;4;
-Poison Jab;Poison;Physical;80;100;20;30;4;
-Power Gem;Rock;Special;80;100;20;-;4;
-Power Whip;Grass;Physical;120;85;10;-;4;
-Psycho Cut;Psychic;Physical;70;100;20;-;4;
-Roar of Time;Dragon;Special;150;90;5;-;4;
-Rock Climb;Normal;Physical;90;85;20;20;4;
-Rock Wrecker;Rock;Physical;150;90;5;-;4;
-Seed Bomb;Grass;Physical;80;100;15;-;4;
-Seed Flare;Grass;Special;120;85;5;40;4;
-Shadow Claw;Ghost;Physical;70;100;15;-;4;
-Shadow Force;Ghost;Physical;120;100;5;-;4;
-Shadow Sneak;Ghost;Physical;40;100;30;-;4;
-Spacial Rend;Dragon;Special;100;95;5;-;4;
-Stone Edge;Rock;Physical;100;80;5;-;4;
-Sucker Punch;Dark;Physical;70;100;5;-;4;
-Thunder Fang;Electric;Physical;65;95;15;10;4;
-U-turn;Bug;Physical;70;100;20;-;4;
-Vacuum Wave;Fighting;Status;40;100;30;-;4;
-Wake-Up Slap;Fighting;Physical;70;100;10;-;4;
-Wood Hammer;Grass;Status;120;100;15;-;4;
-X-Scissor;Bug;Physical;80;100;15;-;4;
-Zen Headbutt;Psychic;Physical;80;90;15;20;4;
-Acid Spray;Poison;Special;40;100;20;100;5;
-Acrobatics;Flying;Physical;55;100;15;-;5;
-Blue Flare;Fire;Special;130;85;5;20;5;
-Bolt Strike;Electric;Physical;130;85;5;20;5;
-Bulldoze;Ground;Physical;60;100;20;100;5;
-Chip Away;Normal;Physical;70;100;20;-;5;
-Circle Throw;Fighting;Physical;60;90;10;-;5;
-Clear Smog;Poison;Special;50;-;15;-;5;
-Dragon Tail;Dragon;Physical;60;90;10;-;5;
-Drill Run;Ground;Physical;80;95;10;-;5;
-Dual Chop;Dragon;Physical;40;90;15;-;5;
-Echoed Voice;Normal;Special;40;100;15;-;5;
-Electroweb;Electric;Special;55;95;15;100;5;
-Fiery Dance;Fire;Special;80;100;10;50;5;
-Fire Pledge;Fire;Special;80;100;10;-;5;
-Flame Burst;Fire;Special;70;100;15;-;5;
-Flame Charge;Fire;Physical;50;100;20;100;5;
-Foul Play;Dark;Physical;95;100;15;-;5;
-Freeze Shock;Ice;Physical;140;90;5;30;5;
-Frost Breath;Ice;Special;60;90;10;100;5;
-Fusion Bolt;Electric;Physical;100;100;5;-;5;
-Fusion Flare;Fire;Special;100;100;5;-;5;
-Gear Grind;Steel;Physical;50;85;15;-;5;
-Glaciate;Ice;Special;65;95;10;100;5;
-Grass Pledge;Grass;Special;80;100;10;-;5;
-Head Charge;Normal;Physical;120;100;15;-;5;
-Heart Stamp;Psychic;Physical;60;100;25;30;5;
-Hex;Ghost;Special;65;100;10;-;5;
-Horn Leech;Grass;Physical;75;100;10;-;5;
-Hurricane;Flying;Special;110;70;10;30;5;
-Ice Burn;Ice;Special;140;90;5;30;5;
-Icicle Crash;Ice;Physical;85;90;10;30;5;
-Incinerate;Fire;Special;60;100;15;-;5;
-Inferno;Fire;Special;100;50;5;100;5;
-Leaf Tornado;Grass;Special;65;90;10;30;5;
-Low Sweep;Fighting;Physical;65;100;20;100;5;
-Night Daze;Dark;Special;85;95;10;40;5;
-Psyshock;Psychic;Special;80;100;10;-;5;
-Psystrike;Psychic;Special;100;100;10;-;5;
-Razor Shell;Water;Physical;75;95;10;50;5;
-Relic Song;Normal;Special;75;100;10;10;5;
-Retaliate;Normal;Physical;70;100;5;-;5;
-Round;Normal;Special;60;100;15;-;5;
-Sacred Sword;Fighting;Physical;90;100;20;-;5;
-Scald;Water;Special;80;100;15;30;5;
-Searing Shot;Fire;Special;100;100;5;30;5;
-Secret Sword;Fighting;Special;85;100;10;-;5;
-Sky Drop;Flying;Physical;60;100;10;-;5;
-Sludge Wave;Poison;Special;95;100;10;10;5;
-Smack Down;Rock;Physical;50;100;15;-;5;
-Snarl;Dark;Special;55;95;15;100;5;
-Steamroller;Bug;Physical;65;100;20;30;5;
-Stored Power;Psychic;Status;20;100;10;-;5;
-Storm Throw;Fighting;Physical;60;100;10;-;5;
-Struggle Bug;Bug;Special;50;100;20;100;5;
-Synchronoise;Psychic;Special;120;100;15;-;5;
-Tail Slap;Normal;Physical;25;85;10;-;5;
-Techno Blast;Normal;Special;120;100;5;-;5;
-V-create;Fire;Physical;180;95;5;100;5;
-Venoshock;Poison;Special;65;100;10;-;5;
-Volt Switch;Electric;Special;70;100;20;-;5;
-Water Pledge;Water;Special;80;100;10;-;5;
-Wild Charge;Electric;Physical;90;100;15;-;5;
-Protect;Normal;Status;0;100;10;-;2;
-Swords Dance;Normal;Status;0;100;20;-;1;
+name;type;Category;power;accuracy;pp;priority
+Pound;Normal;Physical;40.0;100.0;35;0
+Karate Chop;Fighting;Physical;50.0;100.0;25;0
+Double Slap;Normal;Physical;15.0;85.0;10;0
+Comet Punch;Normal;Physical;18.0;85.0;15;0
+Mega Punch;Normal;Physical;80.0;85.0;20;0
+Pay Day;Normal;Physical;40.0;100.0;20;0
+Fire Punch;Fire;Physical;75.0;100.0;15;0
+Ice Punch;Ice;Physical;75.0;100.0;15;0
+Thunder Punch;Electric;Physical;75.0;100.0;15;0
+Scratch;Normal;Physical;40.0;100.0;35;0
+Vice Grip;Normal;Physical;55.0;100.0;30;0
+Razor Wind;Normal;Special;80.0;100.0;10;0
+Cut;Normal;Physical;50.0;95.0;30;0
+Gust;Flying;Special;40.0;100.0;35;0
+Wing Attack;Flying;Physical;60.0;100.0;35;0
+Fly;Flying;Physical;90.0;95.0;15;0
+Bind;Normal;Physical;15.0;85.0;20;0
+Slam;Normal;Physical;80.0;75.0;20;0
+Vine Whip;Grass;Physical;45.0;100.0;25;0
+Stomp;Normal;Physical;65.0;100.0;20;0
+Double Kick;Fighting;Physical;30.0;100.0;30;0
+Mega Kick;Normal;Physical;120.0;75.0;5;0
+Jump Kick;Fighting;Physical;100.0;95.0;10;0
+Rolling Kick;Fighting;Physical;60.0;85.0;15;0
+Headbutt;Normal;Physical;70.0;100.0;15;0
+Horn Attack;Normal;Physical;65.0;100.0;25;0
+Fury Attack;Normal;Physical;15.0;85.0;20;0
+Tackle;Normal;Physical;40.0;100.0;35;0
+Body Slam;Normal;Physical;85.0;100.0;15;0
+Wrap;Normal;Physical;15.0;90.0;20;0
+Take Down;Normal;Physical;90.0;85.0;20;0
+Thrash;Normal;Physical;120.0;100.0;10;0
+Double Edge;Normal;Physical;120.0;100.0;15;0
+Poison Sting;Poison;Physical;15.0;100.0;35;0
+Twineedle;Bug;Physical;25.0;100.0;20;0
+Pin Missile;Bug;Physical;25.0;95.0;20;0
+Bite;Dark;Physical;60.0;100.0;25;0
+Acid;Poison;Special;40.0;100.0;30;0
+Ember;Fire;Special;40.0;100.0;25;0
+Flamethrower;Fire;Special;90.0;100.0;15;0
+Water Gun;Water;Special;40.0;100.0;25;0
+Hydro Pump;Water;Special;110.0;80.0;5;0
+Surf;Water;Special;90.0;100.0;15;0
+Ice Beam;Ice;Special;90.0;100.0;10;0
+Blizzard;Ice;Special;110.0;70.0;5;0
+Psybeam;Psychic;Special;65.0;100.0;20;0
+Bubble Beam;Water;Special;65.0;100.0;20;0
+Aurora Beam;Ice;Special;65.0;100.0;20;0
+Hyper Beam;Normal;Special;150.0;90.0;5;0
+Peck;Flying;Physical;35.0;100.0;35;0
+Drill Peck;Flying;Physical;80.0;100.0;20;0
+Submission;Fighting;Physical;80.0;80.0;20;0
+Strength;Normal;Physical;80.0;100.0;15;0
+Absorb;Grass;Special;20.0;100.0;25;0
+Mega Drain;Grass;Special;40.0;100.0;15;0
+Razor Leaf;Grass;Physical;55.0;95.0;25;0
+Solar Beam;Grass;Special;120.0;100.0;10;0
+Petal Dance;Grass;Special;120.0;100.0;10;0
+Fire Spin;Fire;Special;35.0;85.0;15;0
+Thunder Shock;Electric;Special;40.0;100.0;30;0
+Thunderbolt;Electric;Special;90.0;100.0;15;0
+Thunder;Electric;Special;110.0;70.0;10;0
+Rock Throw;Rock;Physical;50.0;90.0;15;0
+Earthquake;Ground;Physical;100.0;100.0;10;0
+Dig;Ground;Physical;80.0;100.0;10;0
+Confusion;Psychic;Special;50.0;100.0;25;0
+Psychic;Psychic;Special;90.0;100.0;10;0
+Quick Attack;Normal;Physical;40.0;100.0;30;1
+Rage;Normal;Physical;20.0;100.0;20;0
+Self Destruct;Normal;Physical;200.0;100.0;5;0
+Egg Bomb;Normal;Physical;100.0;75.0;10;0
+Lick;Ghost;Physical;30.0;100.0;30;0
+Smog;Poison;Special;30.0;70.0;20;0
+Sludge;Poison;Special;65.0;100.0;20;0
+Bone Club;Ground;Physical;65.0;85.0;20;0
+Fire Blast;Fire;Special;110.0;85.0;5;0
+Waterfall;Water;Physical;80.0;100.0;15;0
+Clamp;Water;Physical;35.0;85.0;15;0
+Swift;Normal;Special;60.0;100;20;0
+Skull Bash;Normal;Physical;130.0;100.0;10;0
+Spike Cannon;Normal;Physical;20.0;100.0;15;0
+Constrict;Normal;Physical;10.0;100.0;35;0
+High Jump Kick;Fighting;Physical;130.0;90.0;10;0
+Dream Eater;Psychic;Special;100.0;100.0;15;0
+Barrage;Normal;Physical;15.0;85.0;20;0
+Leech Life;Bug;Physical;80.0;100.0;10;0
+Sky Attack;Flying;Physical;140.0;90.0;5;0
+Bubble;Water;Special;40.0;100.0;30;0
+Dizzy Punch;Normal;Physical;70.0;100.0;10;0
+Crabhammer;Water;Physical;100.0;90.0;10;0
+Explosion;Normal;Physical;250.0;100.0;5;0
+Fury Swipes;Normal;Physical;18.0;80.0;15;0
+Bonemerang;Ground;Physical;50.0;90.0;10;0
+Rock Slide;Rock;Physical;75.0;90.0;10;0
+Hyper Fang;Normal;Physical;80.0;90.0;15;0
+Tri Attack;Normal;Special;80.0;100.0;10;0
+Slash;Normal;Physical;70.0;100.0;20;0
+Struggle;Normal;Physical;50.0;100;1;0
+Triple Kick;Fighting;Physical;10.0;90.0;10;0
+Thief;Dark;Physical;60.0;100.0;25;0
+Flame Wheel;Fire;Physical;60.0;100.0;25;0
+Snore;Normal;Special;50.0;100.0;15;0
+Aeroblast;Flying;Special;100.0;95.0;5;0
+Powder Snow;Ice;Special;40.0;100.0;25;0
+Mach Punch;Fighting;Physical;40.0;100.0;30;1
+Feint Attack;Dark;Physical;60.0;100;20;0
+Sludge Bomb;Poison;Special;90.0;100.0;10;0
+Mud Slap;Ground;Special;20.0;100.0;10;0
+Octazooka;Water;Special;65.0;85.0;10;0
+Zap Cannon;Electric;Special;120.0;50.0;5;0
+Icy Wind;Ice;Special;55.0;95.0;15;0
+Bone Rush;Ground;Physical;25.0;90.0;10;0
+Outrage;Dragon;Physical;120.0;100.0;10;0
+Giga Drain;Grass;Special;75.0;100.0;10;0
+Rollout;Rock;Physical;30.0;90.0;20;0
+False Swipe;Normal;Physical;40.0;100.0;40;0
+Spark;Electric;Physical;65.0;100.0;20;0
+Fury Cutter;Bug;Physical;40.0;95.0;20;0
+Steel Wing;Steel;Physical;70.0;90.0;25;0
+Sacred Fire;Fire;Physical;100.0;95.0;5;0
+Dynamic Punch;Fighting;Physical;100.0;50.0;5;0
+Megahorn;Bug;Physical;120.0;85.0;10;0
+Dragon Breath;Dragon;Special;60.0;100.0;20;0
+Pursuit;Dark;Physical;40.0;100.0;20;0
+Rapid Spin;Normal;Physical;50.0;100.0;40;0
+Iron Tail;Steel;Physical;100.0;75.0;15;0
+Metal Claw;Steel;Physical;50.0;95.0;35;0
+Vital Throw;Fighting;Physical;70.0;100;10;-1
+Hidden Power;Normal;Special;60.0;100.0;15;0
+Cross Chop;Fighting;Physical;100.0;80.0;5;0
+Twister;Dragon;Special;40.0;100.0;20;0
+Crunch;Dark;Physical;80.0;100.0;15;0
+Extreme Speed;Normal;Physical;80.0;100.0;5;2
+Ancient Power;Rock;Special;60.0;100.0;5;0
+Shadow Ball;Ghost;Special;80.0;100.0;15;0
+Future Sight;Psychic;Special;120.0;100.0;10;0
+Rock Smash;Fighting;Physical;40.0;100.0;15;0
+Whirlpool;Water;Special;35.0;85.0;15;0
+Fake Out;Normal;Physical;40.0;100.0;10;3
+Uproar;Normal;Special;90.0;100.0;10;0
+Heat Wave;Fire;Special;95.0;90.0;10;0
+Facade;Normal;Physical;70.0;100.0;20;0
+Focus Punch;Fighting;Physical;150.0;100.0;20;-3
+Smelling Salts;Normal;Physical;70.0;100.0;10;0
+Superpower;Fighting;Physical;120.0;100.0;5;0
+Revenge;Fighting;Physical;60.0;100.0;10;-4
+Brick Break;Fighting;Physical;75.0;100.0;15;0
+Knock Off;Dark;Physical;65.0;100.0;20;0
+Eruption;Fire;Special;150.0;100.0;5;0
+Secret Power;Normal;Physical;70.0;100.0;20;0
+Dive;Water;Physical;80.0;100.0;10;0
+Arm Thrust;Fighting;Physical;15.0;100.0;20;0
+Luster Purge;Psychic;Special;70.0;100.0;5;0
+Mist Ball;Psychic;Special;70.0;100.0;5;0
+Blaze Kick;Fire;Physical;85.0;90.0;10;0
+Ice Ball;Ice;Physical;30.0;90.0;20;0
+Needle Arm;Grass;Physical;60.0;100.0;15;0
+Hyper Voice;Normal;Special;90.0;100.0;10;0
+Poison Fang;Poison;Physical;50.0;100.0;15;0
+Crush Claw;Normal;Physical;75.0;95.0;10;0
+Blast Burn;Fire;Special;150.0;90.0;5;0
+Hydro Cannon;Water;Special;150.0;90.0;5;0
+Meteor Mash;Steel;Physical;90.0;90.0;10;0
+Astonish;Ghost;Physical;30.0;100.0;15;0
+Weather Ball;Normal;Special;50.0;100.0;10;0
+Air Cutter;Flying;Special;60.0;95.0;25;0
+Overheat;Fire;Special;130.0;90.0;5;0
+Rock Tomb;Rock;Physical;60.0;95.0;15;0
+Silver Wind;Bug;Special;60.0;100.0;5;0
+Water Spout;Water;Special;150.0;100.0;5;0
+Signal Beam;Bug;Special;75.0;100.0;15;0
+Shadow Punch;Ghost;Physical;60.0;100;20;0
+Extrasensory;Psychic;Special;80.0;100.0;20;0
+Sky Uppercut;Fighting;Physical;85.0;90.0;15;0
+Sand Tomb;Ground;Physical;35.0;85.0;15;0
+Muddy Water;Water;Special;90.0;85.0;10;0
+Bullet Seed;Grass;Physical;25.0;100.0;30;0
+Aerial Ace;Flying;Physical;60.0;100;20;0
+Icicle Spear;Ice;Physical;25.0;100.0;30;0
+Dragon Claw;Dragon;Physical;80.0;100.0;15;0
+Frenzy Plant;Grass;Special;150.0;90.0;5;0
+Bounce;Flying;Physical;85.0;85.0;5;0
+Mud Shot;Ground;Special;55.0;95.0;15;0
+Poison Tail;Poison;Physical;50.0;100.0;25;0
+Covet;Normal;Physical;60.0;100.0;25;0
+Volt Tackle;Electric;Physical;120.0;100.0;15;0
+Magical Leaf;Grass;Special;60.0;100;20;0
+Leaf Blade;Grass;Physical;90.0;100.0;15;0
+Rock Blast;Rock;Physical;25.0;90.0;10;0
+Shock Wave;Electric;Special;60.0;100;20;0
+Water Pulse;Water;Special;60.0;100.0;20;0
+Doom Desire;Steel;Special;140.0;100.0;5;0
+Psycho Boost;Psychic;Special;140.0;90.0;5;0
+Wake Up Slap;Fighting;Physical;70.0;100.0;10;0
+Hammer Arm;Fighting;Physical;100.0;90.0;10;0
+Brine;Water;Special;65.0;100.0;10;0
+Feint;Normal;Physical;30.0;100.0;10;2
+Pluck;Flying;Physical;60.0;100.0;20;0
+U Turn;Bug;Physical;70.0;100.0;20;0
+Close Combat;Fighting;Physical;120.0;100.0;5;0
+Payback;Dark;Physical;50.0;100.0;10;0
+Assurance;Dark;Physical;60.0;100.0;10;0
+Last Resort;Normal;Physical;140.0;100.0;5;0
+Sucker Punch;Dark;Physical;70.0;100.0;5;1
+Flare Blitz;Fire;Physical;120.0;100.0;15;0
+Force Palm;Fighting;Physical;60.0;100.0;10;0
+Aura Sphere;Fighting;Special;80.0;100;20;0
+Poison Jab;Poison;Physical;80.0;100.0;20;0
+Dark Pulse;Dark;Special;80.0;100.0;15;0
+Night Slash;Dark;Physical;70.0;100.0;15;0
+Aqua Tail;Water;Physical;90.0;90.0;10;0
+Seed Bomb;Grass;Physical;80.0;100.0;15;0
+Air Slash;Flying;Special;75.0;95.0;15;0
+X Scissor;Bug;Physical;80.0;100.0;15;0
+Bug Buzz;Bug;Special;90.0;100.0;10;0
+Dragon Pulse;Dragon;Special;85.0;100.0;10;0
+Dragon Rush;Dragon;Physical;100.0;75.0;10;0
+Power Gem;Rock;Special;80.0;100.0;20;0
+Drain Punch;Fighting;Physical;75.0;100.0;10;0
+Vacuum Wave;Fighting;Special;40.0;100.0;30;1
+Focus Blast;Fighting;Special;120.0;70.0;5;0
+Energy Ball;Grass;Special;90.0;100.0;10;0
+Brave Bird;Flying;Physical;120.0;100.0;15;0
+Earth Power;Ground;Special;90.0;100.0;10;0
+Giga Impact;Normal;Physical;150.0;90.0;5;0
+Bullet Punch;Steel;Physical;40.0;100.0;30;1
+Avalanche;Ice;Physical;60.0;100.0;10;-4
+Ice Shard;Ice;Physical;40.0;100.0;30;1
+Shadow Claw;Ghost;Physical;70.0;100.0;15;0
+Thunder Fang;Electric;Physical;65.0;95.0;15;0
+Ice Fang;Ice;Physical;65.0;95.0;15;0
+Fire Fang;Fire;Physical;65.0;95.0;15;0
+Shadow Sneak;Ghost;Physical;40.0;100.0;30;1
+Mud Bomb;Ground;Special;65.0;85.0;10;0
+Psycho Cut;Psychic;Physical;70.0;100.0;20;0
+Zen Headbutt;Psychic;Physical;80.0;90.0;15;0
+Mirror Shot;Steel;Special;65.0;85.0;10;0
+Flash Cannon;Steel;Special;80.0;100.0;10;0
+Rock Climb;Normal;Physical;90.0;85.0;20;0
+Draco Meteor;Dragon;Special;130.0;90.0;5;0
+Discharge;Electric;Special;80.0;100.0;15;0
+Lava Plume;Fire;Special;80.0;100.0;15;0
+Leaf Storm;Grass;Special;130.0;90.0;5;0
+Power Whip;Grass;Physical;120.0;85.0;10;0
+Rock Wrecker;Rock;Physical;150.0;90.0;5;0
+Cross Poison;Poison;Physical;70.0;100.0;20;0
+Gunk Shot;Poison;Physical;120.0;80.0;5;0
+Iron Head;Steel;Physical;80.0;100.0;15;0
+Magnet Bomb;Steel;Physical;60.0;100;20;0
+Stone Edge;Rock;Physical;100.0;80.0;5;0
+Chatter;Flying;Special;65.0;100.0;20;0
+Judgment;Normal;Special;100.0;100.0;10;0
+Bug Bite;Bug;Physical;60.0;100.0;20;0
+Charge Beam;Electric;Special;50.0;90.0;10;0
+Wood Hammer;Grass;Physical;120.0;100.0;15;0
+Aqua Jet;Water;Physical;40.0;100.0;20;1
+Attack Order;Bug;Physical;90.0;100.0;15;0
+Head Smash;Rock;Physical;150.0;80.0;5;0
+Double Hit;Normal;Physical;35.0;90.0;10;0
+Roar Of Time;Dragon;Special;150.0;90.0;5;0
+Spacial Rend;Dragon;Special;100.0;95.0;5;0
+Magma Storm;Fire;Special;100.0;75.0;5;0
+Seed Flare;Grass;Special;120.0;85.0;5;0
+Ominous Wind;Ghost;Special;60.0;100.0;5;0
+Shadow Force;Ghost;Physical;120.0;100.0;5;0
+Psyshock;Psychic;Special;80.0;100.0;10;0
+Venoshock;Poison;Special;65.0;100.0;10;0
+Smack Down;Rock;Physical;50.0;100.0;15;0
+Storm Throw;Fighting;Physical;60.0;100.0;10;0
+Flame Burst;Fire;Special;70.0;100.0;15;0
+Sludge Wave;Poison;Special;95.0;100.0;10;0
+Synchronoise;Psychic;Special;120.0;100.0;10;0
+Flame Charge;Fire;Physical;50.0;100.0;20;0
+Low Sweep;Fighting;Physical;65.0;100.0;20;0
+Acid Spray;Poison;Special;40.0;100.0;20;0
+Foul Play;Dark;Physical;95.0;100.0;15;0
+Round;Normal;Special;60.0;100.0;15;0
+Echoed Voice;Normal;Special;40.0;100.0;15;0
+Chip Away;Normal;Physical;70.0;100.0;20;0
+Clear Smog;Poison;Special;50.0;100;15;0
+Stored Power;Psychic;Special;20.0;100.0;10;0
+Scald;Water;Special;80.0;100.0;15;0
+Hex;Ghost;Special;65.0;100.0;10;0
+Sky Drop;Flying;Physical;60.0;100.0;10;0
+Circle Throw;Fighting;Physical;60.0;90.0;10;-6
+Incinerate;Fire;Special;60.0;100.0;15;0
+Acrobatics;Flying;Physical;55.0;100.0;15;0
+Retaliate;Normal;Physical;70.0;100.0;5;0
+Inferno;Fire;Special;100.0;50.0;5;0
+Water Pledge;Water;Special;80.0;100.0;10;0
+Fire Pledge;Fire;Special;80.0;100.0;10;0
+Grass Pledge;Grass;Special;80.0;100.0;10;0
+Volt Switch;Electric;Special;70.0;100.0;20;0
+Struggle Bug;Bug;Special;50.0;100.0;20;0
+Bulldoze;Ground;Physical;60.0;100.0;20;0
+Frost Breath;Ice;Special;60.0;90.0;10;0
+Dragon Tail;Dragon;Physical;60.0;90.0;10;-6
+Electroweb;Electric;Special;55.0;95.0;15;0
+Wild Charge;Electric;Physical;90.0;100.0;15;0
+Drill Run;Ground;Physical;80.0;95.0;10;0
+Dual Chop;Dragon;Physical;40.0;90.0;15;0
+Heart Stamp;Psychic;Physical;60.0;100.0;25;0
+Horn Leech;Grass;Physical;75.0;100.0;10;0
+Sacred Sword;Fighting;Physical;90.0;100.0;15;0
+Razor Shell;Water;Physical;75.0;95.0;10;0
+Leaf Tornado;Grass;Special;65.0;90.0;10;0
+Steamroller;Bug;Physical;65.0;100.0;20;0
+Night Daze;Dark;Special;85.0;95.0;10;0
+Psystrike;Psychic;Special;100.0;100.0;10;0
+Tail Slap;Normal;Physical;25.0;85.0;10;0
+Hurricane;Flying;Special;110.0;70.0;10;0
+Head Charge;Normal;Physical;120.0;100.0;15;0
+Gear Grind;Steel;Physical;50.0;85.0;15;0
+Searing Shot;Fire;Special;100.0;100.0;5;0
+Techno Blast;Normal;Special;120.0;100.0;5;0
+Relic Song;Normal;Special;75.0;100.0;10;0
+Secret Sword;Fighting;Special;85.0;100.0;10;0
+Glaciate;Ice;Special;65.0;95.0;10;0
+Bolt Strike;Electric;Physical;130.0;85.0;5;0
+Blue Flare;Fire;Special;130.0;85.0;5;0
+Fiery Dance;Fire;Special;80.0;100.0;10;0
+Freeze Shock;Ice;Physical;140.0;90.0;5;0
+Ice Burn;Ice;Special;140.0;90.0;5;0
+Snarl;Dark;Special;55.0;95.0;15;0
+Icicle Crash;Ice;Physical;85.0;90.0;10;0
+V Create;Fire;Physical;180.0;95.0;5;0
+Fusion Flare;Fire;Special;100.0;100.0;5;0
+Fusion Bolt;Electric;Physical;100.0;100.0;5;0
+Flying Press;Fighting;Physical;100.0;95.0;10;0
+Belch;Poison;Special;120.0;90.0;10;0
+Fell Stinger;Bug;Physical;50.0;100.0;25;0
+Phantom Force;Ghost;Physical;90.0;100.0;10;0
+Parabolcharge;Electric;Special;65.0;100.0;20;0
+Petal Blizzard;Grass;Physical;90.0;100.0;15;0
+Freeze Dry;Ice;Special;70.0;100.0;20;0
+Disarming Voice;Fairy;Special;40.0;100;15;0
+Draining Kiss;Fairy;Special;50.0;100.0;10;0
+Play Rough;Fairy;Physical;90.0;90.0;10;0
+Fairy Wind;Fairy;Special;40.0;100.0;30;0
+Moonblast;Fairy;Special;95.0;100.0;15;0
+Boomburst;Normal;Special;140.0;100.0;10;0
+Diamond Storm;Rock;Physical;100.0;95.0;5;0
+Steam Eruption;Water;Special;110.0;95.0;5;0
+Hyperspace Hole;Psychic;Special;80.0;100;5;0
+Water Shuriken;Water;Special;15.0;100.0;20;1
+Mystical Fire;Fire;Special;75.0;100.0;10;0
+Dazzling Gleam;Fairy;Special;80.0;100.0;10;0
+Nuzzle;Electric;Physical;20.0;100.0;20;0
+Hold Back;Normal;Physical;40.0;100.0;40;0
+Infestation;Bug;Special;20.0;100.0;20;0
+Power Up Punch;Fighting;Physical;40.0;100.0;20;0
+Oblivion Wing;Flying;Special;80.0;100.0;10;0
+Thousand Arrows;Ground;Physical;90.0;100.0;10;0
+Thousand Waves;Ground;Physical;90.0;100.0;10;0
+Lands Wrath;Ground;Physical;90.0;100.0;10;0
+Light Of Ruin;Fairy;Special;140.0;90.0;5;0
+Origin Pulse;Water;Special;110.0;85.0;10;0
+Precipice Blade;Ground;Physical;120.0;85.0;10;0
+Dragon Ascent;Flying;Physical;120.0;100.0;5;0
+Hyperspace Fury;Dark;Physical;100.0;100;5;0
+Catastropika;Electric;Physical;210.0;100;1;0
+First Impress;Bug;Physical;90.0;100.0;10;2
+Spirit Shackle;Ghost;Physical;80.0;100.0;10;0
+Darkest Lariat;Dark;Physical;85.0;100.0;10;0
+Sparkling Aria;Water;Special;90.0;100.0;10;0
+Ice Hammer;Ice;Physical;100.0;90.0;10;0
+High Horsepower;Ground;Physical;95.0;95.0;10;0
+Solar Blade;Grass;Physical;125.0;100.0;10;0
+Leafage;Grass;Physical;40.0;100.0;40;0
+Throat Chop;Dark;Physical;80.0;100.0;15;0
+Pollen Puff;Bug;Special;90.0;100.0;15;0
+Anchor Shot;Steel;Physical;80.0;100.0;20;0
+Lunge;Bug;Physical;80.0;100.0;15;0
+Fire Lash;Fire;Physical;80.0;100.0;15;0
+Power Trip;Dark;Physical;20.0;100.0;10;0
+Burn Up;Fire;Special;130.0;100.0;5;0
+Smart Strike;Steel;Physical;70.0;100;10;0
+Revelationdance;Normal;Special;90.0;100.0;15;0
+Core Enforcer;Dragon;Special;100.0;100.0;10;0
+Trop Kick;Grass;Physical;70.0;100.0;15;0
+Beak Blast;Flying;Physical;100.0;100.0;15;-3
+Clanging Scales;Dragon;Special;110.0;100.0;5;0
+Dragon Hammer;Dragon;Physical;90.0;100.0;15;0
+Brutal Swing;Dark;Physical;60.0;100.0;20;0
+Sinister Arrow;Ghost;Physical;180.0;100;1;0
+Moonsault;Dark;Physical;180.0;100;1;0
+Oceanicoperetta;Water;Special;195.0;100;1;0
+Soul Stealing 7;Ghost;Physical;195.0;100;1;0
+Stoked Sparks;Electric;Special;175.0;100;1;0
+Pulverizingcake;Normal;Physical;210.0;100;1;0
+Genesis Nova;Psychic;Special;185.0;100;1;0
+Shell Trap;Fire;Special;150.0;100.0;5;-3
+Fleur Cannon;Fairy;Special;130.0;90.0;5;0
+Psychic Fangs;Psychic;Physical;85.0;100.0;10;0
+Stomping Tant;Ground;Physical;75.0;100.0;10;0
+Shadow Bone;Ghost;Physical;85.0;100.0;10;0
+Accelerock;Rock;Physical;40.0;100.0;20;1
+Liquidation;Water;Physical;85.0;100.0;10;0
+Prismatic Laser;Psychic;Special;160.0;100.0;10;0
+Spectral Thief;Ghost;Physical;90.0;100.0;10;0
+Sunsteel Strike;Steel;Physical;100.0;100.0;5;0
+Moongeist Beam;Ghost;Special;100.0;100.0;5;0
+Zing Zap;Electric;Physical;80.0;100.0;10;0
+Multi Attack;Normal;Physical;120.0;100.0;10;0
+10000000 Volt ;Electric;Special;195.0;100;1;0
+Mind Blown;Fire;Special;150.0;100.0;5;0
+Plasma Fists;Electric;Physical;100.0;100.0;15;0
+Photon Geyser;Psychic;Special;100.0;100.0;5;0
+Light Burns Sky;Psychic;Special;200.0;100;1;0
+Sunraze Smash;Steel;Physical;200.0;100;1;0
+Moon Maelstrom;Ghost;Special;200.0;100;1;0
+Lets Snuggle;Fairy;Physical;190.0;100;1;0
+Splinteredstorms;Rock;Physical;190.0;100;1;0
+Soulblaze;Dragon;Special;185.0;100;1;0
+Zippy Zap;Electric;Physical;80.0;100.0;10;2
+Splishy Splash;Water;Special;90.0;100.0;15;0
+Floaty Fall;Flying;Physical;90.0;95.0;15;0
+Bouncy Bubble;Water;Special;60.0;100.0;20;0
+Buzzy Buzz;Electric;Special;60.0;100.0;20;0
+Sizzly Slide;Fire;Physical;60.0;100.0;20;0
+Glitzy Glow;Psychic;Special;80.0;95.0;15;0
+Baddy Bad;Dark;Special;80.0;95.0;15;0
+Sappy Seed;Grass;Physical;100.0;90.0;10;0
+Freezy Frost;Ice;Special;100.0;90.0;10;0
+Sparkly Swirl;Fairy;Special;120.0;85.0;5;0
+Double Iron;Steel;Physical;60.0;100.0;5;0
+Dynamax Cannon;Dragon;Special;100.0;100.0;5;0
+Snipe Shot;Water;Special;80.0;100.0;15;0
+Jaw Lock;Dark;Physical;80.0;100.0;10;0
+Max Flare;Fire;Physical;100.0;100;10;0
+Max Flutterby;Bug;Physical;10.0;100;10;0
+Max Lightning;Electric;Physical;10.0;100;10;0
+Max Strike;Normal;Physical;10.0;100;10;0
+Max Knuckle;Fighting;Physical;10.0;100;10;0
+Max Phantasm;Ghost;Physical;10.0;100;10;0
+Max Hailstorm;Ice;Physical;10.0;100;10;0
+Max Ooze;Poison;Physical;10.0;100;10;0
+Max Geyser;Water;Physical;10.0;100;10;0
+Max Airstream;Flying;Physical;10.0;100;10;0
+Max Starfall;Fairy;Physical;10.0;100;10;0
+Max Wyrmwind;Dragon;Physical;10.0;100;10;0
+Max Mindstorm;Psychic;Physical;10.0;100;10;0
+Max Rockfall;Rock;Physical;10.0;100;10;0
+Max Quake;Ground;Physical;10.0;100;10;0
+Max Darkness;Dark;Physical;10.0;100;10;0
+Max Overgrowth;Grass;Physical;10.0;100;10;0
+Max Steelspike;Steel;Physical;10.0;100;10;0
+Drum Beating;Grass;Physical;80.0;100.0;10;0
+Snap Trap;Grass;Physical;35.0;100.0;15;0
+Pyro Ball;Fire;Physical;120.0;90.0;5;0
+Breaking Swipe;Dragon;Physical;60.0;100.0;15;0
+Branch Poke;Grass;Physical;40.0;100.0;40;0
+Grav Apple;Grass;Physical;80.0;100.0;10;0
+Spirit Break;Fairy;Physical;75.0;100.0;15;0
+Strange Steam;Fairy;Special;90.0;95.0;10;0
+False Surrender;Dark;Physical;80.0;100;10;0
+Meteor Assault;Fighting;Physical;150.0;100.0;5;0
+Eternabeam;Dragon;Special;160.0;90.0;5;0
+Steel Beam;Steel;Special;140.0;95.0;5;0
+Expanding Force;Psychic;Special;80.0;100.0;10;0
+Steel Roller;Steel;Physical;130.0;100.0;5;0
+Scale Shot;Dragon;Physical;25.0;90.0;20;0
+Meteor Beam;Rock;Special;120.0;90.0;10;0
+Shell Side Arm;Poison;Special;90.0;100.0;10;0
+Misty Explosion;Fairy;Special;100.0;100.0;5;0
+Grassy Glide;Grass;Physical;70.0;100.0;20;0
+Rising Voltage;Electric;Special;70.0;100.0;20;0
+Terrain Pulse;Normal;Special;50.0;100.0;10;0
+Skitter Smack;Bug;Physical;70.0;90.0;10;0
+Burning Jealous;Fire;Special;70.0;100.0;5;0
+Lash Out;Dark;Physical;75.0;100.0;5;0
+Poltergeist;Ghost;Physical;110.0;90.0;5;0
+Flip Turn;Water;Physical;60.0;100.0;20;0
+Triple Axel;Ice;Physical;20.0;90.0;10;0
+Dual Wingbeat;Flying;Physical;40.0;90.0;10;0
+Scorching Sands;Ground;Special;70.0;100.0;10;0
+Wicked Blow;Dark;Physical;80.0;100.0;5;0
+Surging Strikes;Water;Physical;25.0;100.0;5;0
+Thunder Cage;Electric;Special;80.0;90.0;15;0
+Dragon Energy;Dragon;Special;150.0;100.0;5;0
+Freezing Glare;Psychic;Special;90.0;100.0;10;0
+Fiery Wrath;Dark;Special;90.0;100.0;10;0
+Thunderous Kick;Fighting;Physical;90.0;100.0;10;0
+Glacial Lance;Ice;Physical;130.0;100.0;5;0
+Astral Barrage;Ghost;Special;120.0;100.0;5;0
+Eerie Spell;Psychic;Special;80.0;100.0;5;0
