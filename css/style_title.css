@@ -1,0 +1,56 @@
+* {
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+
+    background-color: #212121;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    image-rendering: pixelated;
+}
+
+.container {
+    display: flex;
+    width: 100%; /* Ajusta el ancho según prefieras */
+    height: 100%; /* Ajusta la altura según prefieras */
+    border: 2px solid #000;
+}
+
+.bloque {
+    flex: 1; /* Cada bloque ocupa el 50% del ancho del contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    flex-grow: 2;
+
+}
+
+.izquierdo {
+    background-color: #4CAF50;
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.start{
+    align-self: flex-start;
+}
+
+.option{
+    align-self: center;
+
+}
+
+.exit{
+    align-self: flex-end;
+
+}

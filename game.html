@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IPOkémon</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/color.css" />
+    <link rel="icon" href="../assets/web/pokemon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div class="console">
+      <!--Contenedores-->
+      <div class="game-container">
+        <canvas class="background-canvas"></canvas>
+        <canvas class="game-canvas"></canvas>
+        <canvas class="ui-canvas"></canvas>
+      </div>
+
+      <!--Contenedores-->
+      <div class="game-menu-container">
+        <canvas class="game-menu-canvas"></canvas>
+      </div>
+
+      <!--Contenedores-->
+
+      <div class="button-container">
+        <a class="sprite-button" id="button1"  href="./title.html"></a>
+        <button class="sprite-button" id="button2"></button>
+        <button class="sprite-button musicButtonOff" id="musicButton"></button>
+      </div>
+    </div>
+
+    <!-- Elemento de audio oculto -->
+    <audio id="ost" preload="auto"></audio>
+
+    <!-- Scripts -->
+    <script type="module" src="/init.js"></script>
+  </body>
+</html>

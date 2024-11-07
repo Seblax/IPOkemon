@@ -1,6 +1,6 @@
 import { Data } from "./Data.js";
 
-const sound = document.getElementById("ost"); 
+const sound = document.getElementById("ost");
 const button = document.getElementById("musicButton");
 var _playing = true;
 
@@ -37,17 +37,16 @@ function Pause() {
   ChangeButton(_playing);
 }
 
-function ChangeButton(){
+function ChangeButton() {
   var off = "musicButtonOff";
   var on = "musicButtonOn";
   var l = button.classList;
 
-  if(_playing){
+  if (_playing) {
     l.remove(off);
-    l.add(on)
-
-  }else{
+    l.add(on);
+  } else {
     l.remove(on);
-    l.add(off)    
+    l.add(off);
   }
 }
