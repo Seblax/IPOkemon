@@ -8,6 +8,7 @@ export class Move {
     this.power = parseInt(power);
     this.acc = parseFloat(acc) / 100;
     this.pp = parseInt(pp);
+    this.totalPP = parseInt(pp);
     this.prob = prob == "-" ? 0 : parseFloat(prob) / 100;
   }
 
@@ -20,6 +21,7 @@ export class Move {
       Power: this.power,
       Accuracy: this.acc,
       PowerPoints: this.pp,
+      TotalPowerPoints: this.totalPP,
       Crit: this.prob,
     };
   }

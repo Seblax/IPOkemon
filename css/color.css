@@ -67,7 +67,7 @@ body{
     outline: 5px solid var(--screen-border-color);
 }
 
-.game-menu-canvas{
+.move-set-canvas{
     outline: 5px solid var(--screen-border-color);
 }
 
