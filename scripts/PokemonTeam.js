@@ -1,6 +1,6 @@
 import { getMovesSet } from "./Moves/Move.js";
 import { Pokemon } from "./Pokemon.js";
-import { Data } from "./utils/Data.js";
+import { Data, RandomRange } from "./utils/Data.js";
 
 export class PokemonTeam {
   constructor() {
@@ -9,7 +9,7 @@ export class PokemonTeam {
 
   // Método para seleccionar aleatoriamente un Pokémon
   getRandomPokemon(pokemonList) {
-    const randomIndex = Math.floor(Math.random() * pokemonList.length);
+    const randomIndex = RandomRange(pokemonList.length);
     return pokemonList[randomIndex];
   }
 

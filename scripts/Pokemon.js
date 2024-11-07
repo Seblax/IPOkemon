@@ -1,3 +1,5 @@
+import { RandomRange } from "./utils/Data.js";
+
 export class Pokemon {
   //Crítico 6,5
   constructor(
@@ -30,7 +32,7 @@ export class Pokemon {
     this.legendary = legendary;
     this.mega = isMega(name);
     this.enemy = false;
-    this.shiny = Math.random() < 0.002;
+    this.shiny = RandomRange() < 0.002;
     this.moveSet = [];
   }
 

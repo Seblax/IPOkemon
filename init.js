@@ -34,7 +34,7 @@ window.onload = function () {
 
     let menuCanvas = new Screen(".game-menu-canvas");
     let menuSprite = new Sprite(
-      "../assets/sprites/menu_pokemon.png",
+      "../assets/sprites/move_set.png",
       menuCanvas,
       0,
       0
