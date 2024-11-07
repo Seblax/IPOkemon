@@ -1,4 +1,4 @@
-import { DrawPokemonSprite } from "./scripts/utils/PokemonSprites.js";
+import { DrawPokemonSprite } from "./scripts/DrawSprites/PokemonSprites.js";
 import { DrawBackground } from "./scripts/utils/BackGround.js";
 import { Screen } from "./scripts/utils/Screen.js";
 import { PokemonUI } from "./scripts/PokemonUI.js";
@@ -7,6 +7,7 @@ import { Sprite } from "./scripts/utils/Sprite.js";
 import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
 import { Data } from "./scripts/utils/Data.js";
 import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
+import { DrawMoveSet } from "./scripts/DrawSprites/MoveSetSprites.js";
 
 window.onload = function () {
   (async () => {
@@ -32,13 +33,14 @@ window.onload = function () {
 
     DrawBackground();
 
-    let menuCanvas = new Screen(".game-menu-canvas");
+    let menuCanvas = new Screen(".move-set-canvas");
     let menuSprite = new Sprite(
       "../assets/sprites/move_set.png",
       menuCanvas,
       0,
       0
     );
+
     menuCanvas.drawCanvas(menuSprite.image, 0, 0);
 
     if (pokemon_1.shiny || pokemon_2.shiny) {
@@ -49,5 +51,6 @@ window.onload = function () {
     new PokemonUI(pokemon_2);
 
     Music();
+    DrawMoveSet(pokemon_1);
   })();
 };

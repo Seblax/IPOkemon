@@ -1,6 +1,6 @@
-import { Config } from "./Config.js";
-import { Screen } from "./Screen.js";
-import { Sprite } from "./Sprite.js";
+import { Config } from "../utils/Config.js";
+import { Screen } from "../utils/Screen.js";
+import { Sprite } from "../utils/Sprite.js";
 
 
 export function DrawPokemonSprite(pokemon) {

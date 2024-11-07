@@ -1,10 +1,12 @@
 import { Sprite } from "./utils/Sprite.js";
 import { Screen } from "./utils/Screen.js";
 import { Config } from "./utils/Config.js";
+import { Text } from "./utils/Text.js";
 
 export class PokemonUI {
     constructor(pokemon) {
         this.hp = pokemon.hp;
+        this.totalHp = pokemon.totalHp;
         this.shiny = pokemon.shiny;
         this.mega = pokemon.mega;
         this.enemy = pokemon.enemy;
@@ -14,6 +16,7 @@ export class PokemonUI {
         this.type2 = pokemon.type2;
 
         this.DrawPokemonUI();
+        this.DrawPokemonHP();
     }
 
 
@@ -47,6 +50,16 @@ export class PokemonUI {
         this.DrawPokemonTypes(x, y);
     }
 
+    DrawPokemonHP(){
+        var totalHp = this.totalHp;
+        var currentHp = this.hp;
+        var textScreen = new Screen(".ui-text-canvas");
+        textScreen.clear();
+        textScreen.resolution(20);
+
+        new Text(totalHp, textScreen,226, 115, 10, "Pokefont","start").setColor("white").setOutline(true).drawText();
+        new Text(currentHp, textScreen,216, 115, 10, "Pokefont","end").setColor("white").setOutline(true).drawText();
+    }
 
     DrawPokemonTypes(x, y) {
         //Recursos;

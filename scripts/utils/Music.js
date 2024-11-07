@@ -6,7 +6,7 @@ var _playing = true;
 
 export function SetBattleMusic() {
   Data.Music =
-    "../assets/music/fight/" + RandomRange(8) + "_fight.ogg";
+    "../assets/music/fight/" + RandomRange(9) + "_fight.ogg";
 }
 
 export function Music() {

@@ -23,6 +23,7 @@ export class Pokemon {
     this.type2 = type2 || null; // Type 2 is optional
     this.total = total;
     this.hp = hp;
+    this.totalHp = hp;
     this.attack = attack;
     this.defense = defense;
     this.spAtk = spAtk;

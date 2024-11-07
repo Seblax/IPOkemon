@@ -2,15 +2,23 @@
     --screen-width: 256px;
     --screen-height: 152px;
 
-    --screen-menu-width: var(--screen-width);
-    --screen-menu-height: 124px;
+    --screen-move-set-width: var(--screen-width);
+    --screen-move-set-height: 124px;
 
     --screen-scale: 2;
+}
+
+@font-face {
+    font-family: 'Pokefont';
+    src: url('../assets/sprites/ui/fonts/neo-power.ttf') format('truetype');
 }
 
 body{
     display: flex;              
     justify-content: center;
+
+    image-rendering: pixelated; /* Para que los sprites se vean bien*/
+    image-rendering: crisp-edges; 
 }
 
 .console{
@@ -38,18 +46,17 @@ de los canvas que los contiene
 }
 
 .game-menu-container{    
-    width: var(--screen-menu-width);
-    height: var(--screen-menu-height);
+    width: var(--screen-move-set-width);
+    height: var(--screen-move-set-height);
 }
 
-.game-menu-canvas{
-    height: var(--screen-menu-height);
+.move-set-canvas{
+    height: var(--screen-move-set-height);
 }
 
 canvas{
     position: absolute; /* Para superponer los canvases */
 
-    image-rendering: pixelated; /* Para que los sprites se vean bien*/
     width: var(--screen-width);
     height: var(--screen-height);
 }
@@ -64,6 +71,10 @@ encima del otro*/
     z-index: 0;
 }
 
+.move-set-text-canvas{
+    height: var(--screen-move-set-height);
+    font-family: 'Pokefont', Arial, sans-serif;
+}
 /**
 Botones
 */
@@ -75,7 +86,6 @@ Botones
 
 /* Establece el tamaño y aspecto de los botones */
 .sprite-button {
-    image-rendering: pixelated;
 
     background-size: 100% 100%; /* Asegura que la imagen cubra todo el contenedor */
     background-position: center;
