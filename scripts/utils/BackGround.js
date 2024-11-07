@@ -1,5 +1,5 @@
 import { Config } from "./Config.js";
-import { RandomRange } from "./Data.js";
+import { RandomZeroTo } from "./Data.js";
 import { Screen } from "./Screen.js";
 import { Sprite } from "./Sprite.js";
 
@@ -61,5 +61,5 @@ function Palette() {
 
   // Remover otras clases de paleta si es necesario y agregar una nueva
   document.body.classList.remove(...palettes);
-  document.body.classList.add(palettes[RandomRange(7)]);
+  document.body.classList.add(palettes[RandomZeroTo(7)]);
 }

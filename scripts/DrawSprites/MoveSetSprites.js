@@ -40,8 +40,10 @@ function DrawMove(move, id) {
   
   new Sprite(path, screen, 2 + x, 5 + y);
   new Text(move.name, textScreen,x+16, y+8, 16, "Pokefont","start").drawText();
-  new Text(move.totalPP, textScreen,x+97, y+25, 16, "Pokefont","start").drawText();
-  new Text(move.pp, textScreen,x+88, y+25, 16, "Pokefont", "right").drawText();
+  new Text(move.totalPP, textScreen,x+94, y+25, 16, "Pokefont","start").drawText();
+  new Text(move.pp + "/", textScreen,x+92, y+25, 16, "Pokefont", "right").drawText();
+  
+  new Text("PP", textScreen,x+50, y+25, 16, "Pokefont","start").drawText();
 }
 
 function GetMoveSprite(move) {

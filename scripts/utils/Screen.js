@@ -46,5 +46,6 @@ export class Screen {
 
     // Escalar el contexto
     this.ctx.scale(scale, scale); // Ajusta la escala del contexto
+    return this;
   }
 }
