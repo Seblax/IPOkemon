@@ -4,10 +4,12 @@ import { Screen } from "./scripts/utils/Screen.js";
 import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
 import { PokemonTeam } from "./scripts/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
-import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
+import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
 import { Data, Random, RandomZeroTo } from "./scripts/utils/Data.js";
 import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet } from "./scripts/DrawSprites/MoveSetSprites.js";
+import { loadTests } from "./scripts/Tests.js";
+import { calcTypes } from "./scripts/TypeCalcs.js";
 
 window.onload = function () {
   (async () => {
@@ -15,6 +17,9 @@ window.onload = function () {
 
     Data.PokemonData = await loadPokemonFromCSV();
     Data.MovesData = await loadMovesFromCSV();
+    Data.Types = await loadTypesFromCSV();
+
+    loadTests();
 
     const teamAllay = new PokemonTeam();
     const teamEnemy = new PokemonTeam();

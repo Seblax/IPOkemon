@@ -82,3 +82,20 @@ export async function loadMovesFromCSV() {
     );
   });
 }
+
+/**
+ * Carga el diccionario de tipos a partir de un archivo CSV específico.
+ * @returns {Promise<{ [key: string]: Array<string> }>} - Una promesa que resuelve con un diccionario.
+ */
+export async function loadTypesFromCSV() {
+  var types = await Parser("../data/types_table.csv"); // Llama al parser para obtener los datos.
+  var typesDict = {};
+  
+  types.forEach((values) => {
+    // Actualiza el diccionaro de tipos usando los valores extraídos del CSV.
+    typesDict[values[1]] = [values[2].toLowerCase(), values[3].toLowerCase(), values[4].toLowerCase()]
+    // values[1] = Tipo ; values[2] = Efectivos x2 ; values[3] = NoEfectivos x0.5 ; values[4] = Inmune x0
+    }
+  );
+  return typesDict;
+  };
