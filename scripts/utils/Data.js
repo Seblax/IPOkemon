@@ -9,7 +9,9 @@ export class Data {
 
   // Almacena la información sobre los movimientos (ataques) disponibles en el juego.
   static MovesData;
-
+  static Types;
+  
+  
   // Contiene las referencias a los datos de la música o banda sonora del juego.
   static Music;
 
