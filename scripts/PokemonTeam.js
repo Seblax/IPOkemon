@@ -3,9 +3,17 @@ import { Pokemon } from "./Pokemon.js";
 import { Data, RandomZeroTo } from "./utils/Data.js";
 
 export class PokemonTeam {
+  //==============================
+  // Constructor
+  //==============================
+
   constructor() {
     this.team = [];
   }
+
+  //==============================
+  // Funciones
+  //==============================
 
   // Método para seleccionar aleatoriamente un Pokémon
   getRandomPokemon(pokemonList) {
@@ -19,23 +27,28 @@ export class PokemonTeam {
   }
 
   async generateTeam(isEnemy) {
+    //Lista con todos los pokemons
     const allPokemon = await Data.PokemonData;
-    
+
+    //Comprueba que el equipo actual
     while (this.team.length < 6) {
       const randomPokemon = this.getRandomPokemon(allPokemon);
+
       if (!this.team.includes(randomPokemon)) {
-        const newPokemon = Pokemon.copy(Pokemon.copy(randomPokemon));
-        
+        //Creamos el nuevo pokemon
+        const newPokemon = Pokemon.copy(randomPokemon);
+
+        //Inicializamos sus stats
         newPokemon.enemy = isEnemy;
         newPokemon.moveSet = [];
-        
         getMovesSet(newPokemon);
         newPokemon.setRandomStats();
-        
+
+        //Lo añadimos al equipo
         this.team.push(newPokemon);
       }
     }
-    return  Promise.all(this.team);
+    return Promise.all(this.team);
   }
 
   // Método para mostrar el equipo

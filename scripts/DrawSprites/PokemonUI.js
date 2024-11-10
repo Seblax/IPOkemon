@@ -4,8 +4,26 @@ import { Config } from "../utils/Config.js";
 import { Text } from "../utils/Text.js";
 
 const textScreen = new Screen(".ui-text-canvas").resolution(20);
+var x;
+var y;
+/**
+ * La clase `PokemonUI` gestiona la visualización de la interfaz de usuario de un Pokémon en un juego.
+ * Incluye métodos para dibujar los elementos clave como:
+ *    -nombre
+ *    -tipos
+ *    -barra de vida
+ *    -nivel
+ *    -otros detalles gráficos (shiny, megas)
+ *
+ * Tanto para Pokémon aliados como enemigos. Esta clase utiliza la biblioteca
+ * de utilidades para manejar la pantalla, los sprites y el texto.
+ */
 
 export class PokemonUI {
+  //==============================
+  // Constructor
+  //==============================
+
   constructor(pokemon) {
     this.pokemon = pokemon;
     this.screen = new Screen(".ui-canvas");
@@ -13,129 +31,160 @@ export class PokemonUI {
     this.type1 = pokemon.type1;
     this.type2 = pokemon.type2;
 
-    // Luego dibujamos el resto de la interfaz del Pokémon
-    this.DrawPokemonName();
-    this.DrawPokemonHP();
-    this.DrawPokemonLv();
-
     // Dibuja el UI del Pokémon (tipos, etc.)
     this.DrawPokemonUI();
   }
 
-  async DrawPokemonUI() {
-    const barSprite = this.DrawHpBar();
+  //==============================
+  // Funciones
+  //==============================
 
-    const basePath = "../assets/sprites/ui";
-    const isEnemy = this.pokemon.enemy;
-    const isMega = this.pokemon.mega;
-    const isShiny = this.pokemon.shiny;
+  //Esta función dibuja toda la UI relacionada con el pokemon, vida catual del pokemon,
+  //nombre, nivel, shiny, etc.
+  async DrawPokemonUI() {
+    const basePath = "../assets/sprites/ui"; //Path de los recursos
+
+    const isEnemy = this.pokemon.enemy; //Si el pokemon es enemigo
+    const isMega = this.pokemon.mega; //Si el pokemon es mega
+    const isShiny = this.pokemon.shiny; //SI el pokemon es shiny
 
     // Determina la ruta y posición según sea enemigo o aliado
     const path = `${basePath}/${isEnemy ? "enemy" : "allay"}/`;
-    const x = isEnemy ? 0 : Config.screen.width - 120;
-    const y = isEnemy ? 0 : Config.screen.height - 55;
+    x = isEnemy ? Config.EnemyUI.width : Config.AllayUI.width;
+    y = isEnemy ? Config.EnemyUI.height : Config.AllayUI.height;
 
-    // Configura las barras de HP y Mega
-    const hpBarPath = path + (isShiny ? "shiny_bar.png" : "hp_bar.png");
-    const megaBarPath = path + (isMega ? "mega_bar.png" : "hp_bar.png");
+    //Cargamos los sprites
+    const nameText = this.DrawPokemonName();
+    const hpText = this.DrawPokemonHP();
+    const lvlText = this.DrawPokemonLv();
+    const barSprite = this.DrawHpBar();
 
-    const hpBar = new Sprite(hpBarPath, this.screen, x, y);
-    const megaBar = new Sprite(megaBarPath, this.screen, x, y);
+    // Dibuja los tipos del Pokémon
+    this.DrawPokemonTypes();
 
+    // Configura las UI del pokemon ya sea normal, shiny o Mega
+    const normalUIPath = path + (isShiny ? "shiny_ui.png" : "normal_ui.png");
+    const megaUIPath = path + (isMega ? "mega_ui.png" : "normal_ui.png");
+
+    const normalUI = new Sprite(normalUIPath, this.screen, x, y);
+    const megaUI = new Sprite(megaUIPath, this.screen, x, y);
+
+    //Una vez cargadas los sprites, se dibujan en pantalla.
     try {
-      await Promise.all([barSprite.onload() ,hpBar.onload(), megaBar.onload()]);
+      await Promise.all([
+        megaUI.onload(),
+        barSprite.onload(),
+        normalUI.onload(),
+      ]);
+      megaUI.draw();
       barSprite.draw();
-      megaBar.draw();
-      hpBar.draw();
+      normalUI.draw();
     } catch (error) {
       console.error("Error al cargar una o más imágenes:", error);
     }
-
-    // Dibuja los tipos del Pokémon
-    this.DrawPokemonTypes(x, y);
   }
 
+  // Dibuja la cantidad de HP (puntos de vida) del Pokémon aliado en la pantalla.
+  // Si el Pokémon es enemigo, la función no realiza ninguna acción.
   DrawPokemonHP() {
     if (this.pokemon.enemy) {
+      //Si el pokemon es enemigo, no se aplica la lógica.
       return;
     }
+
+    // Obtiene los valores de HP total y actual.
     var totalHp = this.pokemon.totalHp;
     var currentHp = this.pokemon.hp;
 
+    // Dibuja el texto que muestra el HP total y el HP actual en la pantalla con formato específico.
     new Text(totalHp, textScreen, 226, 114, 10, "Pokefont", "start")
       .setColor("white")
       .setOutline(true)
       .drawText();
+
     new Text(currentHp + "/", textScreen, 225, 114, 10, "Pokefont", "end")
       .setColor("white")
       .setOutline(true)
       .drawText();
   }
 
+  // Esta función dibuja la barra de vida del pokemon actual, en función del porcentaje
+  // de vida que le falte:
+  //    -100%:          Azul;
+  //    -más de 60%:    Verde;
+  //    -más de 30%:    Amarillo;
+  //    -menos de 30%:  Rojo;
   DrawHpBar() {
-    var i = 1;
-
+    var isEnemy = this.pokemon.enemy;
+    //porcentaje de vida que le falta al pokemon [0-1];
     var hpPercent = Math.max(
       0,
       Math.min(1, this.pokemon.hp / this.pokemon.totalHp)
     );
 
+
+    //Path del asset de la barra de vida
+    var i = 0;
+    var barPath = "assets/sprites/ui/";
+    
+    console.log(hpPercent);
     if (hpPercent < 0.3) {
       i = 3;
     } else if (hpPercent < 0.6) {
       i = 2;
+    } else if (hpPercent < 1) {
+      i = 1;
     }
 
-    var bar = "assets/sprites/ui/" + i + "_hp_bar.png";
-    var x = 192;
-    var y = 117;
+    barPath += i + "_hp_bar.png";
 
-    if (this.pokemon.enemy) {
-      var x = 44;
-      var y = 25;
-    }
+    //Posición de las barra de vida
+    var pos = [x+44, y+20];
+    pos = isEnemy ? pos : [pos[0]+12, pos[1]];
 
-    //backgrund bar
-    new Sprite("assets/sprites/ui/0_background_bar.png", this.screen, x, y);
-    var bar = new Sprite(bar, this.screen, x - 48 *(1-hpPercent), y);
-    return bar;
-}
+    //Dibuja la barra del fondo
+    new Sprite("assets/sprites/ui/0_background_bar.png", 
+      this.screen, 
+      pos[0], 
+      pos[1]);
 
+    //Dibuja la barra de vida actual del pokemon
+    var hpBar = new Sprite(barPath, 
+      this.screen,
+      pos[0] - 48 * (1 - hpPercent), 
+      pos[1]);
+    return hpBar;
+  }
+
+  //Esta función dibuja el nombre del correspondiente pokemon.
   DrawPokemonName() {
     var name = this.pokemon.name;
+    var isEnemy = this.pokemon.enemy;
 
-    var x = 150;
-    var y = 100;
+    //Posición del nombre
+    var posSprite = [x + 10, y+2];
 
-    if (this.pokemon.enemy) {
-      x = 10;
-      y = 8;
-    }
-
-    new Text(name, textScreen, x, y, 10, "Pokefont", "start")
+    //Dibujar el nombre
+    new Text(name, textScreen, posSprite[0],  posSprite[1], 10, "Pokefont", "start")
       .setColor("white")
       .setOutline(true)
       .drawText();
   }
 
+  //Esta función dibuja el nivel de los pokemons
   DrawPokemonLv() {
     var lvl = this.pokemon.lvl;
+    var position = [x+94, y+4];
 
-    var x = 226;
-    var y = 101;
 
-    if (this.pokemon.enemy) {
-      x = 94;
-      y = 9;
-    }
-
-    new Text(lvl, textScreen, x, y, 10, "Pokefont", "start")
+    //Dibujar sprite
+    new Text(lvl, textScreen, position[0], position[1], 10, "Pokefont", "start")
       .setColor("white")
       .setOutline(true)
       .drawText();
   }
 
-  DrawPokemonTypes(x, y) {
+  DrawPokemonTypes() {
     //Recursos;
     var basePath = "../assets/sprites/types/";
     var type1 = this.type1.toLowerCase() + ".png";

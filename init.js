@@ -5,7 +5,7 @@ import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
 import { PokemonTeam } from "./scripts/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
 import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
-import { Data } from "./scripts/utils/Data.js";
+import { Data, Random, RandomZeroTo } from "./scripts/utils/Data.js";
 import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet } from "./scripts/DrawSprites/MoveSetSprites.js";
 
@@ -25,8 +25,8 @@ window.onload = function () {
     const pokemon_1 = teamAllay.team[0];
     const pokemon_2 = teamEnemy.team[1];
 
-    pokemon_1.hp = Math.round(pokemon_1.totalHp * 0.1);
-    pokemon_2.hp = Math.round(pokemon_2.totalHp * 0.50);
+    pokemon_1.hp = Math.round(pokemon_1.totalHp * Random());
+    // pokemon_2.hp = Math.round(pokemon_2.totalHp * Random());
 
     console.log(pokemon_1);
     console.log(pokemon_2);
