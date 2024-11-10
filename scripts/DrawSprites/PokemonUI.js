@@ -127,7 +127,6 @@ export class PokemonUI {
     var i = 0;
     var barPath = "assets/sprites/ui/";
     
-    console.log(hpPercent);
     if (hpPercent < 0.3) {
       i = 3;
     } else if (hpPercent < 0.6) {

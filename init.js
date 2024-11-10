@@ -5,9 +5,10 @@ import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
 import { PokemonTeam } from "./scripts/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
 import { loadMovesFromCSV, loadPokemonFromCSV } from "./scripts/utils/CSV.js";
-import { Data, Random, RandomZeroTo } from "./scripts/utils/Data.js";
+import { Data, Random } from "./scripts/utils/Data.js";
 import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet } from "./scripts/DrawSprites/MoveSetSprites.js";
+import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 
 window.onload = function () {
   (async () => {
@@ -27,6 +28,8 @@ window.onload = function () {
 
     pokemon_1.hp = Math.round(pokemon_1.totalHp * Random());
     // pokemon_2.hp = Math.round(pokemon_2.totalHp * Random());
+
+    Data.ActualPokemon = pokemon_1;
 
     console.log(pokemon_1);
     console.log(pokemon_2);
@@ -55,5 +58,7 @@ window.onload = function () {
 
     Music();
     DrawMoveSet(pokemon_1);
+
+    moveSetButtons();
   })();
 };

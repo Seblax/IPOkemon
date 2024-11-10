@@ -12,6 +12,8 @@ export class Data {
 
   // Contiene las referencias a los datos de la música o banda sonora del juego.
   static Music;
+
+  static ActualPokemon;
 }
 
 /**

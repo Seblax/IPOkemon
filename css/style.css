@@ -45,9 +45,19 @@ de los canvas que los contiene
     height: var(--screen-height);
 }
 
-.game-menu-container{    
+.game-move-set-container{    
     width: var(--screen-move-set-width);
     height: var(--screen-move-set-height);
+}
+
+.moves{
+    display: grid;
+    grid-template-columns: 50% 50%;  
+    grid-template-rows: 50% 50%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 199;
 }
 
 .move-set-canvas{

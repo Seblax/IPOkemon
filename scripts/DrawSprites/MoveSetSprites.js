@@ -28,7 +28,7 @@ export function DrawMoveSet(pokemon) {
  * @param {object} move - Objeto que representa un movimiento del Pokémon.
  * @param {number} id - Índice que determina la posición del movimiento en la interfaz.
  */
-function DrawMove(move, id) {
+export function DrawMove(move, id) {
   var path = GetMoveSprite(move); // Obtiene la ruta del sprite del movimiento.
 
   // Determina la posición de dibujo basada en el índice del movimiento.
@@ -50,7 +50,7 @@ function DrawMove(move, id) {
   }
 
   // Dibuja el sprite del movimiento.
-  new Sprite(path, screen, pos.x, pos.y);
+  new Sprite(path, screen, pos.x, pos.y,true);
 
   // Dibuja el nombre del movimiento en la pantalla de texto.
   new Text(
@@ -105,4 +105,74 @@ function DrawMove(move, id) {
 function GetMoveSprite(move) {
   var type = move.type; // Obtiene el tipo del movimiento.
   return "assets/sprites/ui/moves/" + type + ".png"; // Construye la ruta completa del sprite.
+}
+
+
+export function SelectedMove(move,id) {
+  const path = "assets/sprites/ui/moves/selected.png"; // Obtiene la ruta del sprite del movimiento.
+
+  // Determina la posición de dibujo basada en el índice del movimiento.
+  var pos = Config.MovesSetUI.Move1; // Posición por defecto para el primer movimiento.
+
+  switch (id) {
+    default:
+    case 0:
+      break; // Mantiene la posición por defecto para el primer movimiento.
+    case 1:
+      pos = Config.MovesSetUI.Move2; // Cambia la posición para el segundo movimiento.
+      break;
+    case 2:
+      pos = Config.MovesSetUI.Move3; // Posición para el tercer movimiento.
+      break;
+    case 3:
+      pos = Config.MovesSetUI.Move4; // Posición para el cuarto movimiento.
+      break;
+  }
+
+  // Dibuja el sprite del movimiento.
+  new Sprite(path, screen, pos.x, pos.y,true);
+
+  // Dibuja el nombre del movimiento en la pantalla de texto.
+  new Text(
+    move.name,
+    textScreen,
+    pos.x + Config.MovesSetUI.name.x, // Ajuste de la posición x basado en la configuración.
+    pos.y + Config.MovesSetUI.name.y, // Ajuste de la posición y basado en la configuración.
+    16,
+    "Pokefont",
+    "start"
+  ).drawText();
+
+  // Dibuja el texto del total de PP.
+  new Text(
+    move.totalPP,
+    textScreen,
+    pos.x + Config.MovesSetUI.PP.x,
+    pos.y + Config.MovesSetUI.PP.y,
+    16,
+    "Pokefont",
+    "start"
+  ).drawText();
+
+  // Dibuja el texto de los PP actuales con la barra separadora.
+  new Text(
+    move.pp + "/",
+    textScreen,
+    pos.x + Config.MovesSetUI.PP.x,
+    pos.y + Config.MovesSetUI.PP.y,
+    16,
+    "Pokefont",
+    "right"
+  ).drawText();
+
+  // Dibuja la etiqueta "PP".
+  new Text(
+    "PP",
+    textScreen,
+    pos.x + Config.MovesSetUI.PP.name.x,
+    pos.y + Config.MovesSetUI.PP.y,
+    16,
+    "Pokefont",
+    "start"
+  ).drawText();
 }
