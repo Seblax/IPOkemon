@@ -1,4 +1,5 @@
 import { DrawMove, SelectedMove } from "../DrawSprites/MoveSetSprites.js";
+import { PokemonUI } from "../DrawSprites/PokemonUI.js";
 import { calculateAttackEfficacy } from "../TypeCalcs.js";
 import { Data } from "../utils/Data.js";
 
@@ -27,15 +28,20 @@ export function moveSetButtons() {
       var enemy = Data.ActualEnemyPokemon;
 
       const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
-      
+      const eff = calculateAttackEfficacy(allay.moveSet[botonId-1].type, enemy);
+
+      enemy.hp -= 10 * eff;
+
       console.log(
         "Ataque: " +
           allay.moveSet[botonId-1].name +
           "es x" +
-          calculateAttackEfficacy(allay.moveSet[botonId-1].type, enemy) +
+          eff +
           " contra " +
           enemy.name
       );
+      new PokemonUI(enemy);
+      new PokemonUI(allay);
     });
   });
 }
