@@ -1,65 +1,72 @@
 import { Config } from "./Config.js";
 import { RandomZeroTo } from "./Data.js";
-import { Screen } from "./Screen.js";
+import { Screen } from "./Screen.js"; 
 import { Sprite } from "./Sprite.js";
 
-var screen;
+const screen = new Screen(".background-canvas"); // Variable global para la instancia de `Screen`.
 
 export function DrawBackground() {
-  screen = new Screen(".background-canvas");
-
   SetBackgroundSprites();
 }
 
 function SetBackgroundSprites() {
+  // Ruta base para las imágenes de fondo.
   const path = "assets/sprites/backgrounds/";
-  const index = Math.floor(Math.random() * 35);
+  const index = RandomZeroTo(Config.Background.numBackgrounds + 1);
+  
+  const background = path + index + "_background.png"; 
+  const enemyBase = path + index + "_enemy.png"; 
+  const allayBase = path + index + "_allay.png"; 
 
+  // Llama a la función para cambiar la paleta de colores de la página.
   Palette(index);
 
-  // Crear instancias de Sprite
+  // Crea instancias de `Sprite` con rutas de imagen específicas y posiciones en el canvas.
   const backgroundSprite = new Sprite(
-    path + index + "_background.png",
+    background,
     screen,
-    0,
-    0
-  );
-  const enemySprite = new Sprite(
-    path + index + "_enemy.png",
-    screen,
-    Config.screen.width - 126,
-    64
-  );
-  const allaySprite = new Sprite(
-    path + index + "_allay.png",
-    screen,
-    -64,
-    Config.screen.height - 32
+    0, 
+    0 
   );
 
-  // Cargar todas las imágenes usando promesas
+  const enemySprite = new Sprite(
+    enemyBase,
+    screen,
+    Config.Background.EnemyBase.x,
+    Config.Background.EnemyBase.y 
+  );
+  const allaySprite = new Sprite(
+    allayBase, // Imagen específica para el sprite aliado.
+    screen,
+    Config.Background.AllayBase.x,
+    Config.Background.AllayBase.y
+  );
+
+  // Carga las imágenes y espera a que todas se hayan cargado antes de dibujarlas.
   Promise.all([
-    backgroundSprite.onload(),
-    enemySprite.onload(),
-    allaySprite.onload(),
+    backgroundSprite.onload(), // Promesa de carga del sprite de fondo.
+    enemySprite.onload(), // Promesa de carga del sprite enemigo.
+    allaySprite.onload(), // Promesa de carga del sprite aliado.
   ])
     .then((sprites) => {
-      // Todos los sprites se han cargado, ahora se dibujan
+      // Si todas las promesas se resuelven, dibuja cada sprite.
       sprites.forEach((sprite) => sprite.draw());
     })
     .catch((error) => {
+      // Maneja errores si alguna imagen no se carga correctamente.
       console.error("Error al cargar una o más imágenes:", error);
     });
 }
 
 function Palette() {
-  const palettes = [];
+  const palettes = []; // Array para almacenar nombres de clases de paletas de color.
 
+  // Genera nombres de clase de paleta y los agrega al array.
   for (let i = 0; i < 6; i++) {
     palettes.push("palette-" + i);
   }
 
-  // Remover otras clases de paleta si es necesario y agregar una nueva
+  // Remueve las clases de paleta existentes en el elemento `body` y agrega una nueva al azar.
   document.body.classList.remove(...palettes);
   document.body.classList.add(palettes[RandomZeroTo(7)]);
 }

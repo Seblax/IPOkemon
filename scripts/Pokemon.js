@@ -43,6 +43,7 @@ export class Pokemon {
     this.lvl = lvl;
   }
 
+  //Genera estadísticas aleatorias del pokemon
   setRandomStats(){
     this.shiny = Random() < 0.002;
     this.lvl = RandomRange(80,90) + 10;

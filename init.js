@@ -19,7 +19,7 @@ window.onload = function () {
     const teamAllay = new PokemonTeam();
     const teamEnemy = new PokemonTeam();
 
-    await teamAllay.generateTeam();
+    await teamAllay.generateTeam(false);
     await teamEnemy.generateTeam(true);
 
     const pokemon_1 = teamAllay.team[0];

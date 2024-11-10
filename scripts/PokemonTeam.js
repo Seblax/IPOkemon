@@ -21,11 +21,6 @@ export class PokemonTeam {
     return pokemonList[randomIndex];
   }
 
-  // Método para generar un equipo de 6 Pokémon
-  async generateTeam() {
-    await generateTeam(false);
-  }
-
   async generateTeam(isEnemy) {
     //Lista con todos los pokemons
     const allPokemon = await Data.PokemonData;
