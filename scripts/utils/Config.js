@@ -1,16 +1,28 @@
+/**
+ * La clase `Config` actúa como un contenedor centralizado para almacenar variables de configuración
+ * estáticas e inmutables que se utilizan a lo largo de la aplicación web.
+ * Estas configuraciones proporcionan información como las dimensiones de la pantalla y las posiciones de la UI
+ * tanto para los elementos enemigos como para los aliados.
+ * 
+ * Las propiedades estáticas permiten que estos valores sean accesibles de manera global sin necesidad
+ * de instanciar la clase.
+ */
 export class Config {
+  // Configuración de la pantalla principal, utilizada para establecer el ancho y alto del área de juego.
   static screen = {
-    width: 256,
-    height: 152,
+    width: 256, // Ancho de la pantalla en píxeles.
+    height: 152, // Alto de la pantalla en píxeles.
   };
 
+  // Configuración de la interfaz de usuario para elementos enemigos, especificando sus dimensiones.
   static EnemyUI = {
-    width: 0,
-    height: 16,
+    width: 0, // Ancho de la UI enemiga (se puede modificar si se necesitan más propiedades en el futuro).
+    height: 16, // Altura de la UI enemiga.
   };
 
+  // Configuración de la interfaz de usuario para elementos aliados, calculada en función de la pantalla.
   static AllayUI = {
-    width:  Config.screen.width - 120,
-    height:  Config.screen.height - 55,
+    width: Config.screen.width - 120, // Ancho de la UI aliada, restando un margen desde el borde derecho.
+    height: Config.screen.height - 55, // Altura de la UI aliada, restando un margen desde el borde inferior.
   };
 }
