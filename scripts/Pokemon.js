@@ -49,6 +49,10 @@ export class Pokemon {
     this.lvl = RandomRange(80,90) + 10;
   }
 
+  hasSecondType(){
+    return this.type2 != null;
+  }
+
   // Método para mostrar estadísticas completas
   getStats() {
     return {

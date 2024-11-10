@@ -9,8 +9,7 @@ import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
-import { loadTests } from "./scripts/Tests.js";
-import { calcTypes } from "./scripts/TypeCalcs.js";
+import { calculateAttackEfficacy } from "./scripts/TypeCalcs.js";
 
 window.onload = function () {
   (async () => {
@@ -19,8 +18,6 @@ window.onload = function () {
     Data.PokemonData = await loadPokemonFromCSV();
     Data.MovesData = await loadMovesFromCSV();
     Data.Types = await loadTypesFromCSV();
-
-    loadTests();
 
     const teamAllay = new PokemonTeam();
     const teamEnemy = new PokemonTeam();
@@ -34,7 +31,8 @@ window.onload = function () {
     pokemon_1.hp = Math.round(pokemon_1.totalHp * Random());
     // pokemon_2.hp = Math.round(pokemon_2.totalHp * Random());
 
-    Data.ActualPokemon = pokemon_1;
+    Data.ActualAllayPokemon = pokemon_1;
+    Data.ActualEnemyPokemon = pokemon_2;
 
     console.log(pokemon_1);
     console.log(pokemon_2);

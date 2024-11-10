@@ -1,4 +1,5 @@
 import { DrawMove, SelectedMove } from "../DrawSprites/MoveSetSprites.js";
+import { calculateAttackEfficacy } from "../TypeCalcs.js";
 import { Data } from "../utils/Data.js";
 
 const botones = document.querySelectorAll(".move");
@@ -22,16 +23,28 @@ export function moveSetButtons() {
 
   botones.forEach((boton) => {
     boton.addEventListener("click", () => {
-      window.open("https://www.youtube.com/watch?v=gwgLj51eW0U");
+      var allay = Data.ActualAllayPokemon;
+      var enemy = Data.ActualEnemyPokemon;
+
+      const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
+      
+      console.log(
+        "Ataque: " +
+          allay.moveSet[botonId-1].name +
+          "es x" +
+          calculateAttackEfficacy(allay.moveSet[botonId-1].type, enemy) +
+          " contra " +
+          enemy.name
+      );
     });
   });
 }
 
 // Función para ejecutar la acción al pasar el ratón
 function mouseHover(i) {
-  SelectedMove(Data.ActualPokemon.moveSet[i], i); // Aquí i-1 para que se alinee con los índices si es necesario
+  SelectedMove(Data.ActualAllayPokemon.moveSet[i], i); // Aquí i-1 para que se alinee con los índices si es necesario
 }
 
 function mouseExit(i) {
-  DrawMove(Data.ActualPokemon.moveSet[i], i); // Aquí i-1 para que se alinee con los índices si es necesario
+  DrawMove(Data.ActualAllayPokemon.moveSet[i], i); // Aquí i-1 para que se alinee con los índices si es necesario
 }
