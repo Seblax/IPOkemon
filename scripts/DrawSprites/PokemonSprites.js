@@ -1,5 +1,6 @@
 import { Config } from "../utils/Config.js";
 import { Random, RandomRange } from "../utils/Data.js";
+import { PlayBattleMusic } from "../utils/Music.js";
 import { Screen } from "../utils/Screen.js";
 import { Sprite } from "../utils/Sprite.js";
 
@@ -97,7 +98,10 @@ export function AppearPokemon(pokemonSprite, pokemon) {
     const sound = document.getElementById(pokemon.enemy ? "enemy" : "allay");
     sound.src = `../assets/music/appears/${pokemon.id}.ogg`; // Establece la fuente de audio (`src`) al valor de `Data.Music`.
     sound.play();
+    PlayBattleMusic();
   }
+
+  
 
   function animate() {
     ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);

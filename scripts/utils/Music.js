@@ -9,36 +9,43 @@ export function SetBattleMusic() {
   Data.Music = "../assets/music/fight/" + RandomZeroTo(9) + "_fight.ogg";
 }
 
+export function PlayBattleMusic() {
+  SetBattleMusic();
+  sound.play();
+  _playing = !_playing; // Cambia el estado de `_playing` (de reproducción a pausa o viceversa).
+  ChangeButton(_playing);
+}
+
 // Función que gestiona la reproducción de la música.
 export function Music() {
   sound.src = Data.Music; // Establece la fuente de audio (`src`) al valor de `Data.Music`.
 
   // Define el comportamiento cuando el usuario hace clic en el botón de música.
   button.onclick = function () {
-    _playing ? Play() : Pause(); // Si la música está reproduciéndose, se pausa, si está pausada, se reproduce.
+    _playing ? PlayMusic() : PauseMusic(); // Si la música está reproduciéndose, se pausa, si está pausada, se reproduce.
     _playing = !_playing; // Cambia el estado de `_playing` (de reproducción a pausa o viceversa).
   };
 
   // Establece un evento para que, cuando la música termine, se reinicie y se vuelva a reproducir.
   sound.addEventListener("ended", function () {
     sound.currentTime = 0;
-    sound.play(); 
+    sound.play();
   });
 }
 
 // Función para reproducir la música.
-function Play() {
+function PlayMusic() {
   // Intenta reproducir la música. Si hay un error, se captura y se muestra un mensaje de error.
   sound.play().catch(function (error) {
-    console.log("No se pudo reproducir la música: ", error); 
+    console.log("No se pudo reproducir la música: ", error);
   });
 
   ChangeButton(_playing);
 }
 
 // Función para pausar la música.
-function Pause() {
-  sound.pause(); 
+function PauseMusic() {
+  sound.pause();
   ChangeButton(_playing);
 }
 
