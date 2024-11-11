@@ -157,7 +157,7 @@ export class PokemonUI {
 
   //Esta función dibuja el nombre del correspondiente pokemon.
   DrawPokemonName() {
-    var name = this.pokemon.name;
+    var name = this.pokemon.name.split(" ")[0];
     var isEnemy = this.pokemon.enemy;
 
     //Posición del nombre

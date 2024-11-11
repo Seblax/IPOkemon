@@ -6,8 +6,8 @@
 4;Charmander;Fire;None;309;39;52;43;60;50;65;1;False
 5;Charmeleon;Fire;None;405;58;64;58;80;65;80;1;False
 6;Charizard;Fire;Flying;534;78;84;78;109;85;100;1;False
-6;CharizardMega Charizard X;Fire;Dragon;634;78;130;111;130;85;100;1;False
-6;CharizardMega Charizard Y;Fire;Flying;634;78;104;78;159;115;100;1;False
+6;CharizardMega CharizardX;Fire;Dragon;634;78;130;111;130;85;100;1;False
+6;CharizardMega CharizardY;Fire;Flying;634;78;104;78;159;115;100;1;False
 7;Squirtle;Water;None;314;44;48;65;50;64;43;1;False
 8;Wartortle;Water;None;405;59;63;80;65;80;58;1;False
 9;Blastoise;Water;None;530;79;83;100;85;105;78;1;False
@@ -382,7 +382,10 @@
 348;Armaldo;Rock;Bug;495;75;125;100;70;80;45;3;False
 349;Feebas;Water;None;200;20;15;20;10;55;80;3;False
 350;Milotic;Water;None;540;95;60;79;100;125;81;3;False
-351;Castform;Normal;None;420;70;70;70;70;70;70;3;False
+351;Castform Normal;Normal;None;420;70;70;70;70;70;70;3;False
+351;Castform Rainy;Normal;None;420;70;70;70;70;70;70;3;False
+351;Castform Snowy;Normal;None;420;70;70;70;70;70;70;3;False
+351;Castform Sunny;Normal;None;420;70;70;70;70;70;70;3;False
 352;Kecleon;Normal;None;440;60;90;70;60;120;40;3;False
 353;Shuppet;Ghost;None;295;44;75;35;63;33;45;3;False
 354;Banette;Ghost;None;455;64;115;65;83;63;65;3;False
@@ -427,10 +430,10 @@
 384;Rayquaza;Dragon;Flying;680;105;150;90;150;90;95;3;True
 384;RayquazaMega Rayquaza;Dragon;Flying;780;105;180;100;180;100;115;3;True
 385;Jirachi;Steel;Psychic;600;100;100;100;100;100;100;3;True
-386;DeoxysNormal Forme;Psychic;None;600;50;150;50;150;50;150;3;True
-386;DeoxysAttack Forme;Psychic;None;600;50;180;20;180;20;150;3;True
-386;DeoxysDefense Forme;Psychic;None;600;50;70;160;70;160;90;3;True
-386;DeoxysSpeed Forme;Psychic;None;600;50;95;90;95;90;180;3;True
+386;Deoxys Normal;Psychic;None;600;50;150;50;150;50;150;3;True
+386;Deoxys Attack;Psychic;None;600;50;180;20;180;20;150;3;True
+386;Deoxys Defense;Psychic;None;600;50;70;160;70;160;90;3;True
+386;Deoxys Speed;Psychic;None;600;50;95;90;95;90;180;3;True
 387;Turtwig;Grass;None;318;55;68;64;45;55;31;4;False
 388;Grotle;Grass;None;405;75;89;85;55;65;36;4;False
 389;Torterra;Grass;Ground;525;95;109;105;75;85;56;4;False
@@ -456,7 +459,9 @@
 409;Rampardos;Rock;None;495;97;165;60;65;50;58;4;False
 410;Shieldon;Rock;Steel;350;30;42;118;42;88;30;4;False
 411;Bastiodon;Rock;Steel;495;60;52;168;47;138;30;4;False
-412;Burmy;Bug;None;224;40;29;45;29;45;36;4;False
+412;Burmy Plant;Bug;None;224;40;29;45;29;45;36;4;False
+412;Burmy Trash;Bug;None;224;40;29;45;29;45;36;4;False
+412;Burmy Sandy;Bug;None;224;40;29;45;29;45;36;4;False
 413;WormadamPlant Cloak;Bug;Grass;424;60;59;85;79;105;36;4;False
 413;WormadamSandy Cloak;Bug;Ground;424;60;79;105;59;85;36;4;False
 413;WormadamTrash Cloak;Bug;Steel;424;60;69;95;69;95;36;4;False
@@ -468,8 +473,10 @@
 419;Floatzel;Water;None;495;85;105;55;85;50;115;4;False
 420;Cherubi;Grass;None;275;45;35;45;62;53;35;4;False
 421;Cherrim;Grass;None;450;70;60;70;87;78;85;4;False
-422;Shellos;Water;None;325;76;48;48;57;62;34;4;False
-423;Gastrodon;Water;Ground;475;111;83;68;92;82;39;4;False
+422;Shellos West;Water;None;325;76;48;48;57;62;34;4;False
+422;Shellos East;Water;None;325;76;48;48;57;62;34;4;False
+423;Gastrodon West;Water;Ground;475;111;83;68;92;82;39;4;False
+423;Gastrodon East;Water;Ground;475;111;83;68;92;82;39;4;False
 424;Ambipom;Normal;None;482;75;100;66;60;66;115;4;False
 425;Drifloon;Ghost;Flying;348;90;50;34;60;44;70;4;False
 426;Drifblim;Ghost;Flying;498;150;80;44;90;54;80;4;False
@@ -530,12 +537,12 @@
 476;Probopass;Rock;Steel;525;60;55;145;75;150;40;4;False
 477;Dusknoir;Ghost;None;525;45;100;135;65;135;45;4;False
 478;Froslass;Ice;Ghost;480;70;80;70;80;70;110;4;False
-479;Rotom;Electric;Ghost;440;50;50;77;95;77;91;4;False
-479;RotomHeat Rotom;Electric;Fire;520;50;65;107;105;107;86;4;False
-479;RotomWash Rotom;Electric;Water;520;50;65;107;105;107;86;4;False
-479;RotomFrost Rotom;Electric;Ice;520;50;65;107;105;107;86;4;False
-479;RotomFan Rotom;Electric;Flying;520;50;65;107;105;107;86;4;False
-479;RotomMow Rotom;Electric;Grass;520;50;65;107;105;107;86;4;False
+479;Rotom Normal;Electric;Ghost;440;50;50;77;95;77;91;4;False
+479;Rotom Heat;Electric;Fire;520;50;65;107;105;107;86;4;False
+479;Rotom Wash;Electric;Water;520;50;65;107;105;107;86;4;False
+479;Rotom Frost;Electric;Ice;520;50;65;107;105;107;86;4;False
+479;Rotom Fan;Electric;Flying;520;50;65;107;105;107;86;4;False
+479;Rotom Mow;Electric;Grass;520;50;65;107;105;107;86;4;False
 480;Uxie;Psychic;None;580;75;75;130;75;130;95;4;True
 481;Mesprit;Psychic;None;580;80;105;105;105;105;80;4;True
 482;Azelf;Psychic;None;580;75;125;70;125;70;115;4;True
@@ -543,8 +550,8 @@
 484;Palkia;Water;Dragon;680;90;120;100;150;120;100;4;True
 485;Heatran;Fire;Steel;600;91;90;106;130;106;77;4;True
 486;Regigigas;Normal;None;670;110;160;110;80;110;100;4;True
-487;GiratinaAltered Forme;Ghost;Dragon;680;150;100;120;100;120;90;4;True
-487;GiratinaOrigin Forme;Ghost;Dragon;680;150;120;100;120;100;90;4;True
+487;Giratina Altered;Ghost;Dragon;680;150;100;120;100;120;90;4;True
+487;Giratina Origin;Ghost;Dragon;680;150;120;100;120;100;90;4;True
 488;Cresselia;Psychic;None;600;120;70;120;75;130;85;4;False
 489;Phione;Water;None;480;80;80;80;80;80;80;4;False
 490;Manaphy;Water;None;600;100;100;100;100;100;100;4;False
@@ -614,8 +621,8 @@
 552;Krokorok;Ground;Dark;351;60;82;45;45;45;74;5;False
 553;Krookodile;Ground;Dark;519;95;117;80;65;70;92;5;False
 554;Darumaka;Fire;None;315;70;90;45;15;45;50;5;False
-555;DarmanitanStandard Mode;Fire;None;480;105;140;55;30;55;95;5;False
-555;DarmanitanZen Mode;Fire;Psychic;540;105;30;105;140;105;55;5;False
+555;Darmanitan Standard;Fire;None;480;105;140;55;30;55;95;5;False
+555;Darmanitan Zen;Fire;Psychic;540;105;30;105;140;105;55;5;False
 556;Maractus;Grass;None;461;75;86;67;106;67;60;5;False
 557;Dwebble;Bug;Rock;325;50;65;85;35;35;55;5;False
 558;Crustle;Bug;Rock;475;70;95;125;65;75;45;5;False
@@ -645,8 +652,14 @@
 582;Vanillite;Ice;None;305;36;50;50;65;60;44;5;False
 583;Vanillish;Ice;None;395;51;65;65;80;75;59;5;False
 584;Vanilluxe;Ice;None;535;71;95;85;110;95;79;5;False
-585;Deerling;Normal;Grass;335;60;60;50;40;50;75;5;False
-586;Sawsbuck;Normal;Grass;475;80;100;70;60;70;95;5;False
+585;Deerling Autumn;Normal;Grass;335;60;60;50;40;50;75;5;False
+585;Deerling Winter;Normal;Grass;335;60;60;50;40;50;75;5;False
+585;Deerling Summer;Normal;Grass;335;60;60;50;40;50;75;5;False
+585;Deerling Spring;Normal;Grass;335;60;60;50;40;50;75;5;False
+586;Sawsbuck Autumn;Normal;Grass;475;80;100;70;60;70;95;5;False
+586;Sawsbuck Winter;Normal;Grass;475;80;100;70;60;70;95;5;False
+586;Sawsbuck Summer;Normal;Grass;475;80;100;70;60;70;95;5;False
+586;Sawsbuck Spring;Normal;Grass;475;80;100;70;60;70;95;5;False
 587;Emolga;Electric;Flying;428;55;75;60;75;60;103;5;False
 588;Karrablast;Bug;None;315;50;75;45;40;45;60;5;False
 589;Escavalier;Bug;Steel;495;70;135;105;60;105;20;5;False
@@ -701,20 +714,23 @@
 638;Cobalion;Steel;Fighting;580;91;90;129;90;72;108;5;True
 639;Terrakion;Rock;Fighting;580;91;129;90;72;90;108;5;True
 640;Virizion;Grass;Fighting;580;91;90;72;90;129;108;5;True
-641;TornadusIncarnate Forme;Flying;None;580;79;115;70;125;80;111;5;True
-641;TornadusTherian Forme;Flying;None;580;79;100;80;110;90;121;5;True
-642;ThundurusIncarnate Forme;Electric;Flying;580;79;115;70;125;80;111;5;True
-642;ThundurusTherian Forme;Electric;Flying;580;79;105;70;145;80;101;5;True
+641;Tornadus Incarnate;Flying;None;580;79;115;70;125;80;111;5;True
+641;Tornadus Therian;Flying;None;580;79;100;80;110;90;121;5;True
+642;Thundurus Incarnate;Electric;Flying;580;79;115;70;125;80;111;5;True
+642;Thundurus Therian;Electric;Flying;580;79;105;70;145;80;101;5;True
 643;Reshiram;Dragon;Fire;680;100;120;100;150;120;90;5;True
 644;Zekrom;Dragon;Electric;680;100;150;120;120;100;90;5;True
-645;LandorusIncarnate Forme;Ground;Flying;600;89;125;90;115;80;101;5;True
-645;LandorusTherian Forme;Ground;Flying;600;89;145;90;105;80;91;5;True
-646;Kyurem;Dragon;Ice;660;125;130;90;130;90;95;5;True
-646;KyuremBlack Kyurem;Dragon;Ice;700;125;170;100;120;90;95;5;True
-646;KyuremWhite Kyurem;Dragon;Ice;700;125;120;90;170;100;95;5;True
-647;KeldeoOrdinary Forme;Water;Fighting;580;91;72;90;129;90;108;5;False
-647;KeldeoResolute Forme;Water;Fighting;580;91;72;90;129;90;108;5;False
-648;MeloettaAria Forme;Normal;Psychic;600;100;77;77;128;128;90;5;False
-648;MeloettaPirouette Forme;Normal;Fighting;600;100;128;90;77;77;128;5;False
-649;Genesect;Bug;Steel;600;71;120;95;120;95;99;5;False
+645;Landorus Incarnate;Ground;Flying;600;89;125;90;115;80;101;5;True
+645;Landorus Therian;Ground;Flying;600;89;145;90;105;80;91;5;True
+646;Kyurem Normal;Dragon;Ice;660;125;130;90;130;90;95;5;True
+646;Kyurem Black;Dragon;Ice;700;125;170;100;120;90;95;5;True
+646;Kyurem White;Dragon;Ice;700;125;120;90;170;100;95;5;True
+647;Keldeo Ordinary;Water;Fighting;580;91;72;90;129;90;108;5;False
+647;Keldeo Resolute;Water;Fighting;580;91;72;90;129;90;108;5;False
+648;Meloetta Aria;Normal;Psychic;600;100;77;77;128;128;90;5;False
+648;Meloetta Pirouette;Normal;Fighting;600;100;128;90;77;77;128;5;False
+649;Genesect Douse;Bug;Steel;600;71;120;95;120;95;99;5;False
+649;Genesect Shock;Bug;Steel;600;71;120;95;120;95;99;5;False
+649;Genesect Burn;Bug;Steel;600;71;120;95;120;95;99;5;False
+649;Genesect Chill;Bug;Steel;600;71;120;95;120;95;99;5;False
 666;PokemongUs;Dark;Unknown;1000;66;66;66;66;66;66;?;True

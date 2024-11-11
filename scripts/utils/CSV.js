@@ -1,5 +1,5 @@
 import { Move } from "../Moves/Move.js";
-import { Pokemon } from "../Pokemon.js";
+import { Pokemon } from "../Pokemons/Pokemon.js";
 import { Random, RandomRange } from "./Data.js";
 
 /**

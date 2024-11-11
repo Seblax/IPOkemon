@@ -40,7 +40,21 @@ function getRandomMove(movesList) {
 
 export async function getMovesSet(pokemon) {
   var movesList = await Data.MovesData;
-  
+  let hasTypeMatch = false;
+
+  // Filtrar movimientos que coincidan con el tipo del Pokémon
+  const typeMatchingMoves = movesList.filter(
+    (move) => move.type === pokemon.type1 || move.type === pokemon.type2
+  );
+
+  // Asegurarse de que al menos un movimiento tenga el mismo tipo
+  if (typeMatchingMoves.length > 0) {
+    const randomTypeMove = getRandomMove(typeMatchingMoves);
+    pokemon.moveSet.push(randomTypeMove);
+    hasTypeMatch = true;
+  }
+
+  // Completar los movimientos restantes hasta tener 4
   while (pokemon.moveSet.length < 4) {
     const randomMove = getRandomMove(movesList);
     if (!pokemon.moveSet.includes(randomMove)) {

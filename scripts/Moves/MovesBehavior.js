@@ -1,6 +1,7 @@
 import { DrawMove, SelectedMove } from "../DrawSprites/MoveSetSprites.js";
 import { PokemonUI } from "../DrawSprites/PokemonUI.js";
-import { calculateAttackEfficacy } from "../TypeCalcs.js";
+import { doDamage } from "../Pokemons/Damage.js";
+import { calculateAttackEfficacy } from "../Pokemons/TypeChart.js";
 import { Data } from "../utils/Data.js";
 
 const botones = document.querySelectorAll(".move");
@@ -24,24 +25,10 @@ export function moveSetButtons() {
 
   botones.forEach((boton) => {
     boton.addEventListener("click", () => {
-      var allay = Data.ActualAllayPokemon;
-      var enemy = Data.ActualEnemyPokemon;
-
       const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
-      const eff = calculateAttackEfficacy(allay.moveSet[botonId-1].type, enemy);
-
-      enemy.hp -= 10 * eff;
-
-      console.log(
-        "Ataque: " +
-          allay.moveSet[botonId-1].name +
-          "es x" +
-          eff +
-          " contra " +
-          enemy.name
-      );
-      new PokemonUI(enemy);
-      new PokemonUI(allay);
+      
+      var move = Data.ActualAllayPokemon.moveSet[botonId-1];      
+      doDamage(move);
     });
   });
 }

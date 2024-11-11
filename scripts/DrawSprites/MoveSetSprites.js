@@ -14,13 +14,16 @@ const textScreen = new Screen(".move-set-text-canvas"); // Lienzo específico pa
 export function DrawMoveSet(pokemon) {
   var i = 0;
   textScreen.clear(); // Limpia la pantalla de texto antes de redibujar.
-  textScreen.resolution(20); // Establece la resolución de la pantalla de texto.
 
   // Itera sobre los movimientos del Pokémon y los dibuja uno por uno.
   pokemon.moveSet.forEach((element) => {
     DrawMove(element, i); // Llama a la función para dibujar un movimiento específico.
     i++;
   });
+}
+
+export function init() {
+  textScreen.resolution(20); // Establece la resolución de la pantalla de texto.
 }
 
 /**
@@ -50,7 +53,7 @@ export function DrawMove(move, id) {
   }
 
   // Dibuja el sprite del movimiento.
-  new Sprite(path, screen, pos.x, pos.y,true);
+  new Sprite(path, screen, pos.x, pos.y, true);
 
   // Dibuja el nombre del movimiento en la pantalla de texto.
   new Text(
@@ -107,8 +110,7 @@ function GetMoveSprite(move) {
   return "assets/sprites/ui/moves/" + type + ".png"; // Construye la ruta completa del sprite.
 }
 
-
-export function SelectedMove(move,id) {
+export function SelectedMove(move, id) {
   const path = "assets/sprites/ui/moves/selected.png"; // Obtiene la ruta del sprite del movimiento.
 
   // Determina la posición de dibujo basada en el índice del movimiento.
@@ -130,7 +132,7 @@ export function SelectedMove(move,id) {
   }
 
   // Dibuja el sprite del movimiento.
-  new Sprite(path, screen, pos.x, pos.y,true);
+  new Sprite(path, screen, pos.x, pos.y, true);
 
   // Dibuja el nombre del movimiento en la pantalla de texto.
   new Text(

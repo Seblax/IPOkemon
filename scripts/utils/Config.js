@@ -35,7 +35,7 @@ export class Config {
     x: Config.screen.width - 250,
     y: Config.screen.height - 70,
   };
-  // Configuración de la interfaz de usuario para elementos aliados, calculada en función de la pantalla.
+
   static MovesSetUI = {
     Move1: {
       x: 2,
@@ -66,6 +66,7 @@ export class Config {
     },
   };
 
+  // Configuración de los fondos y elementos de los campos de batalla, calculada en función de la pantalla.
   static Background = {
     numBackgrounds: 34,
     AllayBase: {
