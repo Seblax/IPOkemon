@@ -77,7 +77,7 @@ encima del otro*/
     z-index: -5;
 }
 
-.game-canvas{
+.game-canvas,.allay-canvas, .enemy-canvas{
     z-index: 0;
 }
 
