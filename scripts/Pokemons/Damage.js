@@ -1,4 +1,4 @@
-import { UpdateScreen } from "../../init.js";
+import { DrawAll } from "../../init.js";
 import { Data, Random, RandomRange } from "../utils/Data.js";
 import { calculateAttackEfficacy } from "./TypeChart.js";
 
@@ -45,5 +45,5 @@ export function doDamage(move) {
 
   console.log("Damage: " + damage);
 
-  UpdateScreen();
+  DrawAll();
 }

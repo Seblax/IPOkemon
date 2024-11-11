@@ -1,11 +1,11 @@
-import { AnimatePokemon, AppearPokemon, DrawPokemonSprite } from "./scripts/DrawSprites/PokemonSprites.js";
+import { DrawPokemonSprite } from "./scripts/DrawSprites/DrawPokemonSPrites.js";
 import { DrawBackground } from "./scripts/DrawSprites/DrawBackGround.js";
 import { Screen } from "./scripts/utils/Screen.js";
 import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
 import { PokemonTeam } from "./scripts/Pokemons/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
 import { Data, Random } from "./scripts/utils/Data.js";
-import { Music, SetBattleMusic } from "./scripts/utils/Music.js";
+import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet, init } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 import {
@@ -59,12 +59,13 @@ async function Start() {
   Music();
   moveSetButtons();
   UpdateScreen();
+  PlayBattleMusic();
 
-  var allaySprite = DrawPokemonSprite(Data.ActualAllayPokemon);
-  var enemySprite = DrawPokemonSprite(Data.ActualEnemyPokemon);
+  var allaySprite = DrawPokemonSprite(Data.ActualAllayPokemon).AppearPokemon(Data.ActualAllayPokemon);
+  var enemySprite = DrawPokemonSprite(Data.ActualEnemyPokemon).AppearPokemon(Data.ActualEnemyPokemon);
 
-  AppearPokemon(enemySprite, Data.ActualAllayPokemon );
-  AppearPokemon(allaySprite, Data.ActualEnemyPokemon);
+  // AppearPokemon(enemySprite, Data.ActualAllayPokemon );
+  // AppearPokemon(allaySprite, Data.ActualEnemyPokemon);
 
   new PokemonUI(Data.ActualAllayPokemon);
   new PokemonUI(Data.ActualEnemyPokemon);
@@ -72,7 +73,15 @@ async function Start() {
   DrawMoveSet(Data.ActualAllayPokemon);
 }
 
-export function UpdateScreen() {
+export function DrawAll(){
+  new PokemonUI(Data.ActualAllayPokemon);
+  new PokemonUI(Data.ActualEnemyPokemon);
+  
+  DrawMoveSet(Data.ActualAllayPokemon);
+
+}
+
+function UpdateScreen() {
   requestAnimationFrame(UpdateScreen.bind(this));
 }
 
