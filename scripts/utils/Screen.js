@@ -69,6 +69,13 @@ export class Screen {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
+    /**
+   * Limpia el contenido del canvas.
+   */
+    rotate(angle) {
+      this.ctx.rotate(angle);
+    }
+
   /**
    * Ajusta la resolución interna del canvas para soportar mejor las pantallas de alta densidad de píxeles.
    * @param {number} scale - Factor de escala para la resolución.

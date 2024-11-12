@@ -11,7 +11,6 @@ export class PokemonSprite {
 
   constructor(path, screen, x, y, pokemon) {
     this.sprite = new Sprite(path, screen, 0, 0);
-    this.path = path;
     this.screen = screen;
 
     this.pokemon = pokemon;
@@ -43,19 +42,16 @@ export class PokemonSprite {
   //==============================
 
   AnimatePokemon() {
-    const ctx = this.screen.ctx;
-
-    // Limpiamos el canvas.
-    ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
+    this.screen.clear();
+    this.sprite.draw();
 
     // Calculamos la posición en el eje Y usando la función seno.
     this.sprite.y =
       -this.amplitude * Math.sin(this.offset + this.frequency * this.i);
     const angle = 0.0002 * Math.sin(this.offset + this.frequency * this.i); // 45 grados
-    ctx.rotate(angle);
+    this.screen.rotate(angle);
 
     // Dibujamos la imagen en la posición actual.
-    this.sprite.draw();
 
     // Actualizamos la posición en el eje X.
     // Verificamos si la imagen sale del canvas y la reiniciamos.
@@ -71,16 +67,14 @@ export class PokemonSprite {
 
   AppearPokemon() {
     const self = this;
-    const ctx = this.screen.ctx;
-    ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
 
     function animate() {
       // Limitar el número de operaciones que se ejecutan por cuadro.
-      ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
+      self.screen.clear();
+      self.sprite.draw();
 
       if (self.frames < 0.5 * 60) {
         self.sprite.y = 2 * Math.sin(self.offset + 100 * self.frames);
-        self.sprite.draw();
         self.frames++;
         requestAnimationFrame(animate);
       } else {
@@ -96,14 +90,11 @@ export class PokemonSprite {
 
   KillPokemon() {
     this.sound.play();
-
     const self = this;
-    const ctx = this.screen.ctx;
-    ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
 
     function animate() {
       // Limitar el número de operaciones que se ejecutan por cuadro.
-      ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
+      self.screen.clear();
 
       if (self.frames < 0.5 * 60) {
         self.sprite.y += self.speed / 5;
@@ -111,9 +102,11 @@ export class PokemonSprite {
         self.frames++;
         requestAnimationFrame(animate);
       } else {
-        Data.ActualEnemyPokemon = Pokemon.copy(Data.PokemonData[RandomZeroTo(350)]);
+        Data.ActualEnemyPokemon = Pokemon.copy(
+          Data.PokemonData[RandomZeroTo(350)]
+        );
         Data.ActualEnemyPokemon.enemy = true;
-        
+
         DrawPokemonSprite(Data.ActualEnemyPokemon);
       }
     }
