@@ -19,6 +19,8 @@ body{
 
     image-rendering: pixelated; /* Para que los sprites se vean bien*/
     image-rendering: crisp-edges; 
+
+    font-family: 'Pokefont', sans-serif;
 }
 
 .console{
@@ -83,7 +85,6 @@ encima del otro*/
 
 .move-set-text-canvas{
     height: var(--screen-move-set-height);
-    font-family: 'Pokefont', Arial, sans-serif;
 }
 /**
 Botones

@@ -33,7 +33,7 @@ export class PokemonSprite {
     this.sound.play();
 
     // Velocidad de movimiento en el eje X.
-    this.speed = 2;
+    this.speed = pokemon.speed / 40;
     this.AppearPokemon(pokemon);
   }
 

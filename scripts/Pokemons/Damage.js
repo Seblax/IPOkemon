@@ -33,17 +33,13 @@ export function doDamage(move) {
     STAB: STAB,
     random: random,
   };
-  
-  console.log("Stats: ")
-  console.log(stats);
+
 
   var damage = ((((2 * Level) / 20 + 2) * Power * (A / D)) / 50) + 2;
 
   damage = damage * STAB * crit * random * efficacy;
 
   enemy.hp -= damage;
-
-  console.log("Damage: " + damage);
 
   DrawAll();
 }
