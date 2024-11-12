@@ -53,7 +53,7 @@ export function DrawMove(move, id) {
   }
 
   // Dibuja el sprite del movimiento.
-  new Sprite(path, screen, pos.x, pos.y, true);
+  new Sprite(path, screen, pos.x, pos.y);
 
   // Dibuja el nombre del movimiento en la pantalla de texto.
   new Text(

@@ -1,6 +1,7 @@
 import { Config } from "../utils/Config.js";
 import { PokemonSprite } from "../utils/PokemonSprite.js";
 import { Screen } from "../utils/Screen.js";
+import { PokemonUI } from "./PokemonUI.js";
 
 const SpecialPokemon = [
   6, //
@@ -44,9 +45,8 @@ export function DrawPokemonSprite(pokemon) {
   // Obtiene la ruta al sprite del Pokémon.
   var path = GetPokemonSprite(pokemon);
 
-  var sprite = new PokemonSprite(path, screen, pos.x, pos.y);
-  // Dibuja el sprite en la pantalla en la posición correspondiente.
-  return sprite;
+  new PokemonUI(pokemon);
+  new PokemonSprite(path, screen, pos.x, pos.y, pokemon);
 }
 
 /**

@@ -2,7 +2,7 @@ import { Data, RandomZeroTo } from "./Data.js";
 
 const sound = document.getElementById("ost"); // Obtiene el elemento de audio del DOM con el id "ost", que se usará para controlar la música.
 const button = document.getElementById("musicButton"); // Obtiene el botón de control de música del DOM, con el id "musicButton".
-var _playing = true; // Variable de estado que indica si la música está en reproducción (true) o en pausa (false).
+var _playing = false; // Variable de estado que indica si la música está en reproducción (true) o en pausa (false).
 
 // Función que configura la música de batalla, seleccionando una canción aleatoria de la carpeta "fight".
 export function SetBattleMusic() {
@@ -12,8 +12,6 @@ export function SetBattleMusic() {
 export function PlayBattleMusic() {
   SetBattleMusic();
   sound.play();
-  _playing = !_playing; // Cambia el estado de `_playing` (de reproducción a pausa o viceversa).
-  ChangeButton(_playing);
 }
 
 // Función que gestiona la reproducción de la música.

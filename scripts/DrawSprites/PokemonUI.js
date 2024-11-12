@@ -3,7 +3,7 @@ import { Screen } from "../utils/Screen.js";
 import { Config } from "../utils/Config.js";
 import { Text } from "../utils/Text.js";
 
-const textScreen = new Screen(".ui-text-canvas").resolution(20);
+var textScreen;
 var x;
 var y;
 /**
@@ -26,7 +26,14 @@ export class PokemonUI {
 
   constructor(pokemon) {
     this.pokemon = pokemon;
-    this.screen = new Screen(".ui-canvas");
+    this.screen = pokemon.enemy ? new Screen(".ui-enemy-canvas") : new Screen(".ui-allay-canvas") ;
+    textScreen =  pokemon.enemy ? new Screen(".ui-enemy-text-canvas") : new Screen(".ui-allay-text-canvas") ;
+
+    textScreen.resolution(20);
+
+    this.screen.ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
+    textScreen.ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
+
 
     this.type1 = pokemon.type1;
     this.type2 = pokemon.type2;

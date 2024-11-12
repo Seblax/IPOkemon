@@ -1,4 +1,4 @@
-import { DrawPokemonSprite } from "./scripts/DrawSprites/DrawPokemonSPrites.js";
+import { DrawPokemonSprite } from "./scripts/DrawSprites/DrawPokemonSprites.js";
 import { DrawBackground } from "./scripts/DrawSprites/DrawBackGround.js";
 import { Screen } from "./scripts/utils/Screen.js";
 import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
@@ -61,8 +61,8 @@ async function Start() {
   UpdateScreen();
   PlayBattleMusic();
 
-  var allaySprite = DrawPokemonSprite(Data.ActualAllayPokemon).AppearPokemon(Data.ActualAllayPokemon);
-  var enemySprite = DrawPokemonSprite(Data.ActualEnemyPokemon).AppearPokemon(Data.ActualEnemyPokemon);
+  var allaySprite = DrawPokemonSprite(Data.ActualAllayPokemon);
+  var enemySprite = DrawPokemonSprite(Data.ActualEnemyPokemon); 
 
   // AppearPokemon(enemySprite, Data.ActualAllayPokemon );
   // AppearPokemon(allaySprite, Data.ActualEnemyPokemon);
