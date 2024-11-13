@@ -18,14 +18,14 @@ export class PokemonSprite {
     this.screen.ctx.translate(x, y);
     this.screen.ctx.imageSmoothingEnabled = false;
 
-    // Posición inicial de la imagen.
     this.i = 0;
     this.amplitude = 5; // Amplitud de la onda (altura de la oscilación).
     this.frequency = 0.005; // Frecuencia de la onda (controla la longitud de la onda).
 
-    this.frames = 0;
-    this.offset = RandomZeroTo(10);
+    this.frames = 0; //Frames para la animación
+    this.offset = RandomZeroTo(10); //Offset aleatorio
 
+    //Sonido del pokemon
     this.sound = document.getElementById(
       this.pokemon.enemy ? "enemy" : "allay"
     );
@@ -67,6 +67,7 @@ export class PokemonSprite {
 
   AppearPokemon() {
     const self = this;
+    self.frames = 0;
 
     function animate() {
       // Limitar el número de operaciones que se ejecutan por cuadro.
@@ -78,7 +79,6 @@ export class PokemonSprite {
         self.frames++;
         requestAnimationFrame(animate);
       } else {
-        self.frames = 0;
         requestAnimationFrame(() => self.AnimatePokemon());
       }
     }
@@ -93,7 +93,6 @@ export class PokemonSprite {
     const self = this;
 
     function animate() {
-      // Limitar el número de operaciones que se ejecutan por cuadro.
       self.screen.clear();
 
       if (self.frames < 0.5 * 60) {
@@ -106,7 +105,6 @@ export class PokemonSprite {
           Data.PokemonData[RandomZeroTo(350)]
         );
         Data.ActualEnemyPokemon.enemy = true;
-
         DrawPokemonSprite(Data.ActualEnemyPokemon);
       }
     }
