@@ -91,18 +91,20 @@ export class PokemonSprite {
   KillPokemon() {
     this.sound.play();
     const self = this;
+    self.frames = 0;
+
 
     function animate() {
       self.screen.clear();
 
       if (self.frames < 0.5 * 60) {
-        self.sprite.y += self.speed / 5;
+        self.sprite.y += 0.5;
         self.sprite.draw();
         self.frames++;
         requestAnimationFrame(animate);
-      } else {
+      } else if (self.frames < 2.5 * 60){
         Data.ActualEnemyPokemon = Pokemon.copy(
-          Data.PokemonData[RandomZeroTo(350)]
+          Data.PokemonData[RandomZeroTo(734)]
         );
         Data.ActualEnemyPokemon.enemy = true;
         DrawPokemonSprite(Data.ActualEnemyPokemon);
