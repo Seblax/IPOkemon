@@ -2,5 +2,6 @@
   "notebook.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": false,
   "editor.formatOnSaveMode": "file",
-  "files.autoSaveWhenNoErrors": false
+  "files.autoSaveWhenNoErrors": false,
+  "liveServer.settings.port": 5501
 }
