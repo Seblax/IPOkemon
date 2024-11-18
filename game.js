@@ -6,7 +6,7 @@ import { PokemonTeam } from "./scripts/Pokemons/PokemonTeam.js";
 import { Sprite } from "./scripts/utils/Sprite.js";
 import { Data, Random } from "./scripts/utils/Data.js";
 import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js";
-import { DrawMoveSet, init } from "./scripts/DrawSprites/MoveSetSprites.js";
+import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 import {
   loadMovesFromCSV,
@@ -16,7 +16,7 @@ import {
 
 async function Start() {
   SetBattleMusic();
-  init();
+  SetCanvasMoveSetResolution();
 
   Data.PokemonData = await loadPokemonFromCSV();
   Data.MovesData = await loadMovesFromCSV();

@@ -22,7 +22,7 @@ export function DrawMoveSet(pokemon) {
   });
 }
 
-export function init() {
+export function SetCanvasMoveSetResolution() {
   textScreen.resolution(20); // Establece la resolución de la pantalla de texto.
 }
 
