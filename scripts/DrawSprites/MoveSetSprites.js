@@ -17,7 +17,7 @@ export function DrawMoveSet(pokemon) {
 
   // Itera sobre los movimientos del Pokémon y los dibuja uno por uno.
   pokemon.moveSet.forEach((element) => {
-    DrawMove(element, i); // Llama a la función para dibujar un movimiento específico.
+    element.pp > 0 ? DrawMove(element, i) : SelectedMove(element,i); // Llama a la función para dibujar un movimiento específico.
     i++;
   });
 }
@@ -32,6 +32,7 @@ export function SetCanvasMoveSetResolution() {
  * @param {number} id - Índice que determina la posición del movimiento en la interfaz.
  */
 export function DrawMove(move, id) {
+  
   var path = GetMoveSprite(move); // Obtiene la ruta del sprite del movimiento.
 
   // Determina la posición de dibujo basada en el índice del movimiento.
@@ -111,7 +112,7 @@ function GetMoveSprite(move) {
 }
 
 export function SelectedMove(move, id) {
-  const path = "assets/sprites/ui/moves/selected.png"; // Obtiene la ruta del sprite del movimiento.
+  const path = move.pp <= 0 ? "assets/sprites/ui/moves/noPP.png" : "assets/sprites/ui/moves/selected.png"; // Obtiene la ruta del sprite del movimiento.
 
   // Determina la posición de dibujo basada en el índice del movimiento.
   var pos = Config.MovesSetUI.Move1; // Posición por defecto para el primer movimiento.

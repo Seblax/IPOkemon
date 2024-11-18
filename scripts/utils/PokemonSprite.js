@@ -41,77 +41,72 @@ export class PokemonSprite {
   // Funciones
   //==============================
 
-  AnimatePokemon() {
-    this.screen.clear();
-    this.sprite.draw();
-
-    // Calculamos la posición en el eje Y usando la función seno.
-    this.sprite.y =
-      -this.amplitude * Math.sin(this.offset + this.frequency * this.i);
-    const angle = 0.0002 * Math.sin(this.offset + this.frequency * this.i); // 45 grados
-    this.screen.rotate(angle);
-
-    // Dibujamos la imagen en la posición actual.
-
-    // Actualizamos la posición en el eje X.
-    // Verificamos si la imagen sale del canvas y la reiniciamos.
-    this.i += this.speed;
-
-    // Llamamos a requestAnimationFrame para la siguiente actualización.
-    if (this.pokemon.hp <= 0) {
-      requestAnimationFrame(() => this.KillPokemon());
-    } else {
-      requestAnimationFrame(() => this.AnimatePokemon());
-    }
-  }
-
+  
   AppearPokemon() {
-    const self = this;
-    self.frames = 0;
-
-    function animate() {
-      // Limitar el número de operaciones que se ejecutan por cuadro.
-      self.screen.clear();
-      self.sprite.draw();
-
-      if (self.frames < 0.5 * 60) {
-        self.sprite.y = 2 * Math.sin(self.offset + 100 * self.frames);
-        self.frames++;
-        requestAnimationFrame(animate);
+    this.frames = 0;
+    
+    const appearCallback = (deltaTime) => {
+      this.screen.clear();
+      this.sprite.draw();
+      
+      if (this.frames < 0.5 * 60) {
+        this.sprite.y = 2 * Math.sin(this.offset + 100 * this.frames);
+        this.frames++;
       } else {
-        requestAnimationFrame(() => self.AnimatePokemon());
+        // Cambia al siguiente estado de animación
+        Data.AnimationManager.remove(appearCallback); // Detenemos esta animación
+        this.AnimatePokemon(); // Inicia la animación principal
       }
-    }
+    };
 
-    animate(); // Inicia la animación
+    // Añade la animación al gestor
+    Data.AnimationManager.add(appearCallback);
+  }
+  
+  
+  AnimatePokemon() {
+    const animateCallback = (deltaTime) => {
+      this.screen.clear();
+      this.sprite.draw();
+
+      this.sprite.y =
+        -this.amplitude * Math.sin(this.offset + this.frequency * this.i);
+      const angle = 0.0002 * Math.sin(this.offset + this.frequency * this.i);
+      this.screen.rotate(angle);
+
+      this.i += this.speed;
+
+      if (this.pokemon.hp <= 0) {
+        Data.AnimationManager.remove(animateCallback); // Detenemos esta animación
+        this.KillPokemon(); // Inicia el siguiente estado
+      }
+    };
+
+    Data.AnimationManager.add(animateCallback);
   }
 
-  AppearSound() {}
 
   KillPokemon() {
+    this.frames = 0;
     this.sound.play();
-    const self = this;
-    self.frames = 0;
 
-    function animate() {
-      self.screen.clear();
-      self.frames++;
+    const killCallback = (deltaTime) => {
+      this.screen.clear();
+      this.frames++;
 
-      if (self.frames < 0.5 * 60) {
-        self.sprite.y += 0.5;
-        self.sprite.draw();
-        requestAnimationFrame(animate);
-      } else if (self.frames <= 2.5 * 60) {
-        requestAnimationFrame(animate);
-      } else if (self.frames > 2.5 * 60) {
+      if (this.frames < 0.5 * 60) {
+        this.sprite.y += 0.5;
+        this.sprite.draw();
+      } else if (this.frames > 2.5 * 60) {
+        Data.AnimationManager.remove(killCallback); // Termina esta animación
         Data.ActualEnemyPokemon = Pokemon.copy(
           Data.PokemonData[RandomZeroTo(735)]
         );
         Data.ActualEnemyPokemon.enemy = true;
         DrawPokemonSprite(Data.ActualEnemyPokemon);
       }
-    }
+    };
 
-    animate(); // Inicia la animación
+    Data.AnimationManager.add(killCallback);
   }
 }

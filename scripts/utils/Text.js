@@ -12,6 +12,9 @@ export class Text {
     this.outline = false;
   }
 
+  /**
+   * 
+   */
   drawText() {
     this.screen.drawText(this.text, this.x, this.y, this.size, this.style, this.align, this.color, this.outline);
   }

@@ -28,6 +28,9 @@ export function moveSetButtons() {
       const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
       
       var move = Data.ActualAllayPokemon.moveSet[botonId-1];      
+      if(move.pp <= 0){
+        return;
+      }
       doDamage(move);
     });
   });
@@ -39,5 +42,9 @@ function mouseHover(i) {
 }
 
 function mouseExit(i) {
-  DrawMove(Data.ActualAllayPokemon.moveSet[i], i); // Aquí i-1 para que se alinee con los índices si es necesario
+  var move = Data.ActualAllayPokemon.moveSet[i];
+  if(move.pp <= 0){
+    return;
+  }
+  DrawMove(move, i); // Aquí i-1 para que se alinee con los índices si es necesario
 }

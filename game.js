@@ -13,6 +13,8 @@ import {
   loadPokemonFromCSV,
   loadTypesFromCSV,
 } from "./scripts/utils/CSV.js";
+import { Text } from "./scripts/utils/Text.js";
+import { Config } from "./scripts/utils/Config.js";
 
 async function Start() {
   SetBattleMusic();
@@ -50,6 +52,7 @@ async function Start() {
     0
   );
 
+
   menuCanvas.drawCanvas(menuSprite.image, 0, 0);
 
   if (pokemon_1.shiny || pokemon_2.shiny) {
@@ -64,13 +67,14 @@ async function Start() {
   var allaySprite = DrawPokemonSprite(Data.ActualAllayPokemon);
   var enemySprite = DrawPokemonSprite(Data.ActualEnemyPokemon); 
 
-  // AppearPokemon(enemySprite, Data.ActualAllayPokemon );
-  // AppearPokemon(allaySprite, Data.ActualEnemyPokemon);
 
   new PokemonUI(Data.ActualAllayPokemon);
   new PokemonUI(Data.ActualEnemyPokemon);
   
   DrawMoveSet(Data.ActualAllayPokemon);
+
+  ////////////////////
+  Data.AnimationManager.start();
 }
 
 export function DrawAll(){

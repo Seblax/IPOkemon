@@ -1,3 +1,5 @@
+import { AnimationManager } from "./AnimationManager.js";
+
 /**
  * La clase `Data` sirve como un contenedor para almacenar y gestionar datos relacionados con el juego,
  * como la información de los Pokémon, los movimientos y la música. Las propiedades de la clase son
@@ -17,6 +19,8 @@ export class Data {
 
   static ActualAllayPokemon;
   static ActualEnemyPokemon;
+
+  static AnimationManager = new AnimationManager(60);
 }
 
 /**
