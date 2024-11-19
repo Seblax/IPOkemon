@@ -64,25 +64,12 @@ async function Start() {
   UpdateScreen();
   PlayBattleMusic();
 
-  var allaySprite = DrawPokemonSprite(Data.ActualAllayPokemon);
-  var enemySprite = DrawPokemonSprite(Data.ActualEnemyPokemon); 
-
-
-  new PokemonUI(Data.ActualAllayPokemon);
-  new PokemonUI(Data.ActualEnemyPokemon);
+  Data.uiAllay = DrawPokemonSprite(Data.ActualAllayPokemon);
+  Data.uiEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon); 
   
   DrawMoveSet(Data.ActualAllayPokemon);
-
-  ////////////////////
+  
   Data.AnimationManager.start();
-}
-
-export function DrawAll(){
-  new PokemonUI(Data.ActualAllayPokemon);
-  new PokemonUI(Data.ActualEnemyPokemon);
-  
-  DrawMoveSet(Data.ActualAllayPokemon);
-
 }
 
 function UpdateScreen() {

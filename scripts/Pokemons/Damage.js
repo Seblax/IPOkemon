@@ -1,23 +1,21 @@
-import { DrawAll } from "../../game.js";
+import { DrawMoveSet } from "../DrawSprites/MoveSetSprites.js";
 import { Data, Random, RandomRange } from "../utils/Data.js";
 import { calculateAttackEfficacy } from "./TypeChart.js";
 
 const physical = "Physical";
 
-export function doDamage(move) {
-  var allay = Data.ActualAllayPokemon;
-  var enemy = Data.ActualEnemyPokemon;
+export function doDamage(move, atkPokemon, defPokemon) {
 
-  const Level = allay.lvl;
+  const Level = atkPokemon.lvl;
   const Power = move.power;
 
-  const A = move.category == physical ? allay.attack : allay.spAtk;
-  const D = move.category == physical ? allay.defense : enemy.spDef;
+  const A = move.category == physical ? atkPokemon.attack : atkPokemon.spAtk;
+  const D = move.category == physical ? atkPokemon.defense : defPokemon.spDef;
 
-  const efficacy = calculateAttackEfficacy(move.type, enemy);
+  const efficacy = calculateAttackEfficacy(move.type, defPokemon);
   const crit = Random() < 0.06 ? 2 : 1;
 
-  const STAB = allay.type1 == move.type || allay.type2 == move.type ? 1.5 : 1;
+  const STAB = atkPokemon.type1 == move.type || atkPokemon.type2 == move.type ? 1.5 : 1;
 
   const random = RandomRange(85, 100) / 100;
 
@@ -39,7 +37,15 @@ export function doDamage(move) {
 
   damage = damage * STAB * crit * random * efficacy;
 
-  enemy.hp -= damage;
+  var oldHp = defPokemon.hp;
+  defPokemon.hp -= damage;
 
-  DrawAll();
+  if(defPokemon.enemy){
+    Data.uiEnemy.DrawHpBar(oldHp);  
+  } else{
+    Data.uiAllay.DrawHpBar(oldHp);  
+  }
+
+
+  DrawMoveSet(Data.ActualAllayPokemon);
 }

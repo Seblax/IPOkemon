@@ -2,10 +2,11 @@ import { Sprite } from "../utils/Sprite.js";
 import { Screen } from "../utils/Screen.js";
 import { Config } from "../utils/Config.js";
 import { Text } from "../utils/Text.js";
+import { Data } from "../utils/Data.js";
 
+const barScreen = new Screen(".ui-canvas");
 var textScreen;
-var x;
-var y;
+var speed = 1;
 /**
  * La clase `PokemonUI` gestiona la visualización de la interfaz de usuario de un Pokémon en un juego.
  * Incluye métodos para dibujar los elementos clave como:
@@ -26,20 +27,24 @@ export class PokemonUI {
 
   constructor(pokemon) {
     this.pokemon = pokemon;
-    this.screen = pokemon.enemy ? new Screen(".ui-enemy-canvas") : new Screen(".ui-allay-canvas") ;
-    textScreen =  pokemon.enemy ? new Screen(".ui-enemy-text-canvas") : new Screen(".ui-allay-text-canvas") ;
+    this.screen = pokemon.enemy
+      ? new Screen(".ui-enemy-canvas")
+      : new Screen(".ui-allay-canvas");
+    textScreen = pokemon.enemy
+      ? new Screen(".ui-enemy-text-canvas")
+      : new Screen(".ui-allay-text-canvas");
 
     textScreen.resolution(20);
+    const isEnemy = this.pokemon.enemy; //Si el pokemon es enemigo
+
+    this.x = isEnemy ? Config.EnemyUI.width : Config.AllayUI.width;
+    this.y = isEnemy ? Config.EnemyUI.height : Config.AllayUI.height;
 
     this.screen.ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
     textScreen.ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
 
-
     this.type1 = pokemon.type1;
     this.type2 = pokemon.type2;
-
-    // Dibuja el UI del Pokémon (tipos, etc.)
-    this.DrawPokemonUI();
   }
 
   //==============================
@@ -51,20 +56,18 @@ export class PokemonUI {
   async DrawPokemonUI() {
     const basePath = "../assets/sprites/ui"; //Path de los recursos
 
-    const isEnemy = this.pokemon.enemy; //Si el pokemon es enemigo
     const isMega = this.pokemon.mega; //Si el pokemon es mega
+    const isEnemy = this.pokemon.enemy; //Si el pokemon es enemigo
     const isShiny = this.pokemon.shiny; //SI el pokemon es shiny
 
     // Determina la ruta y posición según sea enemigo o aliado
     const path = `${basePath}/${isEnemy ? "enemy" : "allay"}/`;
-    x = isEnemy ? Config.EnemyUI.width : Config.AllayUI.width;
-    y = isEnemy ? Config.EnemyUI.height : Config.AllayUI.height;
 
     //Cargamos los sprites
     const nameText = this.DrawPokemonName();
     const hpText = this.DrawPokemonHP();
     const lvlText = this.DrawPokemonLv();
-    const barSprite = this.DrawHpBar();
+    const barSprite = this.DrawHpBar(this.pokemon.hp);
 
     // Dibuja los tipos del Pokémon
     this.DrawPokemonTypes();
@@ -73,18 +76,18 @@ export class PokemonUI {
     const normalUIPath = path + (isShiny ? "shiny_ui.png" : "normal_ui.png");
     const megaUIPath = path + (isMega ? "mega_ui.png" : "normal_ui.png");
 
-    const normalUI = new Sprite(normalUIPath, this.screen, x, y);
-    const megaUI = new Sprite(megaUIPath, this.screen, x, y);
+    const normalUI = new Sprite(normalUIPath, this.screen, this.x, this.y);
+    const megaUI = new Sprite(megaUIPath, this.screen, this.x, this.y);
 
     //Una vez cargadas los sprites, se dibujan en pantalla.
     try {
       await Promise.all([
         megaUI.onload(),
-        barSprite.onload(),
+        // barSprite.onload(),
         normalUI.onload(),
       ]);
       megaUI.draw();
-      barSprite.draw();
+      // barSprite.draw();
       normalUI.draw();
     } catch (error) {
       console.error("Error al cargar una o más imágenes:", error);
@@ -121,7 +124,7 @@ export class PokemonUI {
   //    -más de 60%:    Verde;
   //    -más de 30%:    Amarillo;
   //    -menos de 30%:  Rojo;
-  DrawHpBar() {
+  DrawHpBar(oldHp) {
     var isEnemy = this.pokemon.enemy;
     //porcentaje de vida que le falta al pokemon [0-1];
     var hpPercent = Math.max(
@@ -129,11 +132,10 @@ export class PokemonUI {
       Math.min(1, this.pokemon.hp / this.pokemon.totalHp)
     );
 
-
     //Path del asset de la barra de vida
     var i = 0;
     var barPath = "assets/sprites/ui/";
-    
+
     if (hpPercent < 0.3) {
       i = 3;
     } else if (hpPercent < 0.6) {
@@ -145,21 +147,44 @@ export class PokemonUI {
     barPath += i + "_hp_bar.png";
 
     //Posición de las barra de vida
-    var pos = [x+44, y+20];
-    pos = isEnemy ? pos : [pos[0]+12, pos[1]];
+    var pos = [this.x + 44, this.y + 20];
+    pos = isEnemy ? pos : [pos[0] + 12, pos[1]];
 
     //Dibuja la barra del fondo
-    new Sprite("assets/sprites/ui/0_background_bar.png", 
-      this.screen, 
-      pos[0], 
-      pos[1]);
+    var backgroundBar = new Sprite(
+      "assets/sprites/ui/0_background_bar.png",
+      barScreen,
+      pos[0],
+      pos[1]
+    );
 
     //Dibuja la barra de vida actual del pokemon
-    var hpBar = new Sprite(barPath, 
-      this.screen,
-      pos[0] - 48 * (1 - hpPercent), 
-      pos[1]);
-    return hpBar;
+    var hpBar = new Sprite(barPath, barScreen, pos[0], pos[1]);
+
+    this.AnimateHpBar(
+      hpBar,
+      backgroundBar,
+      pos[0] - 48 * (1 - oldHp / this.pokemon.totalHp),
+      pos[0] - 48 * (1 - hpPercent)
+    );
+  }
+
+  AnimateHpBar(hpbar, backgroundBar, oldPosition, position) {
+    hpbar.x = oldPosition;
+    backgroundBar.draw();
+    hpbar.draw();
+    const animateCallback = (deltaTime) => {
+      backgroundBar.draw();
+      hpbar.draw();
+
+      hpbar.x -= speed;
+
+      if (hpbar.x <= position) {
+        Data.AnimationManager.remove(animateCallback); // Detenemos esta animación
+      }
+    };
+
+    Data.AnimationManager.add(animateCallback);
   }
 
   //Esta función dibuja el nombre del correspondiente pokemon.
@@ -168,10 +193,18 @@ export class PokemonUI {
     var isEnemy = this.pokemon.enemy;
 
     //Posición del nombre
-    var posSprite = [x + 10, y+2];
+    var posSprite = [this.x + 10, this.y + 2];
 
     //Dibujar el nombre
-    new Text(name, textScreen, posSprite[0],  posSprite[1], 10, "Pokefont", "start")
+    new Text(
+      name,
+      textScreen,
+      posSprite[0],
+      posSprite[1],
+      10,
+      "Pokefont",
+      "start"
+    )
       .setColor("white")
       .setOutline(true)
       .drawText();
@@ -180,8 +213,7 @@ export class PokemonUI {
   //Esta función dibuja el nivel de los pokemons
   DrawPokemonLv() {
     var lvl = this.pokemon.lvl;
-    var position = [x+94, y+4];
-
+    var position = [this.x + 94, this.y + 4];
 
     //Dibujar sprite
     new Text(lvl, textScreen, position[0], position[1], 10, "Pokefont", "start")
@@ -200,8 +232,12 @@ export class PokemonUI {
     var isEnemy = this.pokemon.enemy; //Comprueba si el pokemon es enemigo
     var haveSecondType = type2 != None; //Comprueba si tiene segundo tipo
 
-    var posSpriteType1 = isEnemy ? [x + 50, y + 33] : [x + 22, y + 33];
-    var posSpriteType2 = isEnemy ? [x + 1, y + 33] : [x + 71, y + 33];
+    var posSpriteType1 = isEnemy
+      ? [this.x + 50, this.y + 33]
+      : [this.x + 22, this.y + 33];
+    var posSpriteType2 = isEnemy
+      ? [this.x + 1, this.y + 33]
+      : [this.x + 71, this.y + 33];
 
     //Carga los sprites
     haveSecondType

@@ -20,6 +20,9 @@ export class Data {
   static ActualAllayPokemon;
   static ActualEnemyPokemon;
 
+  static uiAllay;
+  static uiEnemy;
+
   static AnimationManager = new AnimationManager(60);
 }
 

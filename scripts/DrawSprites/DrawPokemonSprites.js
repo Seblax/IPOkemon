@@ -44,9 +44,12 @@ export function DrawPokemonSprite(pokemon) {
 
   // Obtiene la ruta al sprite del Pokémon.
   var path = GetPokemonSprite(pokemon);
-
-  new PokemonUI(pokemon);
   new PokemonSprite(path, screen, pos.x, pos.y, pokemon);
+  
+  var ui = new PokemonUI(pokemon);
+  ui.DrawPokemonUI();
+  ui.DrawHpBar(pokemon.totalHp);
+  return ui;
 }
 
 /**

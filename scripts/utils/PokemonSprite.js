@@ -103,7 +103,7 @@ export class PokemonSprite {
           Data.PokemonData[RandomZeroTo(735)]
         );
         Data.ActualEnemyPokemon.enemy = true;
-        DrawPokemonSprite(Data.ActualEnemyPokemon);
+        Data.uiEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
       }
     };
 

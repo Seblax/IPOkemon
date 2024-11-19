@@ -31,7 +31,7 @@ export function moveSetButtons() {
       if(move.pp <= 0){
         return;
       }
-      doDamage(move);
+      doDamage(move, Data.ActualAllayPokemon, Data.ActualEnemyPokemon);
     });
   });
 }
