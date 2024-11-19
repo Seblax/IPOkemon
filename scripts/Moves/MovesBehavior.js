@@ -1,8 +1,6 @@
 import { DrawMove, OnHoverMove } from "../DrawSprites/MoveSetSprites.js";
-import { PokemonUI } from "../DrawSprites/PokemonUI.js";
-import { doDamage } from "../Pokemons/Damage.js";
-import { calculateAttackEfficacy } from "../Pokemons/TypeChart.js";
-import { Data } from "../utils/Data.js";
+import { BattleBehavior } from "../Pokemons/Damage.js";
+import { Data, RandomRange } from "../utils/Data.js";
 
 const botones = document.querySelectorAll(".move");
 
@@ -27,12 +25,15 @@ export function moveSetButtons() {
     boton.addEventListener("click", () => {
       const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
 
-      var move = Data.ActualAllayPokemon.moveSet[botonId - 1];
+      var moveAllay = Data.ActualAllayPokemon.moveSet[botonId - 1];
+      var moveEnemy = Data.ActualEnemyPokemon.moveSet[RandomRange(0,3)];
+      
       //Si el movimiento no tiene PP no se ejecuta ninguna lógica
-      if (move.pp <= 0) {
+      if (moveAllay.pp <= 0) {
         return;
       }
-      doDamage(move, Data.ActualAllayPokemon, Data.ActualEnemyPokemon);
+
+      BattleBehavior(moveAllay, moveEnemy);
     });
   });
 }

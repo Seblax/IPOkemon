@@ -6,7 +6,7 @@ export class Move {
     this.type = type;
     this.category = category;
     this.power = parseInt(power);
-    this.acc = parseFloat(acc) / 100;
+    this.acc = parseFloat(acc);
     this.pp = parseInt(pp);
     this.totalPP = parseInt(pp);
     this.prio = parseInt(prio);
@@ -26,16 +26,20 @@ export class Move {
     };
   }
 
+  static copy(move){
+    return new Move(move.name, move.type, move.category, move.power, move.acc, move.pp, move.prio);
+  }
+
   toString() {
     // Llama a getStats y formatea las propiedades como cadena
     const stats = this.getStats();
-    return `Move: ${stats.Name}\nType: ${stats.Type}\nCategory: ${stats.Category}\nPower: ${stats.Power}\nAccuracy: ${stats.Accuracy * 100}%\nPP: ${stats.PowerPoints}\nCrit Chance: ${stats.Crit * 100}%`;
+    return `Move: ${stats.Name}\nType: ${stats.Type}\nCategory: ${stats.Category}\nPower: ${stats.Power}\nAccuracy: ${stats.Accuracy}%\nPP: ${stats.PowerPoints}\n`;
   }
 }
 
 function getRandomMove(movesList) {
   const randomIndex = Math.floor(Math.random() * movesList.length);
-  return movesList[randomIndex];
+  return Move.copy(movesList[randomIndex]);
 }
 
 export async function getMovesSet(pokemon) {
@@ -62,3 +66,4 @@ export async function getMovesSet(pokemon) {
     }
   }
 }
+
