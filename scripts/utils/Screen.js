@@ -94,4 +94,9 @@ export class Screen {
     this.ctx.scale(scale, scale);
     return this;
   }
+
+  blur(boolean){
+    this.ctx.imageSmoothingEnabled = boolean;
+    return this;
+  }
 }

@@ -41,9 +41,9 @@ export function doDamage(move, atkPokemon, defPokemon) {
   defPokemon.hp -= damage;
 
   if(defPokemon.enemy){
-    Data.uiEnemy.DrawHpBar(oldHp);  
+    Data.UIEnemy.DrawHpBar(oldHp);  
   } else{
-    Data.uiAllay.DrawHpBar(oldHp);  
+    Data.UIAllay.DrawHpBar(oldHp);  
   }
 
 

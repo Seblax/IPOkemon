@@ -30,8 +30,8 @@ async function Start() {
   await teamAllay.generateTeam(false);
   await teamEnemy.generateTeam(true);
 
-  const pokemon_1 = teamAllay.team[0];
-  const pokemon_2 = teamEnemy.team[0];
+  var pokemon_1 = teamAllay.team[0];
+  var pokemon_2 = teamEnemy.team[0];
 
   pokemon_1.hp = Math.round(pokemon_1.totalHp * Random());
   // pokemon_2.hp = Math.round(pokemon_2.totalHp * Random());
@@ -64,8 +64,8 @@ async function Start() {
   UpdateScreen();
   PlayBattleMusic();
 
-  Data.uiAllay = DrawPokemonSprite(Data.ActualAllayPokemon);
-  Data.uiEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon); 
+  Data.UIAllay = DrawPokemonSprite(Data.ActualAllayPokemon);
+  Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon); 
   
   DrawMoveSet(Data.ActualAllayPokemon);
   

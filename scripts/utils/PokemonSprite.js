@@ -16,7 +16,7 @@ export class PokemonSprite {
     this.pokemon = pokemon;
 
     this.screen.ctx.translate(x, y);
-    this.screen.ctx.imageSmoothingEnabled = false;
+    this.screen.blur(false);
 
     this.i = 0;
     this.amplitude = 5; // Amplitud de la onda (altura de la oscilación).
@@ -103,7 +103,7 @@ export class PokemonSprite {
           Data.PokemonData[RandomZeroTo(735)]
         );
         Data.ActualEnemyPokemon.enemy = true;
-        Data.uiEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
+        Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
       }
     };
 

@@ -4,7 +4,7 @@ import { Config } from "../utils/Config.js";
 import { Text } from "../utils/Text.js";
 import { Data } from "../utils/Data.js";
 
-const barScreen = new Screen(".ui-canvas");
+const barScreen = new Screen(".ui-canvas").blur(false);
 var textScreen;
 var speed = 1;
 /**
@@ -161,11 +161,15 @@ export class PokemonUI {
     //Dibuja la barra de vida actual del pokemon
     var hpBar = new Sprite(barPath, barScreen, pos[0], pos[1]);
 
+    var finalHpBarPosition = pos[0] - 48 * (1 - hpPercent);
+    var currentHpBarPosition = oldHp != 0 ? pos[0] - 48 * (1 - oldHp / this.pokemon.totalHp)
+      : finalHpBarPosition;
+
     this.AnimateHpBar(
       hpBar,
       backgroundBar,
-      pos[0] - 48 * (1 - oldHp / this.pokemon.totalHp),
-      pos[0] - 48 * (1 - hpPercent)
+      currentHpBarPosition,
+      finalHpBarPosition
     );
   }
 
@@ -173,6 +177,11 @@ export class PokemonUI {
     hpbar.x = oldPosition;
     backgroundBar.draw();
     hpbar.draw();
+    
+    if (oldPosition == position) {
+      return;
+    }
+    
     const animateCallback = (deltaTime) => {
       backgroundBar.draw();
       hpbar.draw();
@@ -242,11 +251,11 @@ export class PokemonUI {
     //Carga los sprites
     haveSecondType
       ? new Sprite(
-          basePath + type2,
-          this.screen,
-          posSpriteType1[0],
-          posSpriteType1[1]
-        )
+        basePath + type2,
+        this.screen,
+        posSpriteType1[0],
+        posSpriteType1[1]
+      )
       : null;
 
     new Sprite(

@@ -17,12 +17,15 @@ export class Data {
   // Contiene las referencias a los datos de la música o banda sonora del juego.
   static Music;
 
+  // Pokemons que están en el campo de batalla
   static ActualAllayPokemon;
   static ActualEnemyPokemon;
 
-  static uiAllay;
-  static uiEnemy;
+  // Las UI de los pokemons que están en el campo de batalla.
+  static UIAllay;
+  static UIEnemy;
 
+  // Animation Manager, para gestionar todas las animaciones.
   static AnimationManager = new AnimationManager(60);
 }
 
