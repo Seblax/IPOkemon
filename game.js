@@ -8,13 +8,8 @@ import { Data, Random } from "./scripts/utils/Data.js";
 import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
-import {
-  loadMovesFromCSV,
-  loadPokemonFromCSV,
-  loadTypesFromCSV,
-} from "./scripts/utils/CSV.js";
-import { Text } from "./scripts/utils/Text.js";
-import { Config } from "./scripts/utils/Config.js";
+import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
+
 
 async function Start() {
   SetBattleMusic();
@@ -39,8 +34,8 @@ async function Start() {
   Data.ActualAllayPokemon = pokemon_1;
   Data.ActualEnemyPokemon = pokemon_2;
 
-  // console.log(pokemon_1);
-  // console.log(pokemon_2);
+  console.log(pokemon_1);
+  console.log(pokemon_2);
 
   DrawBackground();
 
@@ -61,19 +56,14 @@ async function Start() {
 
   Music();
   moveSetButtons();
-  UpdateScreen();
   PlayBattleMusic();
 
   Data.UIAllay = DrawPokemonSprite(Data.ActualAllayPokemon);
-  Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon); 
-  
-  DrawMoveSet(Data.ActualAllayPokemon);
-  
-  Data.AnimationManager.start();
-}
+  Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
 
-function UpdateScreen() {
-  requestAnimationFrame(UpdateScreen.bind(this));
+  DrawMoveSet(Data.ActualAllayPokemon);
+
+  Data.AnimationManager.start();
 }
 
 Start();

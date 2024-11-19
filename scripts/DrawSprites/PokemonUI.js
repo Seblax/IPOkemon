@@ -64,10 +64,10 @@ export class PokemonUI {
     const path = `${basePath}/${isEnemy ? "enemy" : "allay"}/`;
 
     //Cargamos los sprites
-    const nameText = this.DrawPokemonName();
-    const hpText = this.DrawPokemonHP();
-    const lvlText = this.DrawPokemonLv();
-    const barSprite = this.DrawHpBar(this.pokemon.hp);
+    this.DrawPokemonName();
+    this.DrawPokemonHP();
+    this.DrawPokemonLv();
+    this.DrawHpBar(this.pokemon.hp);
 
     // Dibuja los tipos del Pokémon
     this.DrawPokemonTypes();
@@ -76,22 +76,8 @@ export class PokemonUI {
     const normalUIPath = path + (isShiny ? "shiny_ui.png" : "normal_ui.png");
     const megaUIPath = path + (isMega ? "mega_ui.png" : "normal_ui.png");
 
-    const normalUI = new Sprite(normalUIPath, this.screen, this.x, this.y);
     const megaUI = new Sprite(megaUIPath, this.screen, this.x, this.y);
-
-    //Una vez cargadas los sprites, se dibujan en pantalla.
-    try {
-      await Promise.all([
-        megaUI.onload(),
-        // barSprite.onload(),
-        normalUI.onload(),
-      ]);
-      megaUI.draw();
-      // barSprite.draw();
-      normalUI.draw();
-    } catch (error) {
-      console.error("Error al cargar una o más imágenes:", error);
-    }
+    const normalUI = new Sprite(normalUIPath, this.screen, this.x, this.y);
   }
 
   // Dibuja la cantidad de HP (puntos de vida) del Pokémon aliado en la pantalla.
@@ -188,7 +174,7 @@ export class PokemonUI {
 
       hpbar.x -= speed;
 
-      if (hpbar.x <= position) {
+      if (hpbar.x < position) {
         Data.AnimationManager.remove(animateCallback); // Detenemos esta animación
       }
     };
