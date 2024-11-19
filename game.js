@@ -28,9 +28,6 @@ async function Start() {
   var pokemon_1 = teamAllay.team[0];
   var pokemon_2 = teamEnemy.team[0];
 
-  pokemon_1.hp = Math.round(pokemon_1.totalHp * Random());
-  // pokemon_2.hp = Math.round(pokemon_2.totalHp * Random());
-
   Data.ActualAllayPokemon = pokemon_1;
   Data.ActualEnemyPokemon = pokemon_2;
 
@@ -54,8 +51,9 @@ async function Start() {
     console.log("Hay un shiny");
   }
 
-  Music();
   moveSetButtons();
+  
+  Music();
   PlayBattleMusic();
 
   Data.UIAllay = DrawPokemonSprite(Data.ActualAllayPokemon);

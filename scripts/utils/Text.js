@@ -33,5 +33,6 @@ export class Text {
   // Método para actualizar el texto
   setText(newText) {
     this.text = newText;
+    return this
   }
 }
