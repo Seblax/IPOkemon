@@ -1,11 +1,12 @@
 import { DrawMoveSet } from "../DrawSprites/MoveSetSprites.js";
-import { Data, Random, RandomRange } from "../utils/Data.js";
+import { Data, Random, RandomBooleano, RandomRange } from "../utils/Data.js";
 import { calculateAttackEfficacy } from "./TypeChart.js";
 import { FeedbackManager } from "../utils/FeedbackManager.js"
 const physical = "Physical";
 const feedbackManager = new FeedbackManager();
 
-export function doDamage(move, atkPokemon, defPokemon) {
+function doDamage(move, atkPokemon, defPokemon) {
+
   const Level = atkPokemon.lvl;
   const Power = move.power;
 
@@ -40,9 +41,15 @@ export function doDamage(move, atkPokemon, defPokemon) {
     feedbackManager.showFeedback("SinEfecto");
   }
 
+
   // Feedback de golpe crítico
   if (crit > 1) {
     feedbackManager.showFeedback("Critico");
+
+  if (defPokemon.enemy) {
+    Data.UIEnemy.DrawHpBar(oldHp);
+  } else {
+    Data.UIAllay.DrawHpBar(oldHp);
   }
 
   const oldHp = defPokemon.hp;
@@ -57,4 +64,57 @@ export function doDamage(move, atkPokemon, defPokemon) {
 
   // Actualizar movimientos del atacante
   DrawMoveSet(Data.ActualAllayPokemon);
+}
+
+let first;
+let second;
+
+function PrioMove(moveAllay, moveEnemy) {
+  var prio = moveAllay.prio - moveEnemy.prio;
+
+  first = moveAllay;
+  second = moveEnemy;
+  
+  if (prio > 0) {
+    first = moveEnemy;
+    second = moveAllay;
+  }
+  
+  return prio == 0;
+}
+
+export function BattleBehavior(moveAllay, moveEnemy) {
+  let moves = PrioMove(moveAllay, moveEnemy);
+  var pokemonSpeeds = 0;
+
+
+  if (moves) {
+    pokemonSpeeds = Data.ActualAllayPokemon.speed - Data.ActualEnemyPokemon.speed;
+    pokemonSpeeds == 0 ? RandomBooleano() : pokemonSpeeds;
+  }
+
+  if (pokemonSpeeds < 0) {
+    first = moveEnemy;
+    second = moveAllay;
+
+  } else if (pokemonSpeeds > 0) {
+    first = moveAllay;
+    second = moveEnemy;
+  }
+
+  first  = first.acc/ 100 >= Random() ? first : null;
+  second = second.acc/ 100 >= Random() ? second : null;
+
+  if(first == moveAllay){
+    doDamage(moveAllay, Data.ActualAllayPokemon, Data.ActualEnemyPokemon);
+    console.log(`${Data.ActualAllayPokemon.name} te ha metido un  ${first}`);
+
+  }else if (first == moveEnemy){
+    console.log(`${Data.ActualEnemyPokemon.name} te ha metido un  ${first}`);
+
+    doDamage(moveEnemy, Data.ActualEnemyPokemon, Data.ActualAllayPokemon);
+  }else{
+    console.log(`${first} : ha fallao.`);
+  }
+  // return res;
 }

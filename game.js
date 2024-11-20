@@ -8,13 +8,8 @@ import { Data, Random } from "./scripts/utils/Data.js";
 import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
-import {
-  loadMovesFromCSV,
-  loadPokemonFromCSV,
-  loadTypesFromCSV,
-} from "./scripts/utils/CSV.js";
-import { Text } from "./scripts/utils/Text.js";
-import { Config } from "./scripts/utils/Config.js";
+import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
+
 
 async function Start() {
   SetBattleMusic();
@@ -33,47 +28,30 @@ async function Start() {
   var pokemon_1 = teamAllay.team[0];
   var pokemon_2 = teamEnemy.team[0];
 
-  pokemon_1.hp = Math.round(pokemon_1.totalHp * Random());
-  // pokemon_2.hp = Math.round(pokemon_2.totalHp * Random());
 
   Data.ActualAllayPokemon = pokemon_1;
   Data.ActualEnemyPokemon = pokemon_2;
 
-  // console.log(pokemon_1);
-  // console.log(pokemon_2);
+  console.log(pokemon_1);
+  console.log(pokemon_2);
 
   DrawBackground();
-
-  let menuCanvas = new Screen(".move-set-canvas");
-  let menuSprite = new Sprite(
-    "../assets/sprites/move_set.png",
-    menuCanvas,
-    0,
-    0
-  );
-
-
-  menuCanvas.drawCanvas(menuSprite.image, 0, 0);
 
   if (pokemon_1.shiny || pokemon_2.shiny) {
     console.log("Hay un shiny");
   }
 
-  Music();
   moveSetButtons();
-  UpdateScreen();
+  
+  Music();
   PlayBattleMusic();
 
   Data.UIAllay = DrawPokemonSprite(Data.ActualAllayPokemon);
-  Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon); 
-  
-  DrawMoveSet(Data.ActualAllayPokemon);
-  
-  Data.AnimationManager.start();
-}
+  Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
 
-function UpdateScreen() {
-  requestAnimationFrame(UpdateScreen.bind(this));
+  DrawMoveSet(Data.ActualAllayPokemon);
+
+  Data.AnimationManager.start();
 }
 
 Start();

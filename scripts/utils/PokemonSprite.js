@@ -41,14 +41,14 @@ export class PokemonSprite {
   // Funciones
   //==============================
 
-  
+
   AppearPokemon() {
     this.frames = 0;
-    
+
     const appearCallback = (deltaTime) => {
       this.screen.clear();
       this.sprite.draw();
-      
+
       if (this.frames < 0.5 * 60) {
         this.sprite.y = 2 * Math.sin(this.offset + 100 * this.frames);
         this.frames++;
@@ -62,8 +62,8 @@ export class PokemonSprite {
     // Añade la animación al gestor
     Data.AnimationManager.add(appearCallback);
   }
-  
-  
+
+
   AnimatePokemon() {
     const animateCallback = (deltaTime) => {
       this.screen.clear();
@@ -72,7 +72,8 @@ export class PokemonSprite {
       this.sprite.y =
         -this.amplitude * Math.sin(this.offset + this.frequency * this.i);
       const angle = 0.0002 * Math.sin(this.offset + this.frequency * this.i);
-      this.screen.rotate(angle);
+      if (this.pokemon.speed >= 40)
+        this.screen.rotate(angle);
 
       this.i += this.speed;
 
