@@ -36,17 +36,6 @@ async function Start() {
 
   DrawBackground();
 
-  let menuCanvas = new Screen(".move-set-canvas");
-  let menuSprite = new Sprite(
-    "../assets/sprites/move_set.png",
-    menuCanvas,
-    0,
-    0
-  );
-
-
-  menuCanvas.drawCanvas(menuSprite.image, 0, 0);
-
   if (pokemon_1.shiny || pokemon_2.shiny) {
     console.log("Hay un shiny");
   }

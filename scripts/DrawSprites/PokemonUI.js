@@ -40,9 +40,6 @@ export class PokemonUI {
     this.x = isEnemy ? Config.EnemyUI.width : Config.AllayUI.width;
     this.y = isEnemy ? Config.EnemyUI.height : Config.AllayUI.height;
 
-    this.screen.ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
-    textScreen.ctx.clearRect(0, 0, Config.screen.width, Config.screen.height);
-
     this.type1 = pokemon.type1;
     this.type2 = pokemon.type2;
   }
@@ -63,21 +60,26 @@ export class PokemonUI {
     // Determina la ruta y posición según sea enemigo o aliado
     const path = `${basePath}/${isEnemy ? "enemy" : "allay"}/`;
 
-    //Cargamos los sprites
-    this.DrawPokemonName();
-    this.DrawPokemonHP();
-    this.DrawPokemonLv();
-    this.DrawHpBar(this.pokemon.hp);
-
-    // Dibuja los tipos del Pokémon
-    this.DrawPokemonTypes();
-
     // Configura las UI del pokemon ya sea normal, shiny o Mega
     const normalUIPath = path + (isShiny ? "shiny_ui.png" : "normal_ui.png");
     const megaUIPath = path + (isMega ? "mega_ui.png" : "normal_ui.png");
 
     const megaUI = new Sprite(megaUIPath, this.screen, this.x, this.y);
     const normalUI = new Sprite(normalUIPath, this.screen, this.x, this.y);
+
+    const DrawUI = (deltaTime) => {
+      this.screen.clear();
+
+      megaUI.draw();
+      normalUI.draw();
+      this.DrawPokemonName();
+      this.DrawPokemonHP();
+      this.DrawPokemonLv();
+      this.DrawPokemonTypes();
+      if (this.pokemon.hp == this.pokemon.totalHp) this.DrawFullHpBar();
+    };
+
+    Data.AnimationManager.add(DrawUI);
   }
 
   // Dibuja la cantidad de HP (puntos de vida) del Pokémon aliado en la pantalla.
@@ -87,10 +89,11 @@ export class PokemonUI {
       //Si el pokemon es enemigo, no se aplica la lógica.
       return;
     }
+    textScreen.clear();
 
     // Obtiene los valores de HP total y actual.
     var totalHp = this.pokemon.totalHp;
-    var currentHp = this.pokemon.hp;
+    var currentHp = Math.max(0, Math.round(this.pokemon.hp));
 
     // Dibuja el texto que muestra el HP total y el HP actual en la pantalla con formato específico.
     new Text(totalHp, textScreen, 226, 114, 10, "Pokefont", "start")
@@ -148,8 +151,10 @@ export class PokemonUI {
     var hpBar = new Sprite(barPath, barScreen, pos[0], pos[1]);
 
     var finalHpBarPosition = pos[0] - 48 * (1 - hpPercent);
-    var currentHpBarPosition = oldHp != 0 ? pos[0] - 48 * (1 - oldHp / this.pokemon.totalHp)
-      : finalHpBarPosition;
+    var currentHpBarPosition =
+      oldHp != 0
+        ? pos[0] - 48 * (1 - oldHp / this.pokemon.totalHp)
+        : finalHpBarPosition;
 
     this.AnimateHpBar(
       hpBar,
@@ -163,11 +168,11 @@ export class PokemonUI {
     hpbar.x = oldPosition;
     backgroundBar.draw();
     hpbar.draw();
-    
+
     if (oldPosition == position) {
       return;
     }
-    
+
     const animateCallback = (deltaTime) => {
       backgroundBar.draw();
       hpbar.draw();
@@ -182,6 +187,32 @@ export class PokemonUI {
     Data.AnimationManager.add(animateCallback);
   }
 
+  DrawFullHpBar() {
+    var isEnemy = this.pokemon.enemy;
+    //porcentaje de vida que le falta al pokemon [0-1];
+    var hpPercent = Math.max(
+      0,
+      Math.min(1, this.pokemon.hp / this.pokemon.totalHp)
+    );
+
+    var barPath = "assets/sprites/ui/0_hp_bar.png";
+
+    //Posición de las barra de vida
+    var pos = [this.x + 44, this.y + 20];
+    pos = isEnemy ? pos : [pos[0] + 12, pos[1]];
+
+    //Dibuja la barra del fondo
+    var backgroundBar = new Sprite(
+      "assets/sprites/ui/0_background_bar.png",
+      barScreen,
+      pos[0],
+      pos[1]
+    );
+
+    //Dibuja la barra de vida actual del pokemon
+    var hpBar = new Sprite(barPath, barScreen, pos[0], pos[1]);
+  }
+
   //Esta función dibuja el nombre del correspondiente pokemon.
   DrawPokemonName() {
     var name = this.pokemon.name.split(" ")[0];
@@ -191,7 +222,7 @@ export class PokemonUI {
     var posSprite = [this.x + 10, this.y + 2];
 
     //Dibujar el nombre
-    new Text(
+    const text = new Text(
       name,
       textScreen,
       posSprite[0],
@@ -203,6 +234,8 @@ export class PokemonUI {
       .setColor("white")
       .setOutline(true)
       .drawText();
+
+    return text;
   }
 
   //Esta función dibuja el nivel de los pokemons
@@ -237,11 +270,11 @@ export class PokemonUI {
     //Carga los sprites
     haveSecondType
       ? new Sprite(
-        basePath + type2,
-        this.screen,
-        posSpriteType1[0],
-        posSpriteType1[1]
-      )
+          basePath + type2,
+          this.screen,
+          posSpriteType1[0],
+          posSpriteType1[1]
+        )
       : null;
 
     new Sprite(
