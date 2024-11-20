@@ -9,7 +9,7 @@ export class AnimationManager {
   }
 
   /**
-   * Añade la funcion callback al conjunto de animaciones que se reproduciran
+   * Añade la función callback al conjunto de animaciones que se reproducirán
    * en el Animation Manager.
    * @param {*} callback 
    */
@@ -18,7 +18,7 @@ export class AnimationManager {
   }
 
   /**
-   * Elimina la funcion callback del conjunto de animaciones que se reproduciran
+   * Elimina la función callback del conjunto de animaciones que se reproducirán
    * en el Animation Manager.
    * @param {*} callback 
    */
@@ -37,7 +37,7 @@ export class AnimationManager {
   }
 
   /** 
-   * Para las animaciones
+   * Para las animaciones.
    */
   stop() {
     this.isRunning = false;
@@ -45,7 +45,7 @@ export class AnimationManager {
 
   /**
    * Función que gestiona las animaciones, ajustando la ejecución a un tiempo delta,
-   * definidio por el intervalo de tiempo, si por ejemplo son 60fps, se ejecutarán
+   * definido por el intervalo de tiempo. Por ejemplo, si son 60fps, se ejecutarán
    * todas las animaciones 60 veces por segundo.
    * @param {*} currentTime 
    * @returns 
