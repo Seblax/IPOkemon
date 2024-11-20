@@ -28,6 +28,7 @@ async function Start() {
   var pokemon_1 = teamAllay.team[0];
   var pokemon_2 = teamEnemy.team[0];
 
+
   Data.ActualAllayPokemon = pokemon_1;
   Data.ActualEnemyPokemon = pokemon_2;
 

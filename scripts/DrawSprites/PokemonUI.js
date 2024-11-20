@@ -261,10 +261,10 @@ export class PokemonUI {
     var haveSecondType = type2 != None; //Comprueba si tiene segundo tipo
 
     var posSpriteType1 = isEnemy
-      ? [this.x + 50, this.y + 33]
+      ? [this.x + 50, this.y + 28]
       : [this.x + 22, this.y + 33];
     var posSpriteType2 = isEnemy
-      ? [this.x + 1, this.y + 33]
+      ? [this.x + 1, this.y + 28]
       : [this.x + 71, this.y + 33];
 
     //Carga los sprites
