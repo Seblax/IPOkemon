@@ -1,4 +1,5 @@
 import { Config } from "../utils/Config.js";
+import { Data } from "../utils/Data.js";
 import { Screen } from "../utils/Screen.js";
 import { Sprite } from "../utils/Sprite.js";
 import { Text } from "../utils/Text.js";
@@ -53,12 +54,12 @@ export function DrawMove(move, id) {
       pos = Config.MovesSetUI.Move4; // Posición para el cuarto movimiento.
       break;
   }
-
+  
   // Dibuja el sprite del movimiento.
-  new Sprite(path, screen, pos.x, pos.y);
+  const moveSprite = new Sprite(path, screen, pos.x, pos.y);
 
   // Dibuja el nombre del movimiento en la pantalla de texto.
-  new Text(
+  const moveName = new Text(
     move.name,
     textScreen,
     pos.x + Config.MovesSetUI.name.x, // Ajuste de la posición x basado en la configuración.
@@ -69,7 +70,7 @@ export function DrawMove(move, id) {
   ).drawText();
 
   // Dibuja el texto del total de PP.
-  new Text(
+  const totalPP = new Text(
     move.totalPP,
     textScreen,
     pos.x + Config.MovesSetUI.PP.x,
@@ -80,7 +81,7 @@ export function DrawMove(move, id) {
   ).drawText();
 
   // Dibuja el texto de los PP actuales con la barra separadora.
-  new Text(
+  const movePP = new Text(
     move.pp + "/",
     textScreen,
     pos.x + Config.MovesSetUI.PP.x,
@@ -91,7 +92,7 @@ export function DrawMove(move, id) {
   ).drawText();
 
   // Dibuja la etiqueta "PP".
-  new Text(
+  const pp = new Text(
     "PP",
     textScreen,
     pos.x + Config.MovesSetUI.PP.name.x,
@@ -100,6 +101,12 @@ export function DrawMove(move, id) {
     "Pokefont",
     "start"
   ).drawText();
+
+  const DrawMove = (deltaTime) => {
+    moveSprite.draw();
+  }
+
+  Data.AnimationManager.add(DrawMove);
 }
 
 /**
@@ -134,7 +141,7 @@ export function OnHoverMove(move, id) {
   }
 
   // Dibuja el sprite del movimiento.
-  new Sprite(path, screen, pos.x, pos.y, true);
+  const button = new Sprite(path, screen, pos.x, pos.y, true);
 
   // Dibuja el nombre del movimiento en la pantalla de texto.
   new Text(
@@ -179,4 +186,10 @@ export function OnHoverMove(move, id) {
     "Pokefont",
     "start"
   ).drawText();
+
+  const DrawMove = (deltaTime) => {
+    button.draw();
+  }
+
+  Data.AnimationManager.add(DrawMove)
 }

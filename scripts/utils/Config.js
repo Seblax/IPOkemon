@@ -36,6 +36,16 @@ export class Config {
     y: Config.screen.height - 70,
   };
 
+  static MoveFeedbackAllay = {
+    x: Config.screen.width - 250,
+    y: Config.screen.height - 90,
+  };
+
+  static MoveFeedbackEnemy = {
+    x: Config.screen.width - 112,
+    y: Config.screen.height - 164,
+  };
+
   static MovesSetUI = {
     Move1: {
       x: 2,

@@ -9,6 +9,7 @@ import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js
 import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
+import { MoveFeedback } from "./scripts/Moves/MoveFeedback.js";
 
 
 async function Start() {
@@ -28,6 +29,7 @@ async function Start() {
   var pokemon_1 = teamAllay.team[0];
   var pokemon_2 = teamEnemy.team[0];
 
+
   Data.ActualAllayPokemon = pokemon_1;
   Data.ActualEnemyPokemon = pokemon_2;
 
@@ -35,17 +37,6 @@ async function Start() {
   console.log(pokemon_2);
 
   DrawBackground();
-
-  let menuCanvas = new Screen(".move-set-canvas");
-  let menuSprite = new Sprite(
-    "../assets/sprites/move_set.png",
-    menuCanvas,
-    0,
-    0
-  );
-
-
-  menuCanvas.drawCanvas(menuSprite.image, 0, 0);
 
   if (pokemon_1.shiny || pokemon_2.shiny) {
     console.log("Hay un shiny");

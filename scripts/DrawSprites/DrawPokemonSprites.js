@@ -86,7 +86,6 @@ function GetPokemonSprite(pokemon) {
 
 function getSpecialSprite(pokemon) {
   const isEnemy = pokemon.enemy; // Determina si el Pokémon es un enemigo.
-  console.log(pokemon.name);
   const tag = pokemon.name.split(" ")[1].toLowerCase();
   var path = "assets/sprites/pokemons/specials/"; // Ruta base para sprites normales.
 
