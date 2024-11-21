@@ -35,6 +35,7 @@ export class PokemonUI {
       : new Screen(".ui-allay-text-canvas");
 
     textScreen.resolution(20);
+
     const isEnemy = this.pokemon.enemy; //Si el pokemon es enemigo
 
     this.x = isEnemy ? Config.EnemyUI.width : Config.AllayUI.width;
@@ -77,6 +78,7 @@ export class PokemonUI {
       this.DrawPokemonLv();
       this.DrawPokemonTypes();
       if (this.pokemon.hp == this.pokemon.totalHp) this.DrawFullHpBar();
+      if (this.pokemon.hp <= 0) Data.AnimationManager.remove(DrawUI);
     };
 
     Data.AnimationManager.add(DrawUI);
@@ -89,7 +91,6 @@ export class PokemonUI {
       //Si el pokemon es enemigo, no se aplica la lógica.
       return;
     }
-    textScreen.clear();
 
     // Obtiene los valores de HP total y actual.
     var totalHp = this.pokemon.totalHp;
@@ -168,6 +169,8 @@ export class PokemonUI {
     hpbar.x = oldPosition;
     backgroundBar.draw();
     hpbar.draw();
+    textScreen.clear();
+
 
     if (oldPosition == position) {
       return;
@@ -270,11 +273,11 @@ export class PokemonUI {
     //Carga los sprites
     haveSecondType
       ? new Sprite(
-          basePath + type2,
-          this.screen,
-          posSpriteType1[0],
-          posSpriteType1[1]
-        )
+        basePath + type2,
+        this.screen,
+        posSpriteType1[0],
+        posSpriteType1[1]
+      )
       : null;
 
     new Sprite(
