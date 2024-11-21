@@ -55,7 +55,7 @@ export class PokemonSprite {
       } else {
         // Cambia al siguiente estado de animación
         Data.AnimationManager.remove(appearCallback); // Detenemos esta animación
-        this.AnimatePokemon(); // Inicia la animación principal
+        this.DamageAnimation(); // Inicia la animación principal
       }
     };
 
@@ -65,12 +65,13 @@ export class PokemonSprite {
 
 
   AnimatePokemon() {
+    this.frames = 0;
+
     const animateCallback = (deltaTime) => {
       this.screen.clear();
       this.sprite.draw();
 
-      this.sprite.y =
-        -this.amplitude * Math.sin(this.offset + this.frequency * this.i);
+      this.sprite.y = - this.amplitude * Math.sin(this.offset + this.frequency * this.i);
       const angle = 0.0002 * Math.sin(this.offset + this.frequency * this.i);
       if (this.pokemon.speed >= 40)
         this.screen.rotate(angle);
@@ -109,5 +110,63 @@ export class PokemonSprite {
     };
 
     Data.AnimationManager.add(killCallback);
+  }
+
+  AttackAnimation() {
+    this.frames = 0;  // Restablecemos el número de cuadros
+    var orientation = this.pokemon.enemy ? -1 : 1;
+
+    const attackCallback = (deltaTime) => {
+      this.screen.clear(this.sprite.x, this.sprite.y);
+      this.sprite.draw();
+
+      // Movimiento hacia adelante y hacia atrás
+      this.sprite.x += 5 * orientation;  // Movimiento hacia adelante y hacia atrás
+      this.sprite.y -= 5 * orientation;
+
+      // Efectos visuales: podemos agregar destellos o partículas opcionales aquí
+      this.frames++;
+
+      if (this.frames > 20) {  // Duración de la animación (en frames)
+        this.screen.clear(this.sprite.x, this.sprite.y);
+        this.sprite.x = 0;
+        this.sprite.y = 0;
+
+        Data.AnimationManager.remove(attackCallback);  // Terminamos la animación
+        this.AnimatePokemon()
+      } else if (this.frames > 10) {  // Duración de la animación (en frames)
+        orientation = this.pokemon.enemy ? 1 : -1;
+      }
+
+    }
+
+    Data.AnimationManager.add(attackCallback);
+  }
+
+  DamageAnimation() {
+    this.frames = 0;  // Restablecemos el número de cuadros
+
+    const damageCallback = (deltaTime) => {
+      this.screen.clear();
+      this.sprite.draw();
+
+      // Simulamos el temblor con un pequeño movimiento aleatorio
+      this.sprite.x += 3 * Math.sin(this.offset + 200 * this.frames);
+
+      // Cambiar temporalmente el color del sprite (parpadeo en rojo)
+      if (this.frames > 10 && this.frames < 20 || 
+        this.frames > 30 && this.frames < 40 ||
+        this.frames > 50 && this.frames < 60) {
+        this.screen.clear();
+      }
+
+      this.frames++;
+      if (this.frames > 70) {  // Duración de la animación (en frames)
+        Data.AnimationManager.remove(damageCallback);  // Terminamos la animación
+        this.sprite.color = "white";  // Restablecemos el color original
+      }
+    };
+
+    Data.AnimationManager.add(damageCallback);
   }
 }
