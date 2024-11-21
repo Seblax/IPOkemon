@@ -93,7 +93,8 @@ export class PokemonSprite {
 
   KillAnimation() {
     var killFrames = 0;
-    this.sound.play();
+    !Config.isMuted ? this.sound.play() : null;
+
     Data.AnimationManager.remove(this.state);
 
     const killCallback = (deltaTime) => {
@@ -107,13 +108,13 @@ export class PokemonSprite {
         Data.AnimationManager.remove(killCallback); // Termina esta animación
         GenerateNewPokemon(this.pokemon.enemy);
       }
-      
+
       this.state = killCallback;
     };
-    
+
     Data.AnimationManager.add(killCallback);
   }
-  
+
   AttackAnimation(move) {
     moveSound(move);
     var attackFrames = 0;  // Restablecemos el número de cuadros
@@ -169,6 +170,8 @@ export class PokemonSprite {
 
       if (damageFrames > 70) {  // Duración de la animación (en frames)
         Data.AnimationManager.remove(damageCallback);  // Terminamos la animación
+        this.IdleAnimation()
+
         if (this.pokemon.hp <= 0) {
           this.KillAnimation(); // Inicia el siguiente estado
         }
@@ -183,13 +186,18 @@ export class PokemonSprite {
 }
 
 function moveSound(move) {
-  var sound = document.getElementById(
-    "move"
-  );
-  try {
-    sound.src = `assets/music/moves/${move.name}.mp3`; // Usando match[1] para obtener el nombre del movimiento
-  } catch {
-    sound.src = `assets/music/moves/Acid Armor.mp3`; // Usando match[1] para obtener el nombre del movimiento
-  }
-  !Config.isMuted ? sound.play() : null;
+  var sound = document.getElementById("move");
+
+  sound.src = `assets/music/moves/${move.name}.mp3`; // Intentamos asignar el archivo
+  sound.volume = 0.75;
+  
+  // Configuramos un listener para manejar el error
+  sound.onerror = () => {
+    // Si el archivo no se carga, asignamos un archivo por defecto
+    sound.src = "assets/music/moves/X Scissor.mp3";
+    sound.play();
+  };
+  
+  // Intentamos reproducir el archivo después de asignarlo
+  sound.play();
 }

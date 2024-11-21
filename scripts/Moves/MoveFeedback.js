@@ -54,14 +54,18 @@ export function showCrit(crit, enemy) {
   }
 
   const critPath = `assets/sprites/ui/feedback/crit.png`;
-  pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
+  const screen = new Screen(".crit-or-miss-canvas");
   const critSprite = new Sprite(critPath, screen, pos.x, pos.y);
+
+  pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
 
   // Resetea opacidad
   opacity = 0;
   duration = 0;
 
   const CritCallback = (deltaTime) => {
+    screen.clear();
+
     duration++;
     screen.ctx.globalAlpha = opacity;
 
@@ -83,8 +87,10 @@ export function showCrit(crit, enemy) {
 
 export function showMiss(enemy) {
   const critPath = `assets/sprites/ui/feedback/miss.png`;
+  const screen = new Screen(".crit-or-miss-canvas");
+  const critSprite = new Sprite(critPath, screen , pos.x, pos.y);
+
   pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
-  const critSprite = new Sprite(critPath, screen, pos.x, pos.y);
 
   // Resetea opacidad
   opacity = 0;
@@ -93,6 +99,7 @@ export function showMiss(enemy) {
   const MissCallback = (deltaTime) => {
     duration++;
     screen.ctx.globalAlpha = opacity;
+    screen.clear();
 
     if (duration < 0.25 * 60) {
       critSprite.draw();
