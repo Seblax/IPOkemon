@@ -66,8 +66,8 @@ export class Screen {
    * Limpia el contenido del canvas.
    */
 
-  clear() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  clear(x=0,y=0) {
+    this.ctx.clearRect(x, y, this.canvas.width, this.canvas.height);
     return this;
   }
 

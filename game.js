@@ -1,15 +1,11 @@
 import { DrawPokemonSprite } from "./scripts/DrawSprites/DrawPokemonSprites.js";
 import { DrawBackground } from "./scripts/DrawSprites/DrawBackGround.js";
-import { Screen } from "./scripts/utils/Screen.js";
-import { PokemonUI } from "./scripts/DrawSprites/PokemonUI.js";
 import { PokemonTeam } from "./scripts/Pokemons/PokemonTeam.js";
-import { Sprite } from "./scripts/utils/Sprite.js";
-import { Data, Random } from "./scripts/utils/Data.js";
+import { Data } from "./scripts/utils/Data.js";
 import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js";
 import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
-import { MoveFeedback } from "./scripts/Moves/MoveFeedback.js";
 
 
 async function Start() {
@@ -43,12 +39,19 @@ async function Start() {
   }
 
   moveSetButtons();
-  
+
   Music();
   PlayBattleMusic();
 
-  Data.UIAllay = DrawPokemonSprite(Data.ActualAllayPokemon);
-  Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
+  const Allay = DrawPokemonSprite(Data.ActualAllayPokemon);
+  const Enemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
+
+  Data.UIAllay = Allay.UI;
+  Data.UIEnemy = Enemy.UI;
+
+  Data.PokemonAllayAnimation = Allay.Animation;
+  Data.PokemonEnemyAnimation = Enemy.Animation;
+
 
   DrawMoveSet(Data.ActualAllayPokemon);
 
@@ -56,3 +59,23 @@ async function Start() {
 }
 
 Start();
+
+export async function GenerateNewPokemon(isEnemy) {
+  var team = new PokemonTeam();
+  await team.generateTeam(isEnemy);
+  const pokemon = team.team[0];
+  
+  if (isEnemy) {
+    Data.ActualEnemyPokemon = pokemon;
+    const Enemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
+    Data.UIEnemy = Enemy.UI;
+    Data.PokemonEnemyAnimation = Enemy.Animation;
+  }else{
+    Data.ActualAllayPokemon = pokemon;
+    const Allay = DrawPokemonSprite(Data.ActualAllayPokemon);
+    Data.UIAllay = Allay.UI;
+    Data.PokemonAllayAnimation = Allay.Animation;
+    DrawMoveSet(Data.ActualAllayPokemon);
+  }
+
+}

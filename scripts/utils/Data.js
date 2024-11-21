@@ -21,12 +21,20 @@ export class Data {
   static ActualAllayPokemon;
   static ActualEnemyPokemon;
 
+  static ActualAllayMove;
+  static ActualEnemyMove;
+
   // Las UI de los pokemons que están en el campo de batalla.
   static UIAllay;
   static UIEnemy;
 
+  static PokemonAllayAnimation;
+  static PokemonEnemyAnimation;
+
   // Animation Manager, para gestionar todas las animaciones.
   static AnimationManager = new AnimationManager(60);
+
+  static YouTurn = true;
 }
 
 /**

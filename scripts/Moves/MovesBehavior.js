@@ -1,5 +1,6 @@
-import { DrawMove, OnHoverMove } from "../DrawSprites/MoveSetSprites.js";
-import { BattleBehavior } from "../Pokemons/Damage.js";
+import { DrawMove, DrawMoveSet, OnHoverMove } from "../DrawSprites/MoveSetSprites.js";
+import { SetBattleTurn } from "../Pokemons/Damage.js";
+import { Round } from "../Turn.js";
 import { Data, RandomRange } from "../utils/Data.js";
 
 const botones = document.querySelectorAll(".move");
@@ -23,17 +24,21 @@ export function moveSetButtons() {
 
   botones.forEach((boton) => {
     boton.addEventListener("click", () => {
+      if (!Data.YouTurn) {
+        return;
+      }
+      
       const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
 
-      var moveAllay = Data.ActualAllayPokemon.moveSet[botonId - 1];
-      var moveEnemy = Data.ActualEnemyPokemon.moveSet[RandomRange(0,3)];
-      
+      Data.ActualAllayMove = Data.ActualAllayPokemon.moveSet[botonId - 1];
+      Data.ActualEnemyMove = Data.ActualEnemyPokemon.moveSet[RandomRange(0, 3)];
+
       //Si el movimiento no tiene PP no se ejecuta ninguna lógica
-      if (moveAllay.pp <= 0) {
+      if (Data.ActualAllayMove.pp <= 0) {
         return;
       }
 
-      BattleBehavior(moveAllay, moveEnemy);
+      Round();
     });
   });
 }

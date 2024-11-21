@@ -1,3 +1,4 @@
+import { GenerateNewPokemon } from "../../game.js";
 import { DrawPokemonSprite } from "../DrawSprites/DrawPokemonSprites.js";
 import { Pokemon } from "../Pokemons/Pokemon.js";
 import { Config } from "./Config.js";
@@ -22,7 +23,6 @@ export class PokemonSprite {
     this.amplitude = 5; // Amplitud de la onda (altura de la oscilación).
     this.frequency = 0.005; // Frecuencia de la onda (controla la longitud de la onda).
 
-    this.frames = 0; //Frames para la animación
     this.offset = RandomZeroTo(10); //Offset aleatorio
 
     //Sonido del pokemon
@@ -34,7 +34,7 @@ export class PokemonSprite {
 
     // Velocidad de movimiento en el eje X.
     this.speed = pokemon.speed / 40;
-    this.AppearPokemon(pokemon);
+    this.AppearAnimation(pokemon);
   }
 
   //==============================
@@ -42,20 +42,20 @@ export class PokemonSprite {
   //==============================
 
 
-  AppearPokemon() {
-    this.frames = 0;
+  AppearAnimation() {
+    var appearframes = 0;
 
     const appearCallback = (deltaTime) => {
       this.screen.clear();
       this.sprite.draw();
 
-      if (this.frames < 0.5 * 60) {
-        this.sprite.y = 2 * Math.sin(this.offset + 100 * this.frames);
-        this.frames++;
+      if (appearframes < 0.5 * 60) {
+        this.sprite.y = 2 * Math.sin(this.offset + 100 * appearframes);
+        appearframes++;
       } else {
         // Cambia al siguiente estado de animación
         Data.AnimationManager.remove(appearCallback); // Detenemos esta animación
-        this.DamageAnimation(); // Inicia la animación principal
+        this.IdleAnimation(); // Inicia la animación principal
       }
     };
 
@@ -64,9 +64,7 @@ export class PokemonSprite {
   }
 
 
-  AnimatePokemon() {
-    this.frames = 0;
-
+  IdleAnimation() {
     const animateCallback = (deltaTime) => {
       this.screen.clear();
       this.sprite.draw();
@@ -77,35 +75,26 @@ export class PokemonSprite {
         this.screen.rotate(angle);
 
       this.i += this.speed;
-
-      if (this.pokemon.hp <= 0) {
-        Data.AnimationManager.remove(animateCallback); // Detenemos esta animación
-        this.KillPokemon(); // Inicia el siguiente estado
-      }
     };
 
     Data.AnimationManager.add(animateCallback);
   }
 
 
-  KillPokemon() {
-    this.frames = 0;
+  KillAnimation() {
+    var killFrames = 0;
     this.sound.play();
 
     const killCallback = (deltaTime) => {
       this.screen.clear();
-      this.frames++;
+      killFrames++;
 
-      if (this.frames < 0.5 * 60) {
+      if (killFrames < 0.5 * 60) {
         this.sprite.y += 0.5;
         this.sprite.draw();
-      } else if (this.frames > 2.5 * 60) {
+      } else if (killFrames > 2.5 * 60) {
         Data.AnimationManager.remove(killCallback); // Termina esta animación
-        Data.ActualEnemyPokemon = Pokemon.copy(
-          Data.PokemonData[RandomZeroTo(735)]
-        );
-        Data.ActualEnemyPokemon.enemy = true;
-        Data.UIEnemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
+        GenerateNewPokemon(this.pokemon.enemy);
       }
     };
 
@@ -113,7 +102,7 @@ export class PokemonSprite {
   }
 
   AttackAnimation() {
-    this.frames = 0;  // Restablecemos el número de cuadros
+    var attackFrames = 0;  // Restablecemos el número de cuadros
     var orientation = this.pokemon.enemy ? -1 : 1;
 
     const attackCallback = (deltaTime) => {
@@ -125,16 +114,16 @@ export class PokemonSprite {
       this.sprite.y -= 5 * orientation;
 
       // Efectos visuales: podemos agregar destellos o partículas opcionales aquí
-      this.frames++;
+      attackFrames++;
 
-      if (this.frames > 20) {  // Duración de la animación (en frames)
+      if (attackFrames > 20) {  // Duración de la animación (en frames)
         this.screen.clear(this.sprite.x, this.sprite.y);
         this.sprite.x = 0;
         this.sprite.y = 0;
 
         Data.AnimationManager.remove(attackCallback);  // Terminamos la animación
-        this.AnimatePokemon()
-      } else if (this.frames > 10) {  // Duración de la animación (en frames)
+        this.IdleAnimation()
+      } else if (attackFrames > 10) {  // Duración de la animación (en frames)
         orientation = this.pokemon.enemy ? 1 : -1;
       }
 
@@ -144,26 +133,29 @@ export class PokemonSprite {
   }
 
   DamageAnimation() {
-    this.frames = 0;  // Restablecemos el número de cuadros
+    var damageFrames = 0;  // Restablecemos el número de cuadros
 
     const damageCallback = (deltaTime) => {
       this.screen.clear();
       this.sprite.draw();
 
       // Simulamos el temblor con un pequeño movimiento aleatorio
-      this.sprite.x += 3 * Math.sin(this.offset + 200 * this.frames);
+      this.sprite.x += 3 * Math.sin(this.offset + 200 * damageFrames);
 
       // Cambiar temporalmente el color del sprite (parpadeo en rojo)
-      if (this.frames > 10 && this.frames < 20 || 
-        this.frames > 30 && this.frames < 40 ||
-        this.frames > 50 && this.frames < 60) {
+      if (damageFrames > 10 && damageFrames < 20 ||
+        damageFrames > 30 && damageFrames < 40 ||
+        damageFrames > 50 && damageFrames < 60) {
         this.screen.clear();
       }
 
-      this.frames++;
-      if (this.frames > 70) {  // Duración de la animación (en frames)
+      damageFrames++;
+      if (damageFrames > 70) {  // Duración de la animación (en frames)
         Data.AnimationManager.remove(damageCallback);  // Terminamos la animación
         this.sprite.color = "white";  // Restablecemos el color original
+        if (this.pokemon.hp <= 0) {
+          this.KillAnimation(); // Inicia el siguiente estado
+        }
       }
     };
 
