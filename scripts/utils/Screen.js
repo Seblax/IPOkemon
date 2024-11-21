@@ -65,17 +65,18 @@ export class Screen {
   /**
    * Limpia el contenido del canvas.
    */
+
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     return this;
   }
 
-    /**
-   * Limpia el contenido del canvas.
-   */
-    rotate(angle) {
-      this.ctx.rotate(angle);
-    }
+  /**
+ * Limpia el contenido del canvas.
+ */
+  rotate(angle) {
+    this.ctx.rotate(angle);
+  }
 
   /**
    * Ajusta la resolución interna del canvas para soportar mejor las pantallas de alta densidad de píxeles.
@@ -96,7 +97,7 @@ export class Screen {
     return this;
   }
 
-  blur(boolean){
+  blur(boolean) {
     this.ctx.imageSmoothingEnabled = boolean;
     return this;
   }
