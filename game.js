@@ -9,6 +9,7 @@ import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js
 import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
 import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
 import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
+import { MoveFeedback } from "./scripts/Moves/MoveFeedback.js";
 
 
 async function Start() {

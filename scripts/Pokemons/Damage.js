@@ -32,8 +32,8 @@ function doDamage(move, atkPokemon, defPokemon) {
   damage = damage * STAB * crit * random * efficacy;
 
   // Feedback de efectividad
-  feedbackManager.showFeedback(efficacy);
-  feedbackManager.showCrit(crit);
+  feedbackManager.showFeedback(efficacy, defPokemon.enemy);
+  feedbackManager.showCrit(crit,defPokemon.enemy);
 
   const oldHp = defPokemon.hp;
   defPokemon.hp = Math.max(0, defPokemon.hp - damage);

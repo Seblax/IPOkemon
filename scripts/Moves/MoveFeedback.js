@@ -1,6 +1,9 @@
 import { Sprite } from "../utils/Sprite.js";
 import { Screen } from "../utils/Screen.js";
 import { Data } from "../utils/Data.js";
+import { Config } from "../utils/Config.js";
+
+var pos;
 
 export class MoveFeedback {
   constructor() {
@@ -14,12 +17,15 @@ export class MoveFeedback {
    * @param {string} efficacy - Tipo de feedback (e.g., "very_effective", "critical_hit").
    * @param {int} x
    */
-  showFeedback(efficacy) {
+  showFeedback(efficacy, enemy) {
     if (efficacy == 1) {
       return;
     }
+
+    pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
+
     const feedbackPath = `assets/sprites/ui/feedback/${efficacy}.png`;
-    const feedbackSprite = new Sprite(feedbackPath, this.screen, 70, 15);
+    const feedbackSprite = new Sprite(feedbackPath, this.screen, pos.x, pos.y);
 
     // Resetea opacidad
     this.opacity = 0;
@@ -30,10 +36,12 @@ export class MoveFeedback {
       this.duration++;
       this.screen.ctx.globalAlpha = this.opacity;
 
-      if (this.duration < 60) {
+      if (this.duration < 0.25 * 60) {
         feedbackSprite.draw();
-        feedbackSprite.y -= 0.5;
+        feedbackSprite.y -= 0.5 + (this.duration / (0.25 * 60));
         this.opacity = this.duration / (0.25 * 60);
+      } else if (this.duration < 60) {
+        feedbackSprite.draw();
       } else {
         Data.AnimationManager.remove(FeedbackCallback); // Termina esta animación
       }
@@ -43,30 +51,32 @@ export class MoveFeedback {
     Data.AnimationManager.add(FeedbackCallback);
   }
 
-  showCrit(crit) {
+  showCrit(crit, enemy) {
     if (crit == 1) {
       return;
     }
 
     const critPath = `assets/sprites/ui/feedback/crit.png`;
-    const critSprite = new Sprite(critPath, this.screen, 70, 15);
+    pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
+    const critSprite = new Sprite(critPath, this.screen, pos.x, pos.y);
 
     // Resetea opacidad
     this.opacity = 0;
     this.duration = 0;
 
     const CritCallback = (deltaTime) => {
-      this.screen.clear();
       this.duration++;
       this.screen.ctx.globalAlpha = this.opacity;
 
-      if (this.duration < 1.5 * 60) {
+      if (this.duration < 0.25 * 60) {
         critSprite.draw();
-        critSprite.y += 0.5;
-        this.opacity = this.duration;
+        critSprite.y -= 0.5 + (this.duration / (0.25 * 60));
+        this.opacity = this.duration / (0.25 * 60);
+      } else if (this.duration < 60) {
+        critSprite.draw();
       } else {
-        this.duration = 0;
-        Data.AnimationManager.remove(CritCallback); // Termina esta animación
+        this.screen.clear();
+        Data.AnimationManager.remove(FeedbackCallback); // Termina esta animación
       }
     };
 
