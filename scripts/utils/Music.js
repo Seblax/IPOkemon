@@ -1,8 +1,8 @@
+import { Config } from "./Config.js";
 import { Data, RandomZeroTo } from "./Data.js";
 
 const sound = document.getElementById("ost"); // Obtiene el elemento de audio del DOM con el id "ost", que se usará para controlar la música.
 const button = document.getElementById("musicButton"); // Obtiene el botón de control de música del DOM, con el id "musicButton".
-var _playing = false; // Variable de estado que indica si la música está en reproducción (true) o en pausa (false).
 
 // Función que configura la música de batalla, seleccionando una canción aleatoria de la carpeta "fight".
 export function SetBattleMusic() {
@@ -11,7 +11,11 @@ export function SetBattleMusic() {
 
 export function PlayBattleMusic() {
   SetBattleMusic();
-  sound.play();
+  document.addEventListener("click", function handleSound() {
+    !Config.isMuted ? PlayMusic() : null;
+    document.removeEventListener("click", handleSound);
+    Config.isMuted = !Config.isMuted;
+  })
 }
 
 // Función que gestiona la reproducción de la música.
@@ -20,8 +24,8 @@ export function Music() {
 
   // Define el comportamiento cuando el usuario hace clic en el botón de música.
   button.onclick = function () {
-    _playing ? PlayMusic() : PauseMusic(); // Si la música está reproduciéndose, se pausa, si está pausada, se reproduce.
-    _playing = !_playing; // Cambia el estado de `_playing` (de reproducción a pausa o viceversa).
+    !Config.isMuted ? PlayMusic() : PauseMusic(); // Si la música está reproduciéndose, se pausa, si está pausada, se reproduce.
+    Config.isMuted = !Config.isMuted; // Cambia el estado de `isMuted` (de reproducción a pausa o viceversa).
   };
 
   // Establece un evento para que, cuando la música termine, se reinicie y se vuelva a reproducir.
@@ -38,13 +42,13 @@ function PlayMusic() {
     console.log("No se pudo reproducir la música: ", error);
   });
 
-  ChangeButton(_playing);
+  ChangeButton(Config.isMuted);
 }
 
 // Función para pausar la música.
 function PauseMusic() {
   sound.pause();
-  ChangeButton(_playing);
+  ChangeButton(Config.isMuted);
 }
 
 // Función para cambiar el estado del botón de música (cambiar su clase CSS).
@@ -54,7 +58,7 @@ function ChangeButton() {
   var l = button.classList; // Obtiene la lista de clases del botón.
 
   // Si la música está reproduciéndose, cambia la clase del botón a "musicButtonOn" y remueve "musicButtonOff".
-  if (_playing) {
+  if (!Config.isMuted) {
     l.remove(off);
     l.add(on);
   } else {

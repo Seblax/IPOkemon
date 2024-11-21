@@ -30,7 +30,7 @@ export class PokemonSprite {
       this.pokemon.enemy ? "enemy" : "allay"
     );
     this.sound.src = `../assets/music/appears/${this.pokemon.id}.ogg`; // Establece la fuente de audio (`src`) al valor de `Data.Music`.
-    this.sound.play();
+    !Config.isMuted ? this.sound.play() : null;
 
     // Velocidad de movimiento en el eje X.
     this.speed = pokemon.speed / 40;

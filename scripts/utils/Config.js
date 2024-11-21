@@ -88,4 +88,6 @@ export class Config {
       y: 64,
     },
   };
+
+  static isMuted = true; // Variable de estado que indica si la música está silenciada (true) o activa (false).
 }
