@@ -3,7 +3,6 @@ import { Pokemon } from "../Pokemons/Pokemon.js";
 import { Config } from "./Config.js";
 import { Data, Random, RandomRange, RandomZeroTo } from "./Data.js";
 import { Sprite } from "./Sprite.js";
-import { isMuted } from "./Music.js";
 
 export class PokemonSprite {
   //==============================
@@ -31,7 +30,7 @@ export class PokemonSprite {
       this.pokemon.enemy ? "enemy" : "allay"
     );
     this.sound.src = `../assets/music/appears/${this.pokemon.id}.ogg`; // Establece la fuente de audio (`src`) al valor de `Data.Music`.
-    !isMuted ? this.sound.play() : null;
+    !Config.isMuted ? this.sound.play() : null;
 
     // Velocidad de movimiento en el eje X.
     this.speed = pokemon.speed / 40;
