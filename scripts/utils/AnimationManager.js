@@ -33,7 +33,6 @@ export class AnimationManager {
     if (!this.isRunning) {
       this.isRunning = true;
       requestAnimationFrame(this.animate);
-      console.log(this.callbacks);
     }
   }
 

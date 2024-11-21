@@ -1,6 +1,4 @@
 import { GenerateNewPokemon } from "../../game.js";
-import { DrawPokemonSprite } from "../DrawSprites/DrawPokemonSprites.js";
-import { Pokemon } from "../Pokemons/Pokemon.js";
 import { Config } from "./Config.js";
 import { Data, Random, RandomRange, RandomZeroTo } from "./Data.js";
 import { Sprite } from "./Sprite.js";
@@ -34,7 +32,8 @@ export class PokemonSprite {
 
     // Velocidad de movimiento en el eje X.
     this.speed = pokemon.speed / 40;
-    this.AppearAnimation(pokemon);
+    this.state = this.AppearAnimation(pokemon);
+
   }
 
   //==============================
@@ -44,6 +43,7 @@ export class PokemonSprite {
 
   AppearAnimation() {
     var appearframes = 0;
+    Data.AnimationManager.remove(this.state);
 
     const appearCallback = (deltaTime) => {
       this.screen.clear();
@@ -57,6 +57,8 @@ export class PokemonSprite {
         Data.AnimationManager.remove(appearCallback); // Detenemos esta animación
         this.IdleAnimation(); // Inicia la animación principal
       }
+
+      this.state = appearCallback;
     };
 
     // Añade la animación al gestor
@@ -65,6 +67,8 @@ export class PokemonSprite {
 
 
   IdleAnimation() {
+    Data.AnimationManager.remove(this.state);
+
     const animateCallback = (deltaTime) => {
       this.screen.clear();
       this.sprite.draw();
@@ -79,6 +83,8 @@ export class PokemonSprite {
       if (this.pokemon.hp <= 0) {
         Data.AnimationManager.remove(animateCallback);
       }
+
+      this.state = animateCallback;
     };
 
     Data.AnimationManager.add(animateCallback);
@@ -88,12 +94,11 @@ export class PokemonSprite {
   KillAnimation() {
     var killFrames = 0;
     this.sound.play();
+    Data.AnimationManager.remove(this.state);
 
     const killCallback = (deltaTime) => {
       this.screen.clear();
       killFrames++;
-
-      console.log(killFrames)
 
       if (killFrames < 0.5 * 60) {
         this.sprite.y += 0.5;
@@ -102,17 +107,21 @@ export class PokemonSprite {
         Data.AnimationManager.remove(killCallback); // Termina esta animación
         GenerateNewPokemon(this.pokemon.enemy);
       }
+      
+      this.state = killCallback;
     };
-
+    
     Data.AnimationManager.add(killCallback);
   }
-
-  AttackAnimation() {
+  
+  AttackAnimation(move) {
+    moveSound(move);
     var attackFrames = 0;  // Restablecemos el número de cuadros
     var orientation = this.pokemon.enemy ? -1 : 1;
+    Data.AnimationManager.remove(this.state);
 
     const attackCallback = (deltaTime) => {
-      this.screen.clear(this.sprite.x, this.sprite.y);
+      this.screen.clear(this.sprite.x - 10, this.sprite.y - 10);
       this.sprite.draw();
 
       // Movimiento hacia adelante y hacia atrás
@@ -123,6 +132,7 @@ export class PokemonSprite {
       attackFrames++;
 
       if (attackFrames > 20) {  // Duración de la animación (en frames)
+
         this.screen.clear(this.sprite.x, this.sprite.y);
         this.sprite.x = 0;
         this.sprite.y = 0;
@@ -133,6 +143,7 @@ export class PokemonSprite {
         orientation = this.pokemon.enemy ? 1 : -1;
       }
 
+      this.state = attackCallback;
     }
 
     Data.AnimationManager.add(attackCallback);
@@ -140,6 +151,7 @@ export class PokemonSprite {
 
   DamageAnimation() {
     var damageFrames = 0;  // Restablecemos el número de cuadros
+    Data.AnimationManager.remove(this.state);
 
     const damageCallback = (deltaTime) => {
       this.screen.clear();
@@ -154,7 +166,7 @@ export class PokemonSprite {
         damageFrames > 50 && damageFrames < 60) {
         this.screen.clear();
       }
-      
+
       if (damageFrames > 70) {  // Duración de la animación (en frames)
         Data.AnimationManager.remove(damageCallback);  // Terminamos la animación
         if (this.pokemon.hp <= 0) {
@@ -162,9 +174,22 @@ export class PokemonSprite {
         }
       }
 
+      this.state = damageCallback;
       damageFrames++;
     };
 
     Data.AnimationManager.add(damageCallback);
   }
+}
+
+function moveSound(move) {
+  var sound = document.getElementById(
+    "move"
+  );
+  try {
+    sound.src = `assets/music/moves/${move.name}.mp3`; // Usando match[1] para obtener el nombre del movimiento
+  } catch {
+    sound.src = `assets/music/moves/Acid Armor.mp3`; // Usando match[1] para obtener el nombre del movimiento
+  }
+  !Config.isMuted ? sound.play() : null;
 }

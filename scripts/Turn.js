@@ -41,7 +41,7 @@ export function Round() {
 
 function Attack(move, pokemonAtk, pokemonDef) {
     let attackFrames = 0; // Local para esta instancia de Attack
-    pokemonAtk.Animation.AttackAnimation();
+    pokemonAtk.Animation.AttackAnimation(move);
 
     const roundAttackCallback = (deltaTime) => {
         if (attackFrames === 150) {
