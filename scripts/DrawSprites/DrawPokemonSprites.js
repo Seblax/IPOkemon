@@ -49,7 +49,7 @@ export function DrawPokemonSprite(pokemon) {
 
   var ui = new PokemonUI(pokemon);
   ui.DrawPokemonUI();
-  ui.DrawHpBar(pokemon.totalHp);
+
   return {
     UI: ui,
     Animation: pokemonSprite

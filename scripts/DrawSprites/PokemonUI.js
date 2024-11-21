@@ -5,7 +5,6 @@ import { Text } from "../utils/Text.js";
 import { Data } from "../utils/Data.js";
 
 const barScreen = new Screen(".ui-canvas").blur(false);
-var textScreen;
 var speed = 1;
 /**
  * La clase `PokemonUI` gestiona la visualización de la interfaz de usuario de un Pokémon en un juego.
@@ -30,11 +29,11 @@ export class PokemonUI {
     this.screen = pokemon.enemy
       ? new Screen(".ui-enemy-canvas")
       : new Screen(".ui-allay-canvas");
-    textScreen = pokemon.enemy
+    this.textScreen = pokemon.enemy
       ? new Screen(".ui-enemy-text-canvas")
       : new Screen(".ui-allay-text-canvas");
 
-    textScreen.resolution(20);
+    this.textScreen.resolution(20);
 
     const isEnemy = this.pokemon.enemy; //Si el pokemon es enemigo
 
@@ -51,7 +50,7 @@ export class PokemonUI {
 
   //Esta función dibuja toda la UI relacionada con el pokemon, vida catual del pokemon,
   //nombre, nivel, shiny, etc.
-  async DrawPokemonUI() {
+  DrawPokemonUI() {
     const basePath = "../assets/sprites/ui"; //Path de los recursos
 
     const isMega = this.pokemon.mega; //Si el pokemon es mega
@@ -70,6 +69,7 @@ export class PokemonUI {
 
     const DrawUI = (deltaTime) => {
       this.screen.clear();
+      this.textScreen.clear();
 
       megaUI.draw();
       normalUI.draw();
@@ -97,12 +97,12 @@ export class PokemonUI {
     var currentHp = Math.max(0, Math.round(this.pokemon.hp));
 
     // Dibuja el texto que muestra el HP total y el HP actual en la pantalla con formato específico.
-    new Text(totalHp, textScreen, 226, 114, 10, "Pokefont", "start")
+    new Text(totalHp, this.textScreen, 226, 114, 10, "Pokefont", "start")
       .setColor("white")
       .setOutline(true)
       .drawText();
 
-    new Text(currentHp + "/", textScreen, 225, 114, 10, "Pokefont", "end")
+    new Text(currentHp + "/", this.textScreen, 225, 114, 10, "Pokefont", "end")
       .setColor("white")
       .setOutline(true)
       .drawText();
@@ -169,7 +169,6 @@ export class PokemonUI {
     hpbar.x = oldPosition;
     backgroundBar.draw();
     hpbar.draw();
-    textScreen.clear();
 
 
     if (oldPosition == position) {
@@ -227,7 +226,7 @@ export class PokemonUI {
     //Dibujar el nombre
     const text = new Text(
       name,
-      textScreen,
+      this.textScreen,
       posSprite[0],
       posSprite[1],
       10,
@@ -247,7 +246,7 @@ export class PokemonUI {
     var position = [this.x + 94, this.y + 4];
 
     //Dibujar sprite
-    new Text(lvl, textScreen, position[0], position[1], 10, "Pokefont", "start")
+    new Text(lvl, this.textScreen, position[0], position[1], 10, "Pokefont", "start")
       .setColor("white")
       .setOutline(true)
       .drawText();

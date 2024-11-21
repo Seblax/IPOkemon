@@ -6,7 +6,6 @@ import { showCrit, showFeedback } from "../Moves/MoveFeedback.js";
 const physical = "Physical";
 
 export function doDamage(move, atkPokemon, defPokemon) {
-
   const Level = atkPokemon.lvl;
   const Power = move.power;
 
@@ -19,7 +18,7 @@ export function doDamage(move, atkPokemon, defPokemon) {
     atkPokemon.type1 === move.type || atkPokemon.type2 === move.type ? 1.5 : 1;
 
   const random = RandomRange(85, 100) / 100;
-  move.pp -= 1;
+
 
   let damage = ((((2 * Level) / 20 + 2) * Power * (A / D)) / 50) + 2;
   damage = damage * STAB * crit * random * efficacy;
@@ -27,9 +26,6 @@ export function doDamage(move, atkPokemon, defPokemon) {
   // Feedback de efectividad
   showFeedback(efficacy, defPokemon.enemy);
   showCrit(crit, defPokemon.enemy);
-
-  // Actualizar movimientos del atacante
-  DrawMoveSet(Data.ActualAllayPokemon);
 
   const oldHp = defPokemon.hp;
   defPokemon.hp = Math.max(0, defPokemon.hp - damage);

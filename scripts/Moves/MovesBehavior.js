@@ -27,7 +27,7 @@ export function moveSetButtons() {
       if (!Data.YouTurn) {
         return;
       }
-      
+
       const botonId = parseInt(boton.classList[1]); // Asumimos que la clase sigue el formato "move X", donde X es el número
 
       Data.ActualAllayMove = Data.ActualAllayPokemon.moveSet[botonId - 1];
@@ -38,7 +38,12 @@ export function moveSetButtons() {
         return;
       }
 
+      Data.ActualAllayMove.pp -= 1;
+      Data.ActualEnemyMove.pp -= 1;
+
       Round();
+      // Actualizar movimientos del atacante
+      DrawMoveSet(Data.ActualAllayPokemon);
     });
   });
 }

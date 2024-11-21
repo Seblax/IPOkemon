@@ -75,6 +75,10 @@ export class PokemonSprite {
         this.screen.rotate(angle);
 
       this.i += this.speed;
+
+      if (this.pokemon.hp <= 0) {
+        Data.AnimationManager.remove(animateCallback);
+      }
     };
 
     Data.AnimationManager.add(animateCallback);
@@ -88,6 +92,8 @@ export class PokemonSprite {
     const killCallback = (deltaTime) => {
       this.screen.clear();
       killFrames++;
+
+      console.log(killFrames)
 
       if (killFrames < 0.5 * 60) {
         this.sprite.y += 0.5;
@@ -148,15 +154,15 @@ export class PokemonSprite {
         damageFrames > 50 && damageFrames < 60) {
         this.screen.clear();
       }
-
-      damageFrames++;
+      
       if (damageFrames > 70) {  // Duración de la animación (en frames)
         Data.AnimationManager.remove(damageCallback);  // Terminamos la animación
-        this.sprite.color = "white";  // Restablecemos el color original
         if (this.pokemon.hp <= 0) {
           this.KillAnimation(); // Inicia el siguiente estado
         }
       }
+
+      damageFrames++;
     };
 
     Data.AnimationManager.add(damageCallback);

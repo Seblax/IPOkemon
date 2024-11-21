@@ -21,7 +21,7 @@ export function Round() {
     const roundCallback = (deltaTime) => {
         if (roundFrames == 150) {
             if (secondPokemon.Pokemon.hp <= 0) {
-                Data.YouTurn = ~Data.YouTurn
+                Data.YouTurn = true;
                 Data.AnimationManager.remove(roundCallback);
                 return
             }
@@ -66,6 +66,12 @@ function Attack(move, pokemonAtk, pokemonDef) {
                 Data.UIEnemy.DrawHpBar(oldHP);
             } else {
                 Data.UIAllay.DrawHpBar(oldHP);
+            }
+
+            if (pokemonDef.Pokemon.hp <= 0) {
+                Data.YouTurn = true
+                Data.AnimationManager.remove(roundAttackCallback);
+                return
             }
         }
     };
