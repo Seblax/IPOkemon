@@ -42,7 +42,7 @@ function PrioMove() {
   first = Data.ActualAllayMove;
   second = Data.ActualEnemyMove;
 
-  if (prio > 0) {
+  if (prio < 0) {
     first = Data.ActualEnemyMove;
     second = Data.ActualAllayMove;
   }

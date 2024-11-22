@@ -2,47 +2,78 @@ import { DrawPokemonSprite } from "./scripts/DrawSprites/DrawPokemonSprites.js";
 import { DrawBackground } from "./scripts/DrawSprites/DrawBackGround.js";
 import { PokemonTeam } from "./scripts/Pokemons/PokemonTeam.js";
 import { Data } from "./scripts/utils/Data.js";
-import { Music, PlayBattleMusic, SetBattleMusic } from "./scripts/utils/Music.js";
-import { DrawMoveSet, SetCanvasMoveSetResolution } from "./scripts/DrawSprites/MoveSetSprites.js";
-import { moveSetButtons } from "./scripts/Moves/MovesBehavior.js";
+import { Music, SetBattleMusic } from "./scripts/Music.js";
+import { DrawMoveSet } from "./scripts/DrawSprites/MoveSetSprites.js";
+import { MoveSetButtonsBehavior } from "./scripts/Moves/MovesBehavior.js";
 import { loadMovesFromCSV, loadPokemonFromCSV, loadTypesFromCSV } from "./scripts/utils/CSV.js";
+import { Test1, Test2, Test3, Test4, Test5 } from "./scripts/Tests/Test.js";
 
+const teamAllay = new PokemonTeam();
+const teamEnemy = new PokemonTeam();
+
+Start();
 
 async function Start() {
-  SetBattleMusic();
-  SetCanvasMoveSetResolution();
+  await LoadData();
+  await GenerateTeams();
 
+  MoveSetButtonsBehavior();
+
+  SetBattleMusic();
+  Music();
+
+  // Partida normal
+  LoadPokemons();
+
+  // Partida con Casuisticas
+  // await Test1();  //  Eficacia x0,25 x0,5 x1, x2 y x4;
+  // Test2();  //  Eficacia x0
+  // await Test3();  //  Shinys y Megas
+  // await Test4();  //  Rápido vs Lento, Lento con ataque con prioridad
+  // await Test5();  //  Pokemon Customizados
+
+  DrawAll();
+}
+
+export async function GenerateNewPokemon(isEnemy) {
+  var team = new PokemonTeam();
+  await team.generateTeam(isEnemy);
+  const pokemon = team.team[0];
+
+  if (isEnemy) {
+    Data.ActualEnemyPokemon = pokemon;
+    const Enemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
+    Data.UIEnemy = Enemy.UI;
+    Data.PokemonEnemyAnimation = Enemy.Animation;
+  } else {
+    Data.ActualAllayPokemon = pokemon;
+    const Allay = DrawPokemonSprite(Data.ActualAllayPokemon);
+    Data.UIAllay = Allay.UI;
+    Data.PokemonAllayAnimation = Allay.Animation;
+    DrawMoveSet(Data.ActualAllayPokemon);
+  }
+
+}
+
+async function LoadData() {
   Data.PokemonData = await loadPokemonFromCSV();
   Data.MovesData = await loadMovesFromCSV();
   Data.Types = await loadTypesFromCSV();
 
-  const teamAllay = new PokemonTeam();
-  const teamEnemy = new PokemonTeam();
+  Data.AnimationManager.start();
+}
 
+async function GenerateTeams() {
   await teamAllay.generateTeam(false);
   await teamEnemy.generateTeam(true);
+}
 
-  var pokemon_1 = teamAllay.team[0];
-  var pokemon_2 = teamEnemy.team[0];
+function LoadPokemons() {
+  Data.ActualAllayPokemon = teamAllay.team[0];
+  Data.ActualEnemyPokemon = teamEnemy.team[0];
+}
 
-
-  Data.ActualAllayPokemon = pokemon_1;
-  Data.ActualEnemyPokemon = pokemon_2;
-
-  console.log(pokemon_1);
-  console.log(pokemon_2);
-
-  DrawBackground();
-
-  if (pokemon_1.shiny || pokemon_2.shiny) {
-    console.log("Hay un shiny");
-  }
-
-  moveSetButtons();
-
-  Music();
-  PlayBattleMusic();
-
+function DrawAll() {
   const Allay = DrawPokemonSprite(Data.ActualAllayPokemon);
   const Enemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
 
@@ -52,30 +83,6 @@ async function Start() {
   Data.PokemonAllayAnimation = Allay.Animation;
   Data.PokemonEnemyAnimation = Enemy.Animation;
 
-
+  DrawBackground();
   DrawMoveSet(Data.ActualAllayPokemon);
-
-  Data.AnimationManager.start();
-}
-
-Start();
-
-export async function GenerateNewPokemon(isEnemy) {
-  var team = new PokemonTeam();
-  await team.generateTeam(isEnemy);
-  const pokemon = team.team[0];
-  
-  if (isEnemy) {
-    Data.ActualEnemyPokemon = pokemon;
-    const Enemy = DrawPokemonSprite(Data.ActualEnemyPokemon);
-    Data.UIEnemy = Enemy.UI;
-    Data.PokemonEnemyAnimation = Enemy.Animation;
-  }else{
-    Data.ActualAllayPokemon = pokemon;
-    const Allay = DrawPokemonSprite(Data.ActualAllayPokemon);
-    Data.UIAllay = Allay.UI;
-    Data.PokemonAllayAnimation = Allay.Animation;
-    DrawMoveSet(Data.ActualAllayPokemon);
-  }
-
 }

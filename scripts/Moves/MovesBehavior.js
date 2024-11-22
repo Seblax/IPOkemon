@@ -1,11 +1,10 @@
 import { DrawMove, DrawMoveSet, OnHoverMove } from "../DrawSprites/MoveSetSprites.js";
-import { SetBattleTurn } from "../Pokemons/Damage.js";
 import { Round } from "../Turn.js";
 import { Data, RandomRange } from "../utils/Data.js";
 
 const botones = document.querySelectorAll(".move");
 
-export function moveSetButtons() {
+export function MoveSetButtonsBehavior() {
   botones.forEach((boton) => {
     boton.addEventListener("mouseover", () => {
       // Extraemos el número del botón a partir de su clase

@@ -7,6 +7,7 @@ import { Text } from "../utils/Text.js";
 // Instancia de Screen para el lienzo donde se dibujan los sprites de movimientos.
 const screen = new Screen(".move-set-canvas");
 const textScreen = new Screen(".move-set-text-canvas"); // Lienzo específico para el texto de los movimientos.
+textScreen.resolution(20); 
 
 /**
  * Dibuja el conjunto de movimientos de un Pokémon en la pantalla.
@@ -22,10 +23,6 @@ export function DrawMoveSet(pokemon) {
     element.pp > 0 ? DrawMove(element, i) : OnHoverMove(element, i); // Llama a la función para dibujar un movimiento específico.
     i++;
   });
-}
-
-export function SetCanvasMoveSetResolution() {
-  textScreen.resolution(20); // Establece la resolución de la pantalla de texto.
 }
 
 /**

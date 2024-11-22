@@ -1,5 +1,5 @@
-import { Config } from "./Config.js";
-import { Data, RandomZeroTo } from "./Data.js";
+import { Config } from "./utils/Config.js";
+import { Data, RandomZeroTo } from "./utils/Data.js";
 
 const sound = document.getElementById("ost"); // Obtiene el elemento de audio del DOM con el id "ost", que se usará para controlar la música.
 const button = document.getElementById("musicButton"); // Obtiene el botón de control de música del DOM, con el id "musicButton".
@@ -7,13 +7,6 @@ const button = document.getElementById("musicButton"); // Obtiene el botón de c
 // Función que configura la música de batalla, seleccionando una canción aleatoria de la carpeta "fight".
 export function SetBattleMusic() {
   Data.Music = "../assets/music/fight/" + RandomZeroTo(9) + "_fight.ogg";
-}
-
-export function PlayBattleMusic() {
-  SetBattleMusic();
-  if (!Config.isMuted) sound.play().catch(function (error) {
-    console.log("No se pudo reproducir la música: ", error);
-  });;
 }
 
 // Función que gestiona la reproducción de la música.
