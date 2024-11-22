@@ -28,7 +28,7 @@ export class PokemonSprite {
       this.pokemon.enemy ? "enemy" : "allay"
     );
     this.sound.src = `../assets/music/appears/${this.pokemon.id}.ogg`; // Establece la fuente de audio (`src`) al valor de `Data.Music`.
-    !Config.isMuted ? this.sound.play() : null;
+    if (!Config.isMuted) this.sound.play();
 
     // Velocidad de movimiento en el eje X.
     this.speed = pokemon.speed / 40;
@@ -93,7 +93,7 @@ export class PokemonSprite {
 
   KillAnimation() {
     var killFrames = 0;
-    !Config.isMuted ? this.sound.play() : null;
+    if (!Config.isMuted) this.sound.play();
 
     Data.AnimationManager.remove(this.state);
 
@@ -187,17 +187,14 @@ export class PokemonSprite {
 
 function moveSound(move) {
   var sound = document.getElementById("move");
-
-  sound.src = `assets/music/moves/${move.name}.mp3`; // Intentamos asignar el archivo
   sound.volume = 0.75;
-  
-  // Configuramos un listener para manejar el error
-  sound.onerror = () => {
-    // Si el archivo no se carga, asignamos un archivo por defecto
-    sound.src = "assets/music/moves/X Scissor.mp3";
-    sound.play();
-  };
-  
-  // Intentamos reproducir el archivo después de asignarlo
-  sound.play();
+  try {
+    sound.src = `assets/music/moves/${move.name}.mp3`; // Intentamos asignar el archivo
+    } catch (err) {
+      sound.src = "assets/music/moves/X Scissor.mp3";
+      }
+    if (!Config.isMuted) {
+      console.log(Config.isMuted)
+      sound.play();
+    }
 }
