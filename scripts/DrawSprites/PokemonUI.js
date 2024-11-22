@@ -94,7 +94,7 @@ export class PokemonUI {
 
     // Obtiene los valores de HP total y actual.
     var totalHp = this.pokemon.totalHp;
-    var currentHp = Math.max(0, Math.round(this.pokemon.hp));
+    var currentHp = Math.max(0, Math.ceil(this.pokemon.hp));
 
     // Dibuja el texto que muestra el HP total y el HP actual en la pantalla con formato específico.
     new Text(totalHp, this.textScreen, 226, 114, 10, "Pokefont", "start")
@@ -167,9 +167,11 @@ export class PokemonUI {
 
   AnimateHpBar(hpbar, backgroundBar, oldPosition, position) {
     hpbar.x = oldPosition;
+
     backgroundBar.draw();
     hpbar.draw();
 
+    var pokemonHp = this.pokemon.hp;
 
     if (oldPosition == position) {
       return;
@@ -182,6 +184,12 @@ export class PokemonUI {
       hpbar.x -= speed;
 
       if (hpbar.x < position) {
+        // if (pokemonHp <= 0) {
+        //   hpbar.x -= 5;
+        //   backgroundBar.draw();
+        //   hpbar.draw();
+        // }
+
         Data.AnimationManager.remove(animateCallback); // Detenemos esta animación
       }
     };
@@ -246,7 +254,15 @@ export class PokemonUI {
     var position = [this.x + 94, this.y + 4];
 
     //Dibujar sprite
-    new Text(lvl, this.textScreen, position[0], position[1], 10, "Pokefont", "start")
+    new Text(
+      lvl,
+      this.textScreen,
+      position[0],
+      position[1],
+      10,
+      "Pokefont",
+      "start"
+    )
       .setColor("white")
       .setOutline(true)
       .drawText();
@@ -272,11 +288,11 @@ export class PokemonUI {
     //Carga los sprites
     haveSecondType
       ? new Sprite(
-        basePath + type2,
-        this.screen,
-        posSpriteType1[0],
-        posSpriteType1[1]
-      )
+          basePath + type2,
+          this.screen,
+          posSpriteType1[0],
+          posSpriteType1[1]
+        )
       : null;
 
     new Sprite(

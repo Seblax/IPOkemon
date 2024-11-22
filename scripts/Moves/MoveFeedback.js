@@ -52,12 +52,13 @@ export function showCrit(crit, enemy) {
   if (crit == 1) {
     return;
   }
-
+  
+  pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
+  
   const critPath = `assets/sprites/ui/feedback/crit.png`;
   const screen = new Screen(".crit-or-miss-canvas");
   const critSprite = new Sprite(critPath, screen, pos.x, pos.y);
 
-  pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
 
   // Resetea opacidad
   opacity = 0;
@@ -86,11 +87,12 @@ export function showCrit(crit, enemy) {
 }
 
 export function showMiss(enemy) {
+  pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
+  
   const critPath = `assets/sprites/ui/feedback/miss.png`;
   const screen = new Screen(".crit-or-miss-canvas");
   const critSprite = new Sprite(critPath, screen , pos.x, pos.y);
 
-  pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
 
   // Resetea opacidad
   opacity = 0;

@@ -37,7 +37,6 @@ export function Music() {
 // Función para reproducir la música.
 function PlayMusic() {
   // Intenta reproducir la música. Si hay un error, se captura y se muestra un mensaje de error.
-  console.log(Config.isMuted)
   sound.play().catch(function (error) {
     console.log("No se pudo reproducir la música: ", error);
   });
