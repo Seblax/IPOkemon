@@ -61,6 +61,7 @@ async function LoadData() {
   Data.Types = await loadTypesFromCSV();
 
   Data.AnimationManager.start();
+  TypeChartButton();
 }
 
 async function GenerateTeams() {
@@ -85,4 +86,11 @@ function DrawAll() {
 
   DrawBackground();
   DrawMoveSet(Data.ActualAllayPokemon);
+}
+
+function TypeChartButton() {
+  document.getElementById('button2').addEventListener('click', 
+    () => {  
+      window.open("https://www.pkmn.help/defense/");
+  });
 }
