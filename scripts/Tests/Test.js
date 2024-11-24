@@ -28,6 +28,8 @@ export async function Test1() {
     move05.power = 40;
     move025.power = 40;
 
+    moveEnemy.power = 1;
+
     allay.moveSet = [
         Move.copy(move4),
         Move.copy(move2),
