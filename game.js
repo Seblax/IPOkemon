@@ -14,6 +14,7 @@ const teamEnemy = new PokemonTeam();
 
 // Función principal que inicializa todo el entorno de juego.
 Start();
+///aoidhuawoidhu
 
 /**
  * Función asíncrona que configura y comienza el juego.
