@@ -201,7 +201,7 @@ function moveSound(move) {
   sound.volume = 0.75;
 
   async function loadSound() {
-    const moveSound = `assets/music/moves/${move.name}.mp3`;
+    const moveSound = "../" + `assets/music/moves/${move.name}.mp3`;
 
     // Verificar si el archivo existe con una petición HEAD
     const response = await fetch(moveSound, { method: "HEAD" });
@@ -211,7 +211,7 @@ function moveSound(move) {
       console.warn(
         "Archivo del movimiento no encontrado, cargando archivo por defecto."
       );
-      sound.src = "assets/music/moves/X Scissor.mp3";
+      sound.src = "../" + "assets/music/moves/X Scissor.mp3";
     }
 
     sound.play();

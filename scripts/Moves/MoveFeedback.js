@@ -21,7 +21,7 @@ export function showFeedback(efficacy, enemy) {
 
   pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
 
-  const feedbackPath = `assets/sprites/ui/feedback/${efficacy}.png`;
+  const feedbackPath = "../" + `assets/sprites/ui/feedback/${efficacy}.png`;
   const feedbackSprite = new Sprite(feedbackPath, screen, pos.x, pos.y);
 
   // Resetea opacidad
@@ -55,7 +55,7 @@ export function showCrit(crit, enemy) {
   
   pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
   
-  const critPath = `assets/sprites/ui/feedback/crit.png`;
+  const critPath = "../" + `assets/sprites/ui/feedback/crit.png`;
   const screen = new Screen(".crit-or-miss-canvas");
   const critSprite = new Sprite(critPath, screen, pos.x, pos.y);
 
@@ -89,7 +89,7 @@ export function showCrit(crit, enemy) {
 export function showMiss(enemy) {
   pos = enemy ? Config.MoveFeedbackEnemy : Config.MoveFeedbackAllay;
   
-  const critPath = `assets/sprites/ui/feedback/miss.png`;
+  const critPath = "../" + `assets/sprites/ui/feedback/miss.png`;
   const screen = new Screen(".crit-or-miss-canvas");
   const critSprite = new Sprite(critPath, screen , pos.x, pos.y);
 

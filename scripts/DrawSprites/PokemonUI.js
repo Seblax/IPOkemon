@@ -124,7 +124,7 @@ export class PokemonUI {
 
     //Path del asset de la barra de vida
     var i = 0;
-    var barPath = "assets/sprites/ui/";
+    var barPath = "../" + "assets/sprites/ui/";
 
     if (hpPercent < 0.3) {
       i = 3;
@@ -142,7 +142,7 @@ export class PokemonUI {
 
     //Dibuja la barra del fondo
     var backgroundBar = new Sprite(
-      "assets/sprites/ui/0_background_bar.png",
+      "../" + "assets/sprites/ui/0_background_bar.png",
       barScreen,
       pos[0],
       pos[1]
@@ -205,7 +205,7 @@ export class PokemonUI {
       Math.min(1, this.pokemon.hp / this.pokemon.totalHp)
     );
 
-    var barPath = "assets/sprites/ui/0_hp_bar.png";
+    var barPath = "../" + "assets/sprites/ui/0_hp_bar.png";
 
     //Posición de las barra de vida
     var pos = [this.x + 44, this.y + 20];
@@ -213,7 +213,7 @@ export class PokemonUI {
 
     //Dibuja la barra del fondo
     var backgroundBar = new Sprite(
-      "assets/sprites/ui/0_background_bar.png",
+      "../" + "assets/sprites/ui/0_background_bar.png",
       barScreen,
       pos[0],
       pos[1]

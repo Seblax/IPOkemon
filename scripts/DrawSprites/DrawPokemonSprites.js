@@ -63,8 +63,8 @@ export function DrawPokemonSprite(pokemon) {
  */
 function GetPokemonSprite(pokemon) {
   const isEnemy = pokemon.enemy; // Determina si el Pokémon es un enemigo.
-  var normal = "assets/sprites/pokemons/"; // Ruta base para sprites normales.
-  var mega = "assets/sprites/pokemons/megas/"; // Ruta base para sprites de Pokémon megaevolucionados.
+  var normal = "../" + "assets/sprites/pokemons/"; // Ruta base para sprites normales.
+  var mega = "../" + "assets/sprites/pokemons/megas/"; // Ruta base para sprites de Pokémon megaevolucionados.
 
   if (SpecialPokemon.includes(pokemon.id)) {
     return getSpecialSprite(pokemon);
@@ -90,7 +90,7 @@ function GetPokemonSprite(pokemon) {
 function getSpecialSprite(pokemon) {
   const isEnemy = pokemon.enemy; // Determina si el Pokémon es un enemigo.
   const tag = pokemon.name.split(" ")[1].toLowerCase();
-  var path = "assets/sprites/pokemons/specials/"; // Ruta base para sprites normales.
+  var path = "../" + "assets/sprites/pokemons/specials/"; // Ruta base para sprites normales.
 
   // Agrega la subcarpeta específica dependiendo de si es enemigo o aliado y si es shiny.
   path += isEnemy

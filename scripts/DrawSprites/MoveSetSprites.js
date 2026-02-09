@@ -113,11 +113,11 @@ export function DrawMove(move, id) {
  */
 function GetMoveSprite(move) {
   var type = move.type; // Obtiene el tipo del movimiento.
-  return "assets/sprites/ui/moves/" + type + ".png"; // Construye la ruta completa del sprite.
+  return "../" + "assets/sprites/ui/moves/" + type + ".png"; // Construye la ruta completa del sprite.
 }
 
 export function OnHoverMove(move, id) {
-  const path = move.pp <= 0 ? "assets/sprites/ui/moves/noPP.png" : "assets/sprites/ui/moves/selected.png"; // Obtiene la ruta del sprite del movimiento.
+  const path = "../" + move.pp <= 0 ? "assets/sprites/ui/moves/noPP.png" : "assets/sprites/ui/moves/selected.png"; // Obtiene la ruta del sprite del movimiento.
 
   // Determina la posición de dibujo basada en el índice del movimiento.
   var pos = Config.MovesSetUI.Move1; // Posición por defecto para el primer movimiento.

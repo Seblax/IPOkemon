@@ -11,12 +11,12 @@ export function DrawBackground() {
 
 function SetBackgroundSprites() {
   // Ruta base para las imágenes de fondo.
-  const path = "assets/sprites/backgrounds/";
+  const path = "../" + "assets/sprites/backgrounds/";
   const index = RandomZeroTo(Config.Background.numBackgrounds + 1);
 
   const background = path + index + "_background.png";
-  const enemyBase = path + index + "_enemy.png";
-  const allayBase = path + index + "_allay.png";
+  const enemyBase =  path + index + "_enemy.png";
+  const allayBase =  path + index + "_allay.png";
 
   // Llama a la función para cambiar la paleta de colores de la página.
   Palette(index);
